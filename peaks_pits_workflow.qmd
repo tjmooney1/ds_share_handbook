@@ -4,7 +4,7 @@
 
 ## What is the concept/project background?
 
-Strong memories associated to brands or products go deeper than simple positive or negative sentiment. In their book "The Power of Moments", two psychologists ([Chip and Dan Heath](https://heathbrothers.com/about/)) define these core memories as Peak and Pits, impactful experiences in our lives. 
+Strong memories associated to brands or products go deeper than simple positive or negative sentiment. In their book "The Power of Moments", two psychologists ([Chip and Dan Heath](https://heathbrothers.com/about/)) define these core memories as Peak and Pits, impactful experiences in our lives.
 
 Broadly, peak moments are experiences that stand our memorable in our lives in a positive sense, whereas pit moments are impactful negative experiences.
 
@@ -12,31 +12,31 @@ Microsoft tasked us with finding a way to identify these moments in social data-
 
 ### The end goal
 
-With these projects the core final 'product' is a collection of different peaks and pits, with suitable representative verbatims and an explanation to understand the high-level intricacies of these different emotional moments. 
+With these projects the core final 'product' is a collection of different peaks and pits, with suitable representative verbatims and an explanation to understand the high-level intricacies of these different emotional moments.
 
 ![Screenshot from a Peaks and Pits project showcasing the identified Peak moments for a product at a high level](/img/peaks_list.png){fig-alt="A screenshot of a powerpoint slide showcasing eight different peak topics as identified using BertopicR"}
 
 ### Key features of project
 
-* There is no out-of-the-box ML model available whose purpose is to classify social media posts as either peaks or pits (i.e. we cannot use a ready-made solution, we must design our own bespoke solution).
-* There is limited data available
-  * Unlike the case of spam/ham or sentiment classification, there is not a bank of pre-labelled data available for us to leverage for 'traditional ML'.
-* Despite these issues, the research problem itself is well defined (**what** are the core peak and pit moments for a brand/product), and because there are only three classes (peak, pit, or neither) which are based on extensive research, the classes themselves are well described (even if it is case of "you know a peak moment when you see it").
+-   There is no out-of-the-box ML model available whose purpose is to classify social media posts as either peaks or pits (i.e. we cannot use a ready-made solution, we must design our own bespoke solution).
+-   There is limited data available
+    -   Unlike the case of spam/ham or sentiment classification, there is not a bank of pre-labelled data available for us to leverage for 'traditional ML'.
+-   Despite these issues, the research problem itself is well defined (**what** are the core peak and pit moments for a brand/product), and because there are only three classes (peak, pit, or neither) which are based on extensive research, the classes themselves are well described (even if it is case of "you know a peak moment when you see it").
 
-## Overview of approach 
+## Overview of approach
 
 Peaks and pits projects have gone through many iterations throughout the past year and a half. Currently, the general workflow is to use utilise a model framework known as [SetFit](https://huggingface.co/docs/setfit/conceptual_guides/setfit) to efficiently train a text classification model with limited training data. This fine-tuned model is then able to run inference over large datasets to label posts as either peaks, pits, or neither. We then utilise the LLM capabilities to refine these peak and pit moments into a collection of posts we are extremely confident are peaks and/or pits. We then employ topic modelling to identify groups of similar peaks and pits to help us organise and discover hidden topics or themes within this collection of core moments.
 
 This whole process can be split into six distinct steps:
 
-1. [Extract brand/product mentions from Sprinklr (the start of any project)](#step-one)
-2. [Obtain project-specific exemplar posts to help fine-tune a text classification model](#step-two)
-4. [Perform model fine-tuning through contrastive learning](#step-three)
-5. [Run inference over all of the project specific data](#step-four)
-6. [Use GPT-3.5 for an extra layer of classification on identified peaks and pits](#step-five)
-7. [Turn moments into something interpretable using topic modelling](#step-six)
+1.  [Extract brand/product mentions from Sprinklr (the start of any project)](#step-one)
+2.  [Obtain project-specific exemplar posts to help fine-tune a text classification model](#step-two)
+3.  [Perform model fine-tuning through contrastive learning](#step-three)
+4.  [Run inference over all of the project specific data](#step-four)
+5.  [Use GPT-3.5 for an extra layer of classification on identified peaks and pits](#step-five)
+6.  [Turn moments into something interpretable using topic modelling](#step-six)
 
-![Schematic workflow from Project 706 - Peaks and Pits in M365 Apps](./img/ar_workflow.png){fig-alt="A screenshot of a powerpoint slide showcasing the steps undertaken for a peaks and pits project" width=80%}
+![Schematic workflow from Project 706 - Peaks and Pits in M365 Apps](./img/ar_workflow.png){fig-alt="A screenshot of a powerpoint slide showcasing the steps undertaken for a peaks and pits project" width="80%"}
 
 ### Obtain posts for the project (Step 1) {#step-one}
 
@@ -46,13 +46,45 @@ This step relies on the analysts to export relevant mentions from Sprinklr (one 
 
 This step is synonymous with data labelling required for any machine learning project where annotated data is not already available.
 
-For traditional machine learning tasks, the numbe of examples per label is often in the region of thousands
+Whilst there is no one-size-fits-all for determining the amount of data required to train a machine learning model, for traditional models and tasks, the number of examples per label is often in the region of thousands, and often this isn't even enough for more complex problems.
+
+The time required to accurately label thousands of peaks and pits to train a classification model in the traditional way is sadly beyond the scope of feasibility for our projects. As such we needed an approach that did not rely on copious amounts of pre-labelled data.
+
+This is where [SetFit](https://huggingface.co/docs/setfit/conceptual_guides/setfit) comes in. As mentioned previously, SetFit is a framework that enables us to efficiently train a text classification model with limited training data.
+
+::: {.callout-tip collapse="true"}
+## How does it do this?
+
+*Note the below is directly copied from the SetFit documentation. It is so succinctly written that trying to rewrite it would not do it justice.*
+
+Every SetFit model consists of two parts: a **sentence transformer** embedding model (the body) and a **classifier** (the head). These two parts are trained in two separate phases: the **embedding finetuning phase** and the **classifier training phase**. This conceptual guide will elaborate on the intuition between these phases, and why SetFit works so well.
+
+Embedding finetuning phase
+The first phase has one primary goal: finetune a sentence transformer embedding model to produce useful embeddings for our classification task. The Hugging Face Hub already has thousands of sentence transformer available, many of which have been trained to very accurately group the embeddings of texts with similar semantic meaning.
+
+However, models that are good at Semantic Textual Similarity (STS) are not necessarily immediately good at our classification task. For example, according to an embedding model, the sentence of 1) "`He biked to work.`" will be much more similar to 2) "`He drove his car to work.`" than to 3) "`Peter decided to take the bicycle to the beach party!`". But if our classification task involves classifying texts into transportation modes, then we want our embedding model to place sentences 1 and 3 closely together, and 2 further away.
+
+To do so, we can finetune the chosen sentence transformer embedding model. The goal here is to nudge the model to use its pretrained knowledge in a different way that better aligns with our classification task, rather than making the completely forget what it has learned.
+
+For finetuning, SetFit uses **contrastive learning**. This training approach involves creating **positive and negative pairs** of sentences. A sentence pair will be positive if both of the sentences are of the same class, and negative otherwise. For example, in the case of binary “positive”-“negative” sentiment analysis, ("`The movie was awesome`", "`I loved it`") is a positive pair, and ("`The movie was awesome`", "`It was quite disappointing`") is a negative pair.
+
+During training, the embedding model receives these pairs, and will convert the sentences to embeddings. If the pair is positive, then it will pull on the model weights such that the text embeddings will be more similar, and vice versa for a negative pair. Through this approach, sentences with the same label will be embedded more similarly, and sentences with different labels less similarly.
+
+Conveniently, this contrastive learning works with pairs rather than individual samples, and we can create plenty of unique pairs from just a few samples. For example, given 8 positive sentences and 8 negative sentences, we can create 28 positive pairs and 64 negative pairs for 92 unique training pairs. This grows exponentially to the number of sentences and classes, and that is why SetFit can train with just a few examples and still correctly finetune the sentence transformer embedding model. However, we should still be wary of overfitting.
+
+Classifier training phase
+Once the sentence transformer embedding model has been finetuned for our task at hand, we can start training the classifier. This phase has one primary goal: create a good mapping from the sentence transformer embeddings to the classes.
+
+Unlike with the first phase, training the classifier is done from scratch and using the labelled samples directly, rather than using pairs. By default, the classifier is a simple **logistic regression** classifier from scikit-learn. First, all training sentences are fed through the now-finetuned sentence transformer embedding model, and then the sentence embeddings and labels are used to fit the logistic regression classifier. The result is a strong and efficient classifier.
+
+Using these two parts, SetFit models are efficient, performant and easy to train, even on CPU-only devices.
+:::
 
 There is no perfect number of labelled examples to find per class (i.e. peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it's superpower is making the most of few, extremely good, labelled data.
 
-By the end of this step we need to have a list of examples posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are "neither". 
+By the end of this step we need to have a list of example posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are "neither".
 
-::: {.callout-caution collapse="true"}
+::: {.callout-note collapse="true"}
 ## Why do we do this for each project? After so many projects now don't we already have a good idea of what a peak and pit moment is for model training?
 
 Each peak and pit project we work on has the potential to introduce 'domain' specific language, which a machine learning classifier (model) may not have seen before. By manually identifying exemplar peaks and pits that are project-specific, this gives our model the best chance to identify emotional moments appropriate to the project/data at hand.
@@ -84,22 +116,22 @@ For comparison, this is what it looks like on an untrained model:
 
 ![Untrained embedding model](./img/embedding_untrained.png)
 
-Finally, now we are happy with our model performance based on the training and validation datasets, we can evaluate the performance of this final model using our testing data. This is data that the model has never seen, and we are hoping that the accuracy and performance is similar to that of the validation data. This is Machine Learning 101 and if a refresher is needed for this there are plenty of resources online looking at the role of training, validation, and testing data. 
+Finally, now we are happy with our model performance based on the training and validation datasets, we can evaluate the performance of this final model using our testing data. This is data that the model has never seen, and we are hoping that the accuracy and performance is similar to that of the validation data. This is Machine Learning 101 and if a refresher is needed for this there are plenty of resources online looking at the role of training, validation, and testing data.
 
 ### Run inference over project data (Step 4) {#step-four}
 
 It is finally time to infer whether the project data contain peaks or pits by using our fine-tuned SetFit model to classify the posts.
 
-Before doing this again we need to make sure we do some data cleaning on the project specific data. 
+Before doing this again we need to make sure we do some data cleaning on the project specific data.
 
 Broadly, this needs to match the high-level cleaning we did during fine-tuning stage:
 
-* Mask brand/product mentions (using RoBERTa-based model [or similar] and `Rivendell` functions) 
-* Remove hashtags #️⃣
-* Remove mentions 💬
-* Remove URLs 🌐
-* Remove emojis 🐙
- 
+-   Mask brand/product mentions (using RoBERTa-based model \[or similar\] and `Rivendell` functions)
+-   Remove hashtags #️⃣
+-   Remove mentions 💬
+-   Remove URLs 🌐
+-   Remove emojis 🐙
+
 > Note: Currently all peak and pit projects have been done on Twitter or Reddit data, but if a project includes web/forum data quirky special characters, numbered usernames, structured quotes etc should also be removed.
 
 Now we save this dataframe somewhere appropriate.
@@ -110,7 +142,7 @@ Now we have a .csv file with the probabilities each post is a peak, pit, or neit
 
 ### The metal detector, GPT-3.5 (Step 5) {#step-five}
 
-During [step 4](#step-four) we obtained peak and pit classification using few-shot classification with SetFit. The benefit of this approach (as outlined previously) is its speed and ability to classify with very few labelled samples due to contrastive learning. 
+During [step 4](#step-four) we obtained peak and pit classification using few-shot classification with SetFit. The benefit of this approach (as outlined previously) is its speed and ability to classify with very few labelled samples due to contrastive learning.
 
 However, during our iterations of peak and pit projects, we've realised that this step still classifies a fair amount of non-peak and pit posts incorrectly. This can cause noise in the downstream analyses and be very time consuming for us to further trudge through verbatims.
 
@@ -118,11 +150,11 @@ As such, the aim here is to further our confidence in our final list of peaks an
 
 > Note: Using GPT-3.5 for inference, even over relatively few posts as in peaks and pits, is expensive both in terms of time and money. Preliminary tests have suggested it is in the order of magnitude of thousands of times slower than SetFit. It is for these reasons why we do not use GPT-x models from the get go, despite it's obvious incredible understanding of natural language.
 
-Whilst prompt-based classification such as those with GPT-3.5 certainly has its drawbacks (dependency on prompt quality, prompt injections in posts, handling and version control of complex prompts, unexpected updates to the model weights rendering prompts ineffective), the benefits include increased flexibility in what we can ask the model to do. As such, in the absence of an accurate, cheap, and quick model to perform span detection, we have found that often posts identified as peaks/pits did indeed use peak/pit language, but the context of the moment was not related to the brand/product at the core of the research project. 
+Whilst prompt-based classification such as those with GPT-3.5 certainly has its drawbacks (dependency on prompt quality, prompt injections in posts, handling and version control of complex prompts, unexpected updates to the model weights rendering prompts ineffective), the benefits include increased flexibility in what we can ask the model to do. As such, in the absence of an accurate, cheap, and quick model to perform span detection, we have found that often posts identified as peaks/pits did indeed use peak/pit language, but the context of the moment was not related to the brand/product at the core of the research project.
 
 For example, take the post that we identified in the project 706, looking for peaks and pits relating to PowerPoint:
 
->This brings me so much happiness! Being a non-binary graduate student in STEM academia can be challenging at times. Despite using my they/them pronouns during introductions, emails, powerpoint presentations, name tags, etc. my identity is continuously mistaken. Community is key!
+> This brings me so much happiness! Being a non-binary graduate student in STEM academia can be challenging at times. Despite using my they/them pronouns during introductions, emails, powerpoint presentations, name tags, etc. my identity is continuously mistaken. Community is key!
 
 This is clearly a 'peak', however it is not accurate or valid to attribute this memorable moment to PowerPoint. Indeed, PowerPoint is merely mentioned in the post, but is not a core driver of the Peak which relates to feeling connection and being part of a community. This is as much a PowerPoint Peak as it is a Peak for the use of emails.
 
@@ -132,7 +164,7 @@ Therefore, we can engineer our prompt to include a caveat to say that the specif
 
 Now we have an extremely refined set of posts classified as either peak or pits. The next step is to identify what these moments actually relate to (i.e. identify the topics of these moments through statistical methods).
 
-To do this, we employ topic modelling via [BERTopic](https://maartengr.github.io/BERTopic/index.html) to identifying high-level topics that emerge within the peak and pit conversation. This is done separately  for each product and peak/pit dataset (i.e. there will be one BERTopic model for product A peaks, another BERTopic model for product A pits, an additional BERTopic model for product B peaks etc). 
+To do this, we employ topic modelling via [BERTopic](https://maartengr.github.io/BERTopic/index.html) to identifying high-level topics that emerge within the peak and pit conversation. This is done separately for each product and peak/pit dataset (i.e. there will be one BERTopic model for product A peaks, another BERTopic model for product A pits, an additional BERTopic model for product B peaks etc).
 
 We implement BERTopic using the R package BertopicR. As there is already [good documentation on BertopicR](https://aoiferyan-sc.github.io/BertopicR/) this section will not go into any technical detail in regards to implementation.
 
