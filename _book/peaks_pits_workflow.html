@@ -222,8 +222,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="overview-of-approach" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="overview-of-approach"><span class="header-section-number">2.2</span> Overview of approach</h2>
-<p>Peaks and pits have gone through many iterations throughout the past year and a half. Currently, the general workflow is to use utilise a model framework known as <a href="https://huggingface.co/docs/setfit/conceptual_guides/setfit">SetFit</a> to efficiently train a text classification model with limited training data. This fine-tuned model is then able to run inference over large datasets to label posts as either peaks, pits, or neither. We then utilise the LLM capabilities to refine these peak and pit moments into a collection of posts we are extremely confident are peaks and/or pits. We then employ topic modelling to identify groups of similar peaks and pits, to help us organise and discover hidden topics or themes within this collection of core moments.</p>
-<p>This whole process can be split into seven distinct steps:</p>
+<p>Peaks and pits projects have gone through many iterations throughout the past year and a half. Currently, the general workflow is to use utilise a model framework known as <a href="https://huggingface.co/docs/setfit/conceptual_guides/setfit">SetFit</a> to efficiently train a text classification model with limited training data. This fine-tuned model is then able to run inference over large datasets to label posts as either peaks, pits, or neither. We then utilise the LLM capabilities to refine these peak and pit moments into a collection of posts we are extremely confident are peaks and/or pits. We then employ topic modelling to identify groups of similar peaks and pits to help us organise and discover hidden topics or themes within this collection of core moments.</p>
+<p>This whole process can be split into six distinct steps:</p>
 <ol type="1">
 <li><a href="#step-one">Extract brand/product mentions from Sprinklr (the start of any project)</a></li>
 <li><a href="#step-two">Obtain project-specific exemplar posts to help fine-tune a text classification model</a></li>
@@ -245,6 +245,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="step-two" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="step-two"><span class="header-section-number">2.2.2</span> Identify project-specific exemplar peaks and pits to fine-tune our ML model (Step 2)</h3>
 <p>This step is synonymous with data labelling required for any machine learning project where annotated data is not already available.</p>
+<p>For traditional machine learning tasks, the numbe of examples per label is often in the region of thousands</p>
 <p>There is no perfect number of labelled examples to find per class (i.e.&nbsp;peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it’s superpower is making the most of few, extremely good, labelled data.</p>
 <p>By the end of this step we need to have a list of examples posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are “neither”.</p>
 <div class="callout callout-style-default callout-caution callout-titled">

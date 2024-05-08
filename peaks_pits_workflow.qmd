@@ -25,9 +25,9 @@ With these projects the core final 'product' is a collection of different peaks 
 
 ## Overview of approach 
 
-Peaks and pits have gone through many iterations throughout the past year and a half. Currently, the general workflow is to use utilise a model framework known as [SetFit](https://huggingface.co/docs/setfit/conceptual_guides/setfit) to efficiently train a text classification model with limited training data. This fine-tuned model is then able to run inference over large datasets to label posts as either peaks, pits, or neither. We then utilise the LLM capabilities to refine these peak and pit moments into a collection of posts we are extremely confident are peaks and/or pits. We then employ topic modelling to identify groups of similar peaks and pits, to help us organise and discover hidden topics or themes within this collection of core moments.
+Peaks and pits projects have gone through many iterations throughout the past year and a half. Currently, the general workflow is to use utilise a model framework known as [SetFit](https://huggingface.co/docs/setfit/conceptual_guides/setfit) to efficiently train a text classification model with limited training data. This fine-tuned model is then able to run inference over large datasets to label posts as either peaks, pits, or neither. We then utilise the LLM capabilities to refine these peak and pit moments into a collection of posts we are extremely confident are peaks and/or pits. We then employ topic modelling to identify groups of similar peaks and pits to help us organise and discover hidden topics or themes within this collection of core moments.
 
-This whole process can be split into seven distinct steps:
+This whole process can be split into six distinct steps:
 
 1. [Extract brand/product mentions from Sprinklr (the start of any project)](#step-one)
 2. [Obtain project-specific exemplar posts to help fine-tune a text classification model](#step-two)
@@ -45,6 +45,8 @@ This step relies on the analysts to export relevant mentions from Sprinklr (one 
 ### Identify project-specific exemplar peaks and pits to fine-tune our ML model (Step 2) {#step-two}
 
 This step is synonymous with data labelling required for any machine learning project where annotated data is not already available.
+
+For traditional machine learning tasks, the numbe of examples per label is often in the region of thousands
 
 There is no perfect number of labelled examples to find per class (i.e. peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it's superpower is making the most of few, extremely good, labelled data.
 
