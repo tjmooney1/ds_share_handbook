@@ -4,11 +4,18 @@
 
 **Embedding Model**: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space
 
-**Precision**: The proportion of positive identifications that were actually correct
+**Precision**: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions
 
-**Recall**:
+$$
+Precision = \dfrac{TP}{(TP + FP) }
+$$
 
+**Recall**: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances
+
+$$
+Precision = \dfrac{TP}{(TP + FN) }
+$$
+ 
 **Sentence Embedding**: A numerical representation of a sentence
 
 **Word Embedding**: A numerical representation of a single word
-

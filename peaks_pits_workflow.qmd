@@ -82,10 +82,20 @@ Using these two parts, SetFit models are efficient, performant and easy to train
 
 There is no perfect number of labelled examples to find per class (i.e. peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it's superpower is making the most of few, extremely good, labelled data.
 
-By the end of this step we need to have a list of example posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are "neither".
+Okay so now we know why we need labelled data, and we know what the model will do with it, *what is our approach* for obtaining the labelled data?
+
+Broadly, we use our human judgement to read a post from the current project dataset, and manually label whether we think it is a peak, a pit, or neither. To avoid us just blindly reading through random posts in the dataset in the hope of finding good examples (this is not a good use of time), we can employ a couple of tricks to narrow our search region to posts that have a reasonable likelihood of being suitable examples.
+
+1) The first trick is to use the OpenAI API to access a GPT model. This involves taking a sample of posts (say ~1000) and running these through a GPT model, with a prompt that asks the model to classify each post into either a peak, pit, or neither. This is possible because GPT models have learned knowledge of peaks and pits from its training on large datasets. We can therefore get a human to only sense-check/label posts that GPT also believes are peaks or pits.
+
+2) The second trick involves using a previously created SetFit model (i.e. from an older project), and running inference over a similar sample of posts (again, say ~1000). 
+
+We would tend to suggest the OpenAI route, as it is simpler to implement (in our opinion), and often the old SetFit model has been finetuned on data from a different domain so it might struggle to understand domain specific language in the current dataset. However, be aware if it not as scalable as using an old SetFit model and has the drawback of being a prompt based classification of a black-box model (as well as issues relating to cost and API stability).
+
+Irrespective of which approach is taken, by the end of this step we need to have a list of example posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are "neither".
 
 ::: {.callout-note collapse="true"}
-## Why do we do this for each project? After so many projects now don't we already have a good idea of what a peak and pit moment is for model training?
+## Why do we do this for each project? After so many projects now don't we already have a good idea of what a peak and pit moment for the purposes of model training?
 
 Each peak and pit project we work on has the potential to introduce 'domain' specific language, which a machine learning classifier (model) may not have seen before. By manually identifying exemplar peaks and pits that are project-specific, this gives our model the best chance to identify emotional moments appropriate to the project/data at hand.
 
@@ -93,8 +103,6 @@ The obvious case for this is with gaming specific language, where terms that don
 :::
 
 ### Train our model using our labelled examples (Step 3) {#step-three}
-
-The [SetFit documentation](https://huggingface.co/docs/setfit/index) provides a really nice overview of SetFit's foundational concepts, why this approach is suitable, and details the implementation process.
 
 Before we begin training our SetFit model with our data, it's necessary to clean and wrangle the fine-tuning datasets. Specifically, we need to mask any mentions of brands or products to prevent bias. For instance, if a certain brand frequently appears in the training data within peak contexts, the model could erroneously link peak moments to that brand rather than learning the peak-language expressed in the text.
 
