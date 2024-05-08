@@ -245,11 +245,39 @@ ul.task-list li input[type="checkbox"] {
 <section id="step-two" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="step-two"><span class="header-section-number">2.2.2</span> Identify project-specific exemplar peaks and pits to fine-tune our ML model (Step 2)</h3>
 <p>This step is synonymous with data labelling required for any machine learning project where annotated data is not already available.</p>
-<p>For traditional machine learning tasks, the numbe of examples per label is often in the region of thousands</p>
-<p>There is no perfect number of labelled examples to find per class (i.e.&nbsp;peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it’s superpower is making the most of few, extremely good, labelled data.</p>
-<p>By the end of this step we need to have a list of examples posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are “neither”.</p>
-<div class="callout callout-style-default callout-caution callout-titled">
+<p>Whilst there is no one-size-fits-all for determining the amount of data required to train a machine learning model, for traditional models and tasks, the number of examples per label is often in the region of thousands, and often this isn’t even enough for more complex problems.</p>
+<p>The time required to accurately label thousands of peaks and pits to train a classification model in the traditional way is sadly beyond the scope of feasibility for our projects. As such we needed an approach that did not rely on copious amounts of pre-labelled data.</p>
+<p>This is where <a href="https://huggingface.co/docs/setfit/conceptual_guides/setfit">SetFit</a> comes in. As mentioned previously, SetFit is a framework that enables us to efficiently train a text classification model with limited training data.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How does it do this?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><em>Note the below is directly copied from the SetFit documentation. It is so succinctly written that trying to rewrite it would not do it justice.</em></p>
+<p>Every SetFit model consists of two parts: a <strong>sentence transformer</strong> embedding model (the body) and a <strong>classifier</strong> (the head). These two parts are trained in two separate phases: the <strong>embedding finetuning phase</strong> and the <strong>classifier training phase</strong>. This conceptual guide will elaborate on the intuition between these phases, and why SetFit works so well.</p>
+<p>Embedding finetuning phase The first phase has one primary goal: finetune a sentence transformer embedding model to produce useful embeddings for our classification task. The Hugging Face Hub already has thousands of sentence transformer available, many of which have been trained to very accurately group the embeddings of texts with similar semantic meaning.</p>
+<p>However, models that are good at Semantic Textual Similarity (STS) are not necessarily immediately good at our classification task. For example, according to an embedding model, the sentence of 1) “<code>He biked to work.</code>” will be much more similar to 2) “<code>He drove his car to work.</code>” than to 3) “<code>Peter decided to take the bicycle to the beach party!</code>”. But if our classification task involves classifying texts into transportation modes, then we want our embedding model to place sentences 1 and 3 closely together, and 2 further away.</p>
+<p>To do so, we can finetune the chosen sentence transformer embedding model. The goal here is to nudge the model to use its pretrained knowledge in a different way that better aligns with our classification task, rather than making the completely forget what it has learned.</p>
+<p>For finetuning, SetFit uses <strong>contrastive learning</strong>. This training approach involves creating <strong>positive and negative pairs</strong> of sentences. A sentence pair will be positive if both of the sentences are of the same class, and negative otherwise. For example, in the case of binary “positive”-“negative” sentiment analysis, (“<code>The movie was awesome</code>”, “<code>I loved it</code>”) is a positive pair, and (“<code>The movie was awesome</code>”, “<code>It was quite disappointing</code>”) is a negative pair.</p>
+<p>During training, the embedding model receives these pairs, and will convert the sentences to embeddings. If the pair is positive, then it will pull on the model weights such that the text embeddings will be more similar, and vice versa for a negative pair. Through this approach, sentences with the same label will be embedded more similarly, and sentences with different labels less similarly.</p>
+<p>Conveniently, this contrastive learning works with pairs rather than individual samples, and we can create plenty of unique pairs from just a few samples. For example, given 8 positive sentences and 8 negative sentences, we can create 28 positive pairs and 64 negative pairs for 92 unique training pairs. This grows exponentially to the number of sentences and classes, and that is why SetFit can train with just a few examples and still correctly finetune the sentence transformer embedding model. However, we should still be wary of overfitting.</p>
+<p>Classifier training phase Once the sentence transformer embedding model has been finetuned for our task at hand, we can start training the classifier. This phase has one primary goal: create a good mapping from the sentence transformer embeddings to the classes.</p>
+<p>Unlike with the first phase, training the classifier is done from scratch and using the labelled samples directly, rather than using pairs. By default, the classifier is a simple <strong>logistic regression</strong> classifier from scikit-learn. First, all training sentences are fed through the now-finetuned sentence transformer embedding model, and then the sentence embeddings and labels are used to fit the logistic regression classifier. The result is a strong and efficient classifier.</p>
+<p>Using these two parts, SetFit models are efficient, performant and easy to train, even on CPU-only devices.</p>
+</div>
+</div>
+</div>
+<p>There is no perfect number of labelled examples to find per class (i.e.&nbsp;peak, pit, or neither). Whilst in general more exemplars (and hence more training data) is beneficial, having fewer but high quality labelled posts is far superior than more posts of poorer quality. This is extremely important due to the contrastive nature of SetFit where it’s superpower is making the most of few, extremely good, labelled data.</p>
+<p>By the end of this step we need to have a list of example posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are “neither”.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -258,7 +286,7 @@ Why do we do this for each project? After so many projects now don’t we alread
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Each peak and pit project we work on has the potential to introduce ‘domain’ specific language, which a machine learning classifier (model) may not have seen before. By manually identifying exemplar peaks and pits that are project-specific, this gives our model the best chance to identify emotional moments appropriate to the project/data at hand.</p>
 <p>The obvious case for this is with gaming specific language, where terms that don’t necessarily relate to an ‘obvious’ peak or pit moment could refer to one the gaming conversation, for example the terms/phrases “GG”, “camping”, “scrub”, and “goat” all have very specific meanings in this domain that differ from their use in everyday language.</p>
