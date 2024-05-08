@@ -4,3 +4,11 @@ This section will provide an overview of this handbook.
 
 ### Handbook styling guide
 
+Timbo, we want this Handbook to appear written as a "DS Scientist at SHARE" rather than the Jimbo + Timbo show. To help streamline this, I suggest we follow the following guidelines to help ensure we are consistent with our writing style. Some of these points will not be relevant for all section, but I think we would be wise to always keep them in the back of our mind throughout:
+
+* Tone, we should be friendly but professional. We can definitely joke, but always try and make sure the point we are getting across is clear.
+* Let's make sure we use the active voice rather than passive voice and talk in the first person plural (i.e. we, us rather than I, me etc). 
+* If we are referring to a general data scientist or person, let's be inclusive and refer to them as "they/them". For example if we had the sentence "Imagine a data scientist needs to embed a sentence, there are many models available on HuggingFace for *them* to choose from". 
+* We need to take responsibility for what we write (this will be more relevant in the later sections of the handbook). We need to be make sure we understand concepts before committing them to the handbook- the creation of this handbook will not only help any newcomer get on board quicker, but also help cement DS concepts ourselves. 
+
+> "If you can't explain it simply, you don't understand it well enough" - Albert Einstein
