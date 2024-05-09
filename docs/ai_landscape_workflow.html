@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jamie Hudson">
-<meta name="dcterms.date" content="2024-05-07">
 
-<title>Data Science at SHARE Creative</title>
+<title>Data Science at SHARE Creative - 3&nbsp; AI landscape</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./glossary.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./peaks_pits_workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface to handbook</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ai_landscape_workflow.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI landscape</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface to handbook</span></a>
   </div>
 </li>
@@ -127,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ai_landscape_workflow.html" class="sidebar-item-text sidebar-link">
+  <a href="./ai_landscape_workflow.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI landscape</span></span></a>
   </div>
 </li>
@@ -153,10 +152,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface-to-handbook" id="toc-preface-to-handbook" class="nav-link active" data-scroll-target="#preface-to-handbook">Preface to handbook</a>
-  <ul class="collapse">
-  <li><a href="#handbook-styling-guide" id="toc-handbook-styling-guide" class="nav-link" data-scroll-target="#handbook-styling-guide">Handbook styling guide</a></li>
-  </ul></li>
+  <li><a href="#background-of-project" id="toc-background-of-project" class="nav-link active" data-scroll-target="#background-of-project"><span class="header-section-number">3.0.1</span> Background of project</a></li>
+  <li><a href="#final-output-of-project" id="toc-final-output-of-project" class="nav-link" data-scroll-target="#final-output-of-project"><span class="header-section-number">3.0.2</span> Final output of project</a></li>
+  <li><a href="#how-to-get-there" id="toc-how-to-get-there" class="nav-link" data-scroll-target="#how-to-get-there"><span class="header-section-number">3.0.3</span> How to get there</a></li>
   </ul>
 </nav>
     </div>
@@ -165,26 +163,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science at SHARE Creative</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI landscape</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jamie Hudson </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 7, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -194,24 +180,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface-to-handbook" class="level1 unnumbered">
-<h1 class="unnumbered">Preface to handbook</h1>
-<p>This section will provide an overview of this handbook.</p>
-<section id="handbook-styling-guide" class="level3">
-<h3 class="anchored" data-anchor-id="handbook-styling-guide">Handbook styling guide</h3>
-<p>Timbo, we want this Handbook to appear written as a “DS Scientist at SHARE” rather than the Jimbo + Timbo show. To help streamline this, I suggest we follow the following guidelines to help ensure we are consistent with our writing style. Some of these points will not be relevant for all section, but I think we would be wise to always keep them in the back of our mind throughout:</p>
-<ul>
-<li>Tone, we should be friendly but professional. We can definitely joke, but always try and make sure the point we are getting across is clear.</li>
-<li>Let’s make sure we use the active voice rather than passive voice and talk in the first person plural (i.e.&nbsp;we, us rather than I, me etc).</li>
-<li>If we are referring to a general data scientist or person, let’s be inclusive and refer to them as “they/them”. For example if we had the sentence “Imagine a data scientist needs to embed a sentence, there are many models available on HuggingFace for <em>them</em> to choose from”.</li>
-<li>We need to take responsibility for what we write (this will be more relevant in the later sections of the handbook). We need to be make sure we understand concepts before committing them to the handbook- the creation of this handbook will not only help any newcomer get on board quicker, but also help cement DS concepts ourselves.</li>
-</ul>
-<blockquote class="blockquote">
-<p>“If you can’t explain it simply, you don’t understand it well enough” - Albert Einstein</p>
-</blockquote>
-
-
+<p>Timbo use this qmd to write everything you need for the AI landscape.</p>
+<section id="background-of-project" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="background-of-project"><span class="header-section-number">3.0.1</span> Background of project</h3>
+<p>Explain here why Microsoft wanted to perform the project, and the overall goal of the project.</p>
 </section>
+<section id="final-output-of-project" class="level3" data-number="3.0.2">
+<h3 data-number="3.0.2" class="anchored" data-anchor-id="final-output-of-project"><span class="header-section-number">3.0.2</span> Final output of project</h3>
+<p>Couple of images of the landscape perhaps- with a summary outlining what was found (don’t worry about specific project details, something like “distinct topics of conversation found by human interpretation of the landscape” is better than “in 726 we found 15 new topics of which conversational AI evolved to encompass the ethics topic” which is too specific)</p>
+</section>
+<section id="how-to-get-there" class="level3" data-number="3.0.3">
+<h3 data-number="3.0.3" class="anchored" data-anchor-id="how-to-get-there"><span class="header-section-number">3.0.3</span> How to get there</h3>
+<p>Go through a step by step approach as to how one would go about the project. For now, again don’t worry about details (etc I wouldn’t worry about the particular embedding model here, just say that the posts were embedded using a sentence transformer model etc).</p>
+<p>Feel free to add screenshots of things where needed</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -626,10 +609,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./peaks_pits_workflow.html" class="pagination-link" aria-label="Peaks and Pits">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Peaks and Pits</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./glossary.html" class="pagination-link" aria-label="Glossary">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
