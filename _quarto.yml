@@ -8,7 +8,7 @@ book:
   date: "5/7/2024"
   chapters:
     - index.qmd
-    - intro.qmd
+    - glossary.qmd
     - peaks_pits_workflow.qmd
     - ai_landscape_workflow.qmd
     - summary.qmd

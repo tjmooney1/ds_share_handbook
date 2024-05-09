@@ -1,0 +1,27 @@
+# Glossary
+
+**Embedding**: Numerical representations of real-world objects (in the form of a vector of real numbers)
+
+**Embedding Model**: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space
+
+**F1 Score**: The harmonic mean of precision and recall (enables us to integrate precision and recall into a single metric)
+
+$$
+F1 \space Score = 2 \times \dfrac{Precision \times Recall}{Precision + Recall}
+$$
+
+**Precision**: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions
+
+$$
+Precision = \dfrac{TP}{(TP + FP) }
+$$
+
+**Recall**: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances
+
+$$
+Recall = \dfrac{TP}{(TP + FN) }
+$$
+ 
+**Sentence Embedding**: A numerical representation of a sentence
+
+**Word Embedding**: A numerical representation of a single word
