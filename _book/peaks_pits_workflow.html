@@ -165,7 +165,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-four" id="toc-step-four" class="nav-link" data-scroll-target="#step-four"><span class="header-section-number">2.2.4</span> Run inference over project data (Step 4)</a></li>
   <li><a href="#step-five" id="toc-step-five" class="nav-link" data-scroll-target="#step-five"><span class="header-section-number">2.2.5</span> The metal detector, GPT-3.5 (Step 5)</a></li>
   <li><a href="#step-six" id="toc-step-six" class="nav-link" data-scroll-target="#step-six"><span class="header-section-number">2.2.6</span> Topic modelling to make sense of our data (Step 6)</a></li>
-  <li><a href="#the-idea" id="toc-the-idea" class="nav-link" data-scroll-target="#the-idea"><span class="header-section-number">2.2.7</span> The idea</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -195,7 +194,7 @@ ul.task-list li input[type="checkbox"] {
 <p>“Peak and Pits” is one of our fundamental project offerings and a workflow that is a solid representation of good data science work that we perform.</p>
 <section id="what-is-the-conceptproject-background" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="what-is-the-conceptproject-background"><span class="header-section-number">2.1</span> What is the concept/project background?</h2>
-<p>Strong memories associated to brands or products go deeper than simple positive or negative sentiment. In their book “The Power of Moments”, two psychologists (<a href="https://heathbrothers.com/about/">Chip and Dan Heath</a>) define these core memories as Peak and Pits, impactful experiences in our lives.</p>
+<p>Strong memories associated to brands or products go deeper than simple positive or negative sentiment. Most of our experiences are not encoded in memory, rather what we remember about experiences are changes, significant moments, and endings. In their book “The Power of Moments”, two psychologists (<a href="https://heathbrothers.com/about/">Chip and Dan Heath</a>) define these core memories as Peak and Pits, impactful experiences in our lives.</p>
 <p>Broadly, peak moments are experiences that stand our memorable in our lives in a positive sense, whereas pit moments are impactful negative experiences.</p>
 <p>Microsoft tasked us with finding a way to identify these moments in social data- going beyond ‘simple’ positive and negative sentiment which does not tell the full story of consumer/user experience. The end goal is that by providing Microsoft with these peak and pit moments in the customer experience, they can design peak moments in addition to simply removing pit moments.</p>
 <section id="the-end-goal" class="level3" data-number="2.1.1">
@@ -289,12 +288,13 @@ How does it do this?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why do we do this for each project? After so many projects now don’t we already have a good idea of what a peak and pit moment for the purposes of model training?
+Why do we do this for each project?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>After so many projects now don’t we already have a good idea of what a peak and pit moment for the purposes of model training?</p>
 <p>Each peak and pit project we work on has the potential to introduce ‘domain’ specific language, which a machine learning classifier (model) may not have seen before. By manually identifying exemplar peaks and pits that are project-specific, this gives our model the best chance to identify emotional moments appropriate to the project/data at hand.</p>
 <p>The obvious case for this is with gaming specific language, where terms that don’t necessarily relate to an ‘obvious’ peak or pit moment could refer to one the gaming conversation, for example the terms/phrases “GG”, “camping”, “scrub”, and “goat” all have very specific meanings in this domain that differ from their use in everyday language.</p>
 </div>
@@ -307,23 +307,69 @@ Why do we do this for each project? After so many projects now don’t we alread
 <blockquote class="blockquote">
 <p>This precaution should extend to all aspects of our training data that might introduce biases. For example, as we now have examples from various projects, an overrepresentation of data from ‘gaming projects’ in our ‘peak’ posts within our training set (as opposed to the ‘pit’ posts) could skew the model into associating gaming-related language more with peaks than pits.</p>
 </blockquote>
-<p>At this step, we can split out our data into training, testing, and validation datasets. A good rule of thumb is to split the data 70% to training data, 15% to testing data, and 15% to validation data. By default, <a href="https://huggingface.co/docs/setfit/v1.0.3/en/conceptual_guides/sampling_strategies">SetFit oversamples</a> the minimum class within the training data, so we <em>shouldn’t</em> have to worry too much about imbalanced datasets- though be aware if we have extreme imbalanced we will end up sampling the same contrastive pairs (normally positive pairs) mutiple times. Indeed, our (Jamie and Aoife) experimentation has shown that class imbalance doesn’t seem to have a significant effect to the training/output of the SetFit model for peaks and pits.</p>
-<p>We are now at the stage where we can actually fine-tune the model. There are many different parameters we can change when fine-tuning the model, such as the specific embedding model used, the number of epochs to train for, the number of contrastive pairs of sentences to train on etc. For more details, please refer to the <a href="https://jamiehshare.github.io/peaks-pits-bookdown/step-four.html">Peaks and Pits Playbook</a></p>
-<p>We can access model performance on the testing dataset by looking at accuracy, precision, recall, and F1 scores. For peaks and pits, the most important metric is actually <strong>recall</strong> because in <a href="#gpt35-inference">step 6</a> we reclassify posts using GPT, so we want to make sure we are able to provide <em>as many true peak/pit moments as possible</em> to this step, even if it means we also provide a few false positives.</p>
-<section id="visualise-model-separation" class="level6" data-number="2.2.3.0.0.1">
-<h6 data-number="2.2.3.0.0.1" class="anchored" data-anchor-id="visualise-model-separation"><span class="header-section-number">2.2.3.0.0.1</span> Visualise model separation</h6>
-<p>A bonus that can be done to check how well our model is able to separate the different classes in embedding space, is to visualise the 2-D structure of the embeddings and see how they cluster:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./img/embedding_trained.png" class="img-fluid figure-img"></p>
-<figcaption>Trained embedding model</figcaption>
-</figure>
+<p>Broadly the cleaning steps that should be applied to our data for finetuning are:</p>
+<ul>
+<li>Mask brand/product mentions</li>
+<li>Remove hashtags #️⃣</li>
+<li>Remove mentions 💬</li>
+<li>Remove URLs 🌐</li>
+<li>Remove emojis 🐙</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>For comparison, this is what it looks like on an untrained model:</p>
+<div class="callout-title-container flex-fill">
+What about other cleaning steps?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You will notice here we do not remove stop words-. As explained in the previous step, part of the finetuning process is to finetune a sentence embedding model, and we want to keep stop words so that we can use the full context of the post in order to finetune accurate embeddings.</p>
+</div>
+</div>
+</div>
+<p>At this step, we can split out our data into training, testing, and validation datasets. A good rule of thumb is to split the data 70% to training data, 15% to testing data, and 15% to validation data. By default, <a href="https://huggingface.co/docs/setfit/v1.0.3/en/conceptual_guides/sampling_strategies">SetFit oversamples</a> the minimum class within the training data, so we <em>shouldn’t</em> have to worry too much about imbalanced datasets- though be aware if we have extreme imbalanced we will end up sampling the same contrastive pairs (normally positive pairs) multiple times. However, our experimentation has shown that class imbalance doesn’t seem to have a significant effect to the training/output of the SetFit model for peaks and pits.</p>
+<p>We are now at the stage where we can actually fine-tune the model. There are many different parameters we can change when fine-tuning the model, such as the specific embedding model used, the number of epochs to train for, the number of contrastive pairs of sentences to train on etc. For more details, please refer to the <a href="https://jamiehshare.github.io/peaks-pits-bookdown/step-four.html">Peaks and Pits Playbook</a></p>
+<p>We can assess model performance on the testing dataset by looking at accuracy, precision, recall, and F1 scores. For peaks and pits, the most important metric is actually <strong>recall</strong> because in <a href="#step-four">step 4</a> we reclassify posts using GPT, so we want to make sure we are able to provide <em>as many true peak/pit moments as possible</em> to this step, even if it means we also provide a few false positives.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Click here for more info as to why recall is most important
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As a refresher, <code>precision</code> is the <em>proportion of positive identifications</em> that are actually <em>correct</em> (it focuses on the correctness of positive predictions) whereas <code>recall</code> is the <em>proportion of actual positives</em> that are identified correctly (it focuses on capturing all relevant instances).</p>
+<p>In cases where false positives need to be minimised (incorrectly predicting a non-event as an event) we need to prioritise <code>precision</code> - if you’ve built a model to identify hot dogs from regular ol’ doggos, high precision ensures that normal dogs are not misclassified as hot dogs.</p>
+<p>In cases where false negatives need to be minimised (failing to detect an actual event) we need to prioritise <code>recall</code> - in medical diagnoses we need to minimise the number of times a patient is incorrectly told they <em>do not</em> have a disease when in reality they <em>do</em> (or worded differently, we need to ensure that <strong><em>all</em></strong> patients with a disease are identified).</p>
+<p>To apply this to our problem- we want to be sure that we capture all (or as many as possible) relevant instances of peaks or pits- even if a few false positives come in (neither posts that are incorrectly classified as peaks or pits). As we use GPT to make further peak/pit identifications, it’s better to provide GPT with with a comprehensive set of potential peaks and pits, including some incorrect ones, than to miss out on critical data.</p>
+</div>
+</div>
+</div>
+<section id="visualise-model-separation" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="visualise-model-separation">Visualise model separation</h4>
+<p>As a bonus, we can actually neatly visualise how well our finetuning of the sentence transformer embedding model has gone- by seeing how well the model is able to separate our different classes in embedding space.</p>
+<p>We can do this by visualising the 2-D structure of the embeddings and see how they cluster:</p>
+<p>This is what it looks the embeddings space looks like on an un-finetuned model:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./img/embedding_untrained.png" class="img-fluid figure-img"></p>
-<figcaption>Untrained embedding model</figcaption>
+<figcaption>Un-finetuned embedding model</figcaption>
+</figure>
+</div>
+<p>Here we can see that posts we know are peaks, pits, and neither all overlap and there is no real structure in the data. Any clustering of points observed are probably due to the posts’ semantic similarity (c.f. the mode of transport example above). We would not be able to nicely use a classifier model to get a good mapping from this embedding space to our classes (i.e.&nbsp;we couldn’t easily separate classes here).</p>
+<p>By visualising the same posts after finetuning the embedding model, we get something more like this, where we can see that the embedding model now clearly separates posts based on their peak/pit classification (though we must be wary of overfitting!).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./img/embedding_trained.png" class="img-fluid figure-img"></p>
+<figcaption>Finetuned embedding model</figcaption>
 </figure>
 </div>
 <p>Finally, now we are happy with our model performance based on the training and validation datasets, we can evaluate the performance of this final model using our testing data. This is data that the model has never seen, and we are hoping that the accuracy and performance is similar to that of the validation data. This is Machine Learning 101 and if a refresher is needed for this there are plenty of resources online looking at the role of training, validation, and testing data.</p>
@@ -341,21 +387,45 @@ Why do we do this for each project? After so many projects now don’t we alread
 <li>Remove URLs 🌐</li>
 <li>Remove emojis 🐙</li>
 </ul>
-<blockquote class="blockquote">
-<p>Note: Currently all peak and pit projects have been done on Twitter or Reddit data, but if a project includes web/forum data quirky special characters, numbered usernames, structured quotes etc should also be removed.</p>
-</blockquote>
-<p>Now we save this dataframe somewhere appropriate.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note on social media sources
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Currently all peak and pit projects have been done on Twitter or Reddit data, but if a project includes web/forum data quirky special characters, numbered usernames, structured quotes etc. should also be removed.</p>
+</div>
+</div>
+</div>
 <p>Okay now we can <em>finally</em> run inference. This is extremely simple and only requires a couple of lines of code (again see the <a href="https://jamiehshare.github.io/peaks-pits-bookdown/step-five.html">Peaks and Pits Playbook for code implementation</a>)</p>
-<p>Now we have a .csv file with the probabilities each post is a peak, pit, or neither. From this we can join to our original dataframe via universal_message_id and select the classification label with the highest probability, providing us with a dataframe with all of the relevant information we need for the next steps (unviversal_message_id, message column, and peak/pit classification etc).</p>
 </section>
 <section id="step-five" class="level3" data-number="2.2.5">
 <h3 data-number="2.2.5" class="anchored" data-anchor-id="step-five"><span class="header-section-number">2.2.5</span> The metal detector, GPT-3.5 (Step 5)</h3>
 <p>During <a href="#step-four">step 4</a> we obtained peak and pit classification using few-shot classification with SetFit. The benefit of this approach (as outlined previously) is its speed and ability to classify with very few labelled samples due to contrastive learning.</p>
 <p>However, during our iterations of peak and pit projects, we’ve realised that this step still classifies a fair amount of non-peak and pit posts incorrectly. This can cause noise in the downstream analyses and be very time consuming for us to further trudge through verbatims.</p>
-<p>As such, the aim here is to further our confidence in our final list of peaks and pits to be <em>actually</em> peaks and pits. Remember before we explained that for SetFit, we focussed on <strong>recall</strong> being the most important measure in our business case? This is where we assume that GPT-3.5 enables us to remove the false positives due to it’s incredibly high performance.</p>
-<blockquote class="blockquote">
-<p>Note: Using GPT-3.5 for inference, even over relatively few posts as in peaks and pits, is expensive both in terms of time and money. Preliminary tests have suggested it is in the order of magnitude of thousands of times slower than SetFit. It is for these reasons why we do not use GPT-x models from the get go, despite it’s obvious incredible understanding of natural language.</p>
-</blockquote>
+<p>As such, the aim of this step is to further our confidence in our final list of peaks and pits to be <em>actually</em> peaks and pits. Remember before we explained that for SetFit, we focussed on <strong>recall</strong> being the most important measure in our business case? This is where we assume that GPT-3.5 enables us to remove the false positives due to it’s incredibly high performance.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why not use GPT from the start?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Using GPT-3.5 for inference, even over relatively few posts as in peaks and pits, is expensive both in terms of time and money. Preliminary tests have suggested it is in the order of magnitude of thousands of times slower than SetFit. It is for these reasons why we do not use GPT-x models from the get go, despite it’s obvious incredible understanding of natural language.</p>
+</div>
+</div>
+</div>
 <p>Whilst prompt-based classification such as those with GPT-3.5 certainly has its drawbacks (dependency on prompt quality, prompt injections in posts, handling and version control of complex prompts, unexpected updates to the model weights rendering prompts ineffective), the benefits include increased flexibility in what we can ask the model to do. As such, in the absence of an accurate, cheap, and quick model to perform span detection, we have found that often posts identified as peaks/pits did indeed use peak/pit language, but the context of the moment was not related to the brand/product at the core of the research project.</p>
 <p>For example, take the post that we identified in the project 706, looking for peaks and pits relating to PowerPoint:</p>
 <blockquote class="blockquote">
@@ -369,10 +439,7 @@ Why do we do this for each project? After so many projects now don’t we alread
 <p>Now we have an extremely refined set of posts classified as either peak or pits. The next step is to identify what these moments actually relate to (i.e.&nbsp;identify the topics of these moments through statistical methods).</p>
 <p>To do this, we employ topic modelling via <a href="https://maartengr.github.io/BERTopic/index.html">BERTopic</a> to identifying high-level topics that emerge within the peak and pit conversation. This is done separately for each product and peak/pit dataset (i.e.&nbsp;there will be one BERTopic model for product A peaks, another BERTopic model for product A pits, an additional BERTopic model for product B peaks etc).</p>
 <p>We implement BERTopic using the R package BertopicR. As there is already <a href="https://aoiferyan-sc.github.io/BertopicR/">good documentation on BertopicR</a> this section will not go into any technical detail in regards to implementation.</p>
-</section>
-<section id="the-idea" class="level3" data-number="2.2.7">
-<h3 data-number="2.2.7" class="anchored" data-anchor-id="the-idea"><span class="header-section-number">2.2.7</span> The idea</h3>
-<p>Most of our experiences are not encoded in memory, rather what we remember about experiences are changes, significant moments, and endings</p>
+<p>From BertopicR. we end up with a topic label for each post in our dataset, meaning we can easily quantify the size of each topics and visualise temporal patterns of topic volume etc.</p>
 
 
 </section>

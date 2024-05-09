@@ -4,7 +4,7 @@
 
 ## What is the concept/project background?
 
-Strong memories associated to brands or products go deeper than simple positive or negative sentiment. In their book "The Power of Moments", two psychologists ([Chip and Dan Heath](https://heathbrothers.com/about/)) define these core memories as Peak and Pits, impactful experiences in our lives.
+Strong memories associated to brands or products go deeper than simple positive or negative sentiment. Most of our experiences are not encoded in memory, rather what we remember about experiences are changes, significant moments, and endings. In their book "The Power of Moments", two psychologists ([Chip and Dan Heath](https://heathbrothers.com/about/)) define these core memories as Peak and Pits, impactful experiences in our lives. 
 
 Broadly, peak moments are experiences that stand our memorable in our lives in a positive sense, whereas pit moments are impactful negative experiences.
 
@@ -95,7 +95,9 @@ We would tend to suggest the OpenAI route, as it is simpler to implement (in our
 Irrespective of which approach is taken, by the end of this step we need to have a list of example posts we are confident represent what a peak or pit moment looks like for each particular product we are researching, including posts that are "neither".
 
 ::: {.callout-note collapse="true"}
-## Why do we do this for each project? After so many projects now don't we already have a good idea of what a peak and pit moment for the purposes of model training?
+## Why do we do this for each project? 
+
+After so many projects now don't we already have a good idea of what a peak and pit moment for the purposes of model training?
 
 Each peak and pit project we work on has the potential to introduce 'domain' specific language, which a machine learning classifier (model) may not have seen before. By manually identifying exemplar peaks and pits that are project-specific, this gives our model the best chance to identify emotional moments appropriate to the project/data at hand.
 
@@ -108,21 +110,54 @@ Before we begin training our SetFit model with our data, it's necessary to clean
 
 > This precaution should extend to all aspects of our training data that might introduce biases. For example, as we now have examples from various projects, an overrepresentation of data from 'gaming projects' in our 'peak' posts within our training set (as opposed to the 'pit' posts) could skew the model into associating gaming-related language more with peaks than pits.
 
-At this step, we can split out our data into training, testing, and validation datasets. A good rule of thumb is to split the data 70% to training data, 15% to testing data, and 15% to validation data. By default, [SetFit oversamples](https://huggingface.co/docs/setfit/v1.0.3/en/conceptual_guides/sampling_strategies) the minimum class within the training data, so we *shouldn't* have to worry too much about imbalanced datasets- though be aware if we have extreme imbalanced we will end up sampling the same contrastive pairs (normally positive pairs) mutiple times. Indeed, our (Jamie and Aoife) experimentation has shown that class imbalance doesn't seem to have a significant effect to the training/output of the SetFit model for peaks and pits.
+Broadly the cleaning steps that should be applied to our data for finetuning are:
+
+-   Mask brand/product mentions
+-   Remove hashtags #️⃣
+-   Remove mentions 💬
+-   Remove URLs 🌐
+-   Remove emojis 🐙
+
+::: {.callout-note collapse="true"}
+# What about other cleaning steps?
+
+You will notice here we do not remove stop words-. As explained in the previous step, part of the finetuning process is to finetune a sentence embedding model, and we want to keep stop words so that we can use the full context of the post in order to finetune accurate embeddings. 
+:::
+
+At this step, we can split out our data into training, testing, and validation datasets. A good rule of thumb is to split the data 70% to training data, 15% to testing data, and 15% to validation data. By default, [SetFit oversamples](https://huggingface.co/docs/setfit/v1.0.3/en/conceptual_guides/sampling_strategies) the minimum class within the training data, so we *shouldn't* have to worry too much about imbalanced datasets- though be aware if we have extreme imbalanced we will end up sampling the same contrastive pairs (normally positive pairs) multiple times. However, our experimentation has shown that class imbalance doesn't seem to have a significant effect to the training/output of the SetFit model for peaks and pits.
 
 We are now at the stage where we can actually fine-tune the model. There are many different parameters we can change when fine-tuning the model, such as the specific embedding model used, the number of epochs to train for, the number of contrastive pairs of sentences to train on etc. For more details, please refer to the [Peaks and Pits Playbook](https://jamiehshare.github.io/peaks-pits-bookdown/step-four.html)
 
-We can access model performance on the testing dataset by looking at accuracy, precision, recall, and F1 scores. For peaks and pits, the most important metric is actually **recall** because in [step 6](#gpt35-inference) we reclassify posts using GPT, so we want to make sure we are able to provide *as many true peak/pit moments as possible* to this step, even if it means we also provide a few false positives.
+We can assess model performance on the testing dataset by looking at accuracy, precision, recall, and F1 scores. For peaks and pits, the most important metric is actually **recall** because in [step 4](#step-four) we reclassify posts using GPT, so we want to make sure we are able to provide *as many true peak/pit moments as possible* to this step, even if it means we also provide a few false positives.
 
-###### Visualise model separation
+::: {.callout-note collapse="true"}
+# Click here for more info as to why recall is most important
 
-A bonus that can be done to check how well our model is able to separate the different classes in embedding space, is to visualise the 2-D structure of the embeddings and see how they cluster:
+As a refresher, `precision` is the *proportion of positive identifications* that are actually *correct* (it focuses on the correctness of positive predictions) whereas `recall` is the *proportion of actual positives* that are identified correctly (it focuses on capturing all relevant instances).
 
-![Trained embedding model](./img/embedding_trained.png)
+In cases where false positives need to be minimised (incorrectly predicting a non-event as an event) we need to prioritise `precision` - if you've built a model to identify hot dogs from regular ol' doggos, high precision ensures that normal dogs are not misclassified as hot dogs.
 
-For comparison, this is what it looks like on an untrained model:
+In cases where false negatives need to be minimised (failing to detect an actual event) we need to prioritise `recall` - in medical diagnoses we need to minimise the number of times a patient is incorrectly told they *do not* have a disease when in reality they *do* (or worded differently, we need to ensure that ***all*** patients with a disease are identified).
 
-![Untrained embedding model](./img/embedding_untrained.png)
+To apply this to our problem- we want to be sure that we capture all (or as many as possible) relevant instances of peaks or pits- even if a few false positives come in (neither posts that are incorrectly classified as peaks or pits). As we use GPT to make further peak/pit identifications, it's better to provide GPT with with a comprehensive set of potential peaks and pits, including some incorrect ones, than to miss out on critical data.
+:::
+
+
+#### Visualise model separation {.unnumbered}
+
+As a bonus, we can actually neatly visualise how well our finetuning of the sentence transformer embedding model has gone- by seeing how well the model is able to separate our different classes in embedding space.
+
+We can do this by visualising the 2-D structure of the embeddings and see how they cluster:
+
+This is what it looks the embeddings space looks like on an un-finetuned model:
+
+![Un-finetuned embedding model](./img/embedding_untrained.png)
+
+Here we can see that posts we know are peaks, pits, and neither all overlap and there is no real structure in the data. Any clustering of points observed are probably due to the posts' semantic similarity (c.f. the mode of transport example above). We would not be able to nicely use a classifier model to get a good mapping from this embedding space to our classes (i.e. we couldn't easily separate classes here).
+
+By visualising the same posts after finetuning the embedding model, we get something more like this, where we can see that the embedding model now clearly separates posts based on their peak/pit classification (though we must be wary of overfitting!).
+
+![Finetuned embedding model](./img/embedding_trained.png)
 
 Finally, now we are happy with our model performance based on the training and validation datasets, we can evaluate the performance of this final model using our testing data. This is data that the model has never seen, and we are hoping that the accuracy and performance is similar to that of the validation data. This is Machine Learning 101 and if a refresher is needed for this there are plenty of resources online looking at the role of training, validation, and testing data.
 
@@ -140,13 +175,13 @@ Broadly, this needs to match the high-level cleaning we did during fine-tuning s
 -   Remove URLs 🌐
 -   Remove emojis 🐙
 
-> Note: Currently all peak and pit projects have been done on Twitter or Reddit data, but if a project includes web/forum data quirky special characters, numbered usernames, structured quotes etc should also be removed.
+::: {.callout-warning collapse="true"}
+### Note on social media sources
 
-Now we save this dataframe somewhere appropriate.
+Currently all peak and pit projects have been done on Twitter or Reddit data, but if a project includes web/forum data quirky special characters, numbered usernames, structured quotes etc. should also be removed.
+:::
 
 Okay now we can *finally* run inference. This is extremely simple and only requires a couple of lines of code (again see the [Peaks and Pits Playbook for code implementation](https://jamiehshare.github.io/peaks-pits-bookdown/step-five.html))
-
-Now we have a .csv file with the probabilities each post is a peak, pit, or neither. From this we can join to our original dataframe via universal_message_id and select the classification label with the highest probability, providing us with a dataframe with all of the relevant information we need for the next steps (unviversal_message_id, message column, and peak/pit classification etc).
 
 ### The metal detector, GPT-3.5 (Step 5) {#step-five}
 
@@ -154,9 +189,13 @@ During [step 4](#step-four) we obtained peak and pit classification using few-sh
 
 However, during our iterations of peak and pit projects, we've realised that this step still classifies a fair amount of non-peak and pit posts incorrectly. This can cause noise in the downstream analyses and be very time consuming for us to further trudge through verbatims.
 
-As such, the aim here is to further our confidence in our final list of peaks and pits to be *actually* peaks and pits. Remember before we explained that for SetFit, we focussed on **recall** being the most important measure in our business case? This is where we assume that GPT-3.5 enables us to remove the false positives due to it's incredibly high performance.
+As such, the aim of this step is to further our confidence in our final list of peaks and pits to be *actually* peaks and pits. Remember before we explained that for SetFit, we focussed on **recall** being the most important measure in our business case? This is where we assume that GPT-3.5 enables us to remove the false positives due to it's incredibly high performance.
 
-> Note: Using GPT-3.5 for inference, even over relatively few posts as in peaks and pits, is expensive both in terms of time and money. Preliminary tests have suggested it is in the order of magnitude of thousands of times slower than SetFit. It is for these reasons why we do not use GPT-x models from the get go, despite it's obvious incredible understanding of natural language.
+::: {.callout-important collapse="true"}
+### Why not use GPT from the start?
+
+Using GPT-3.5 for inference, even over relatively few posts as in peaks and pits, is expensive both in terms of time and money. Preliminary tests have suggested it is in the order of magnitude of thousands of times slower than SetFit. It is for these reasons why we do not use GPT-x models from the get go, despite it's obvious incredible understanding of natural language.
+:::
 
 Whilst prompt-based classification such as those with GPT-3.5 certainly has its drawbacks (dependency on prompt quality, prompt injections in posts, handling and version control of complex prompts, unexpected updates to the model weights rendering prompts ineffective), the benefits include increased flexibility in what we can ask the model to do. As such, in the absence of an accurate, cheap, and quick model to perform span detection, we have found that often posts identified as peaks/pits did indeed use peak/pit language, but the context of the moment was not related to the brand/product at the core of the research project.
 
@@ -176,6 +215,5 @@ To do this, we employ topic modelling via [BERTopic](https://maartengr.github.io
 
 We implement BERTopic using the R package BertopicR. As there is already [good documentation on BertopicR](https://aoiferyan-sc.github.io/BertopicR/) this section will not go into any technical detail in regards to implementation.
 
-### The idea
+From BertopicR. we end up with a topic label for each post in our dataset, meaning we can easily quantify the size of each topics and visualise temporal patterns of topic volume etc. 
 
-Most of our experiences are not encoded in memory, rather what we remember about experiences are changes, significant moments, and endings
