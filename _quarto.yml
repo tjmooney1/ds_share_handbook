@@ -8,19 +8,21 @@ book:
   date: "5/7/2024"
   chapters:
     - index.qmd
-    - glossary.qmd
+    - summary.qmd
+    - project_management.qmd
+    - project_players.qmd
     - peaks_pits_workflow.qmd
     - ai_landscape_workflow.qmd
-    - summary.qmd
-    - references.qmd
+    - glossary.qmd
+    - resources.qmd
 
 bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
+    theme: lumen
   pdf:
     documentclass: scrreprt
 
-editor: visual
+editor: source
 
