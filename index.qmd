@@ -2,6 +2,12 @@
 
 This section will provide an overview of this handbook.
 
+::: {.callout-note collapse="false"}
+
+If you have any questions at all, ask any member of the team. Whilst this Handbook aims to be a valuable resource for self-learning, it can often be more beneficial to spend 5 minutes talking through a concept with someone on the team who may be able to describe something in a different manner to this document.
+
+:::
+
 ### Handbook styling guide
 
 Timbo, we want this Handbook to appear written as a "DS Scientist at SHARE" rather than the Jimbo + Timbo show. To help streamline this, I suggest we follow the following guidelines to help ensure we are consistent with our writing style. Some of these points will not be relevant for all section, but I think we would be wise to always keep them in the back of our mind throughout:
