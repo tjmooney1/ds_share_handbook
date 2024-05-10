@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./ai_landscape_workflow.html" rel="next">
-<link href="./glossary.html" rel="prev">
+<link href="./project_players.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -114,8 +114,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Data Science team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A Data Science project</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_players.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project key players</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -132,8 +144,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Glossary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -261,13 +273,15 @@ How does it do this?
 <div class="callout-body-container callout-body">
 <p><em>Note the below is directly copied from the SetFit documentation. It is so succinctly written that trying to rewrite it would not do it justice.</em></p>
 <p>Every SetFit model consists of two parts: a <strong>sentence transformer</strong> embedding model (the body) and a <strong>classifier</strong> (the head). These two parts are trained in two separate phases: the <strong>embedding finetuning phase</strong> and the <strong>classifier training phase</strong>. This conceptual guide will elaborate on the intuition between these phases, and why SetFit works so well.</p>
-<p>Embedding finetuning phase The first phase has one primary goal: finetune a sentence transformer embedding model to produce useful embeddings for our classification task. The Hugging Face Hub already has thousands of sentence transformer available, many of which have been trained to very accurately group the embeddings of texts with similar semantic meaning.</p>
+<p><strong>Embedding finetuning phase</strong></p>
+<p>The first phase has one primary goal: finetune a sentence transformer embedding model to produce useful embeddings for our classification task. The Hugging Face Hub already has thousands of sentence transformer available, many of which have been trained to very accurately group the embeddings of texts with similar semantic meaning.</p>
 <p>However, models that are good at Semantic Textual Similarity (STS) are not necessarily immediately good at our classification task. For example, according to an embedding model, the sentence of 1) “<code>He biked to work.</code>” will be much more similar to 2) “<code>He drove his car to work.</code>” than to 3) “<code>Peter decided to take the bicycle to the beach party!</code>”. But if our classification task involves classifying texts into transportation modes, then we want our embedding model to place sentences 1 and 3 closely together, and 2 further away.</p>
 <p>To do so, we can finetune the chosen sentence transformer embedding model. The goal here is to nudge the model to use its pretrained knowledge in a different way that better aligns with our classification task, rather than making the completely forget what it has learned.</p>
 <p>For finetuning, SetFit uses <strong>contrastive learning</strong>. This training approach involves creating <strong>positive and negative pairs</strong> of sentences. A sentence pair will be positive if both of the sentences are of the same class, and negative otherwise. For example, in the case of binary “positive”-“negative” sentiment analysis, (“<code>The movie was awesome</code>”, “<code>I loved it</code>”) is a positive pair, and (“<code>The movie was awesome</code>”, “<code>It was quite disappointing</code>”) is a negative pair.</p>
 <p>During training, the embedding model receives these pairs, and will convert the sentences to embeddings. If the pair is positive, then it will pull on the model weights such that the text embeddings will be more similar, and vice versa for a negative pair. Through this approach, sentences with the same label will be embedded more similarly, and sentences with different labels less similarly.</p>
 <p>Conveniently, this contrastive learning works with pairs rather than individual samples, and we can create plenty of unique pairs from just a few samples. For example, given 8 positive sentences and 8 negative sentences, we can create 28 positive pairs and 64 negative pairs for 92 unique training pairs. This grows exponentially to the number of sentences and classes, and that is why SetFit can train with just a few examples and still correctly finetune the sentence transformer embedding model. However, we should still be wary of overfitting.</p>
-<p>Classifier training phase Once the sentence transformer embedding model has been finetuned for our task at hand, we can start training the classifier. This phase has one primary goal: create a good mapping from the sentence transformer embeddings to the classes.</p>
+<p><strong>Classifier training phase</strong></p>
+<p>Once the sentence transformer embedding model has been finetuned for our task at hand, we can start training the classifier. This phase has one primary goal: create a good mapping from the sentence transformer embeddings to the classes.</p>
 <p>Unlike with the first phase, training the classifier is done from scratch and using the labelled samples directly, rather than using pairs. By default, the classifier is a simple <strong>logistic regression</strong> classifier from scikit-learn. First, all training sentences are fed through the now-finetuned sentence transformer embedding model, and then the sentence embeddings and labels are used to fit the logistic regression classifier. The result is a strong and efficient classifier.</p>
 <p>Using these two parts, SetFit models are efficient, performant and easy to train, even on CPU-only devices.</p>
 </div>
@@ -857,8 +871,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./glossary.html" class="pagination-link" aria-label="Glossary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossary</span></span>
+      <a href="./project_players.html" class="pagination-link" aria-label="Project key players">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project key players</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
