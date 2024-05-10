@@ -1,0 +1,15 @@
+# Project key players {.unnumbered}
+
+#### Insights Analyst
+
+Analysts add the bit of human-insight sparkle to our projects. They work closely with the client and stakeholder to help frame our findings so they are suitable for the clients business needs. At a high level, we may say "Our clustering analysis identified five distinct regions of conversation based on the semantics of the language used" whereas an analyst would translate that to "We have five key conversational themes that can be targeted with tailored marketing strategies to boost product reach on socials". Though this does vary on a project by project basis and we often have to act as a conduit between the science and the client too.
+
+Insight analysts are who work closely with Sprinklr and other social listening platforms to obtain the data we analyse. They will craft queries to pull the relevant data from a variety of sources and save the data on the Drive for us to access and do science on.
+
+#### Account Manager
+
+Account Managers (AMs) are the point of contact between our business and the client, bridging the gap between the technical teams (in our cases DS or Insights) and the client/stakeholder. They will arrange meetings with the client, help us understand the client's needs and business objectives, and coordinate project logistics, timelines, and deliverables. As project deadlines approach, account managers will help QA our deliveries (normally in the form of a PowerPoint or Keynote presentation), providing valuable opinion from a non-technical background (it can be easy for us to get stuck in the weeds and forget that stakeholders do not know as much about data as we do). Broadly, AMs make sure both us as a company, and the client, are held accountable for the work we are contracted to do.
+
+#### Data/Insight Director
+
+Depending on the project, there will be a Data Director or Insight Director involved on the project too. Whilst not working on the nitty gritty of the project, they are there to help steer the project in the appropriate direction based on the clients business needs. They will also be checking the final delivery as it is created, making sure the deliverables and story we have thread is suitable and valid.
