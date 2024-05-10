@@ -1,10 +1,12 @@
-# AI landscape
+# AI Landscape
 
-Timbo use this qmd to write everything you need for the AI landscape.
+![Let him cook!](./img/timbo_cooking.png)
+
+Timbo, use this qmd to write everything you need for the AI landscape.
 
 ### Background of project
 
-Explain here why Microsoft wanted to perform the project, and the overall goal of the project. 
+Explain here why Microsoft wanted to perform the project, and the overall goal of the project.
 
 ### Final output of project
 

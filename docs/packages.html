@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science at SHARE Creative - Glossary</title>
+<title>Data Science at SHARE Creative - 4&nbsp; Our Packages</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./resources.html" rel="next">
-<link href="./code_best_practices.html" rel="prev">
+<link href="./code_best_practices.html" rel="next">
+<link href="./ai_landscape_workflow.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -110,7 +81,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glossary.html">Glossary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./packages.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Our Packages</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -173,7 +144,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+  <a href="./packages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
   </div>
 </li>
@@ -185,7 +156,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary</span></a>
   </div>
 </li>
@@ -205,8 +176,14 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#share-glossary" id="toc-share-glossary" class="nav-link active" data-scroll-target="#share-glossary">SHARE glossary</a></li>
-  <li><a href="#data-science-glossary" id="toc-data-science-glossary" class="nav-link" data-scroll-target="#data-science-glossary">Data Science glossary</a></li>
+  <li><a href="#parser" id="toc-parser" class="nav-link active" data-scroll-target="#parser"><span class="header-section-number">4.1</span> ParseR</a></li>
+  <li><a href="#connectr" id="toc-connectr" class="nav-link" data-scroll-target="#connectr"><span class="header-section-number">4.2</span> ConnectR</a></li>
+  <li><a href="#segmentr" id="toc-segmentr" class="nav-link" data-scroll-target="#segmentr"><span class="header-section-number">4.3</span> SegmentR</a></li>
+  <li><a href="#bertopicr" id="toc-bertopicr" class="nav-link" data-scroll-target="#bertopicr"><span class="header-section-number">4.4</span> BertopicR</a></li>
+  <li><a href="#landscaper" id="toc-landscaper" class="nav-link" data-scroll-target="#landscaper"><span class="header-section-number">4.5</span> LandscapeR</a></li>
+  <li><a href="#limpiar" id="toc-limpiar" class="nav-link" data-scroll-target="#limpiar"><span class="header-section-number">4.6</span> LimpiaR</a></li>
+  <li><a href="#displayr" id="toc-displayr" class="nav-link" data-scroll-target="#displayr"><span class="header-section-number">4.7</span> DisplayR</a></li>
+  <li><a href="#helpr" id="toc-helpr" class="nav-link" data-scroll-target="#helpr"><span class="header-section-number">4.8</span> HelpR</a></li>
   </ul>
 </nav>
     </div>
@@ -215,7 +192,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Glossary</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Our Packages</span></h1>
 </div>
 
 
@@ -232,30 +209,46 @@ window.Quarto = {
 </header>
 
 
-<section id="share-glossary" class="level3">
-<h3 class="anchored" data-anchor-id="share-glossary">SHARE glossary</h3>
-<p><strong>Deck</strong>: A marketing term used to refer to a slideshow presentation of some kind (i.e.&nbsp;a PowerPoint or Keynote)</p>
-<p><strong>SIP</strong>: <em>Social Intelligence Practice</em>- the team at Microsoft we most closely work with on projects. They sit within Microsoft’s market research organisation and partner with many wider teams across Microsoft</p>
-<p><strong>QBR</strong>: <em>Quarterly Business Review</em>- a quarterly meeting where goals, outcomes, and development are reviewed. You will see this term used both for our own company QBRs, but also QBRs for clients too.</p>
+<p>We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the Samy Alliance. We don’t license the software to clients. What we sell is the knowledge that they can produce.</p>
+<section id="parser" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="parser"><span class="header-section-number">4.1</span> <a href="https://parser.shareldn.com/index.html">ParseR</a></h2>
+<p><img src="./img/hex/parser.png" class="img-fluid" style="width:20.0%"></p>
+<p>ParseR is the collective name for the techniques SHARE uses for text analysis. It’s primarily based on the tidytext philosophy and the analysis is normally carried out in R.</p>
 </section>
-<section id="data-science-glossary" class="level3">
-<h3 class="anchored" data-anchor-id="data-science-glossary">Data Science glossary</h3>
-<p><strong>Embedding</strong>: Numerical representations of real-world objects (in the form of a vector of real numbers)</p>
-<p><strong>Embedding Model</strong>: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space</p>
-<p><strong>F1 Score</strong>: The harmonic mean of precision and recall (enables us to integrate precision and recall into a single metric)</p>
-<p><span class="math display">\[
-F1 \space Score = 2 \times \dfrac{Precision \times Recall}{Precision + Recall}
-\]</span></p>
-<p><strong>Precision</strong>: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions</p>
-<p><span class="math display">\[
-Precision = \dfrac{TP}{(TP + FP) }
-\]</span></p>
-<p><strong>Recall</strong>: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances</p>
-<p><span class="math display">\[
-Recall = \dfrac{TP}{(TP + FN) }
-\]</span></p>
-<p><strong>Sentence Embedding</strong>: A numerical representation of a sentence</p>
-<p><strong>Word Embedding</strong>: A numerical representation of a single word</p>
+<section id="connectr" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="connectr"><span class="header-section-number">4.2</span> <a href="https://avery-island.github.io/ConnectR/index.html">ConnectR</a></h2>
+<p><img src="./img/hex/connectr.png" class="img-fluid" style="width:20.0%"></p>
+<p>ConnectR is our package for network analysis. It helps the user find important individuals by graphing retweets and important communities by graphing mentions.</p>
+</section>
+<section id="segmentr" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="segmentr"><span class="header-section-number">4.3</span> <a href="https://avery-island.github.io/SegmentR/index.html">SegmentR</a></h2>
+<p><img src="./img/hex/segmentr.png" class="img-fluid" style="width:20.0%"></p>
+<p>SegmentR is the collective name for the techniques SHARE uses to find latent groups in data.</p>
+</section>
+<section id="bertopicr" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="bertopicr"><span class="header-section-number">4.4</span> <a href="https://aoiferyan-sc.github.io/BertopicR/articles/manipulating-the-model.html">BertopicR</a></h2>
+<p>BertopicR is our package which allows access to <a href="https://maartengr.github.io/BERTopic/index.html">BERTopic’s</a> modelling suite in <code>R</code> via <code>reticulate</code>.</p>
+</section>
+<section id="landscaper" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="landscaper"><span class="header-section-number">4.5</span> <a href="https://github.com/jpcompartir/LandscapeR">LandscapeR</a></h2>
+<p><img src="./img/hex/landscaper.png" class="img-fluid" style="width:20.0%"></p>
+<p>LandscapeR is our package for exploring text data which has been transformed into a navigable landscape. The package makes use of cutting-edge language models and their dense word embeddings, dimensionality reduction techniques, clustering and/or topic modelling as well as Shiny for an interactive data-exploration &amp; cleaning UI.</p>
+<p>If the conversation has been mapped appropriately, you will find that mentions close together in the Shiny application/UMAP plot have similar meanings, posts far apart have less similar meanings. This makes it possible to understand and explore thousands, hundreds of thousands, or even millions of posts at a level which was previously impossible.</p>
+</section>
+<section id="limpiar" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="limpiar"><span class="header-section-number">4.6</span> <a href="https://github.com/jpcompartir/LimpiaR">LimpiaR</a></h2>
+<p><img src="./img/hex/limpiar.png" class="img-fluid" style="width:20.0%"></p>
+<p>LimpiaR is an R library of functions for cleaning &amp; pre-processing text data. The name comes from ‘limpiar’ the Spanish verb’to clean’. Generally when calling a LimpiaR function, you can think of it as ‘clean…’.</p>
+<p>LimpiaR is primarily used for cleaning unstructured text data, such as that which comes from social media or reviews. In its initial release, it is focused around the Spanish language, however, some of its functions are language-ambivalent.</p>
+</section>
+<section id="displayr" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="displayr"><span class="header-section-number">4.7</span> <a href="https://jpcompartir.github.io/DisplayR/">DisplayR</a></h2>
+<p>DisplayR is our package for data visualization, offering a wide array of functions tailored to meet various data visualization needs. This versatile package aims to improve data presentation and communication by providing visually engaging and informative graphics.</p>
+</section>
+<section id="helpr" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="helpr"><span class="header-section-number">4.8</span> <a href="https://avery-island.github.io/HelpR/index.html">HelpR</a></h2>
+<p><img src="./img/hex/helpr.png" class="img-fluid" style="width:20.0%"></p>
+<p>HelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.</p>
 
 
 </section>
@@ -672,13 +665,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./code_best_practices.html" class="pagination-link" aria-label="Coding best practices">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Coding best practices</span></span>
+      <a href="./ai_landscape_workflow.html" class="pagination-link" aria-label="AI Landscape">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI Landscape</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./resources.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./code_best_practices.html" class="pagination-link" aria-label="Coding best practices">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Coding best practices</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

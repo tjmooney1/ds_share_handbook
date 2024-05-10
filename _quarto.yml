@@ -13,6 +13,8 @@ book:
     - project_players.qmd
     - peaks_pits_workflow.qmd
     - ai_landscape_workflow.qmd
+    - packages.qmd
+    - code_best_practices.qmd
     - glossary.qmd
     - resources.qmd
 

@@ -1,0 +1,52 @@
+# Our Packages
+
+We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the Samy Alliance. We don't license the software to clients. What we sell is the knowledge that they can produce. 
+
+## [ParseR](https://parser.shareldn.com/index.html)
+
+![](./img/hex/parser.png){width=20%}
+
+ParseR is the collective name for the techniques SHARE uses for text analysis. It's primarily based on the tidytext philosophy and the analysis is normally carried out in R.
+
+## [ConnectR](https://avery-island.github.io/ConnectR/index.html)
+
+![](./img/hex/connectr.png){width=20%}
+
+ConnectR is our package for network analysis. It helps the user find important individuals by graphing retweets and important communities by graphing mentions.
+
+## [SegmentR](https://avery-island.github.io/SegmentR/index.html)
+
+![](./img/hex/segmentr.png){width=20%}
+
+SegmentR is the collective name for the techniques SHARE uses to find latent groups in data.
+
+## [BertopicR](https://aoiferyan-sc.github.io/BertopicR/articles/manipulating-the-model.html)
+
+BertopicR is our package which allows access to [BERTopic's](https://maartengr.github.io/BERTopic/index.html) modelling suite in `R` via `reticulate`.
+
+## [LandscapeR](https://github.com/jpcompartir/LandscapeR)
+
+![](./img/hex/landscaper.png){width=20%}
+
+LandscapeR is our package for exploring text data which has been transformed into a navigable landscape. The package makes use of cutting-edge language models and their dense word embeddings, dimensionality reduction techniques, clustering and/or topic modelling as well as Shiny for an interactive data-exploration & cleaning UI.
+
+If the conversation has been mapped appropriately, you will find that mentions close together in the Shiny application/UMAP plot have similar meanings, posts far apart have less similar meanings. This makes it possible to understand and explore thousands, hundreds of thousands, or even millions of posts at a level which was previously impossible.
+
+## [LimpiaR](https://github.com/jpcompartir/LimpiaR)
+
+![](./img/hex/limpiar.png){width=20%}
+
+LimpiaR is an R library of functions for cleaning & pre-processing text data. The name comes from ‘limpiar’ the Spanish verb’to clean’. Generally when calling a LimpiaR function, you can think of it as ‘clean…’.
+
+LimpiaR is primarily used for cleaning unstructured text data, such as that which comes from social media or reviews. In its initial release, it is focused around the Spanish language, however, some of its functions are language-ambivalent.
+
+## [DisplayR](https://jpcompartir.github.io/DisplayR/)
+
+DisplayR is our package for data visualization, offering a wide array of functions tailored to meet various data visualization needs. This versatile package aims to improve data presentation and communication by providing visually engaging and informative graphics.
+
+## [HelpR](https://avery-island.github.io/HelpR/index.html)
+
+![](./img/hex/helpr.png){width=20%}
+
+HelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.
+
