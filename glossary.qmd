@@ -1,4 +1,14 @@
-# Glossary
+# Glossary {.unnumbered}
+
+### SHARE glossary
+
+**Deck**: A marketing term used to refer to a slideshow presentation of some kind (i.e. a PowerPoint or Keynote)
+
+**SIP**: *Social Intelligence Practice*- the team at Microsoft we most closely work with on projects. They sit within Microsoft's market research organisation and partner with many wider teams across Microsoft
+
+**QBR**: *Quarterly Business Review*- a quarterly meeting where goals, outcomes, and development are reviewed. You will see this term used both for our own company QBRs, but also QBRs for clients too.
+
+### Data Science glossary
 
 **Embedding**: Numerical representations of real-world objects (in the form of a vector of real numbers)
 
@@ -21,7 +31,7 @@ $$
 $$
 Recall = \dfrac{TP}{(TP + FN) }
 $$
- 
+
 **Sentence Embedding**: A numerical representation of a sentence
 
 **Word Embedding**: A numerical representation of a single word

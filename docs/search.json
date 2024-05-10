@@ -94,7 +94,7 @@
     "href": "project_players.html",
     "title": "Project key players",
     "section": "",
-    "text": "Insights Analyst\nAnalysts add the bit of human-insight sparkle to our projects. They work closely with the client and stakeholder to help frame our findings so they are suitable for the clients business needs. At a high level, we may say “Our clustering analysis identified five distinct regions of conversation based on the semantics of the language used” whereas an analyst would translate that to “We have five key conversational themes that can be targeted with tailored marketing strategies to boost product reach on socials”. Though this does vary on a project by project basis and we often have to act as a conduit between the science and the client too.\nInsight analysts are who work closely with Sprinklr and other social listening platforms to obtain the data we analyse. They will craft queries to pull the relevant data from a variety of sources and save the data on the Drive for us to access and do science on.\n\n\nAccount Manager\nAccount Managers (AMs) are the point of contact between our business and the client, bridging the gap between the technical teams (in our cases DS or Insights) and the client/stakeholder. They will arrange meetings with the client, help us understand the client’s needs and business objectives, and coordinate project logistics, timelines, and deliverables. As project deadlines approach, account managers will help QA our deliveries (normally in the form of a PowerPoint or Keynote presentation), providing valuable opinion from a non-techincal background (it can be easy for us to get stuck in the weeds and forget that stakeholders do not know as much about data as we do). Broadly, AMs make sure both us as a company, and the client, are held accountable for the work we are contracted to do.\n\n\nData/Insight Director\nDepending on the project, there will be a Data Director or Insight Director involved on the project too. Whilst not working on the nitty gritty of the project, they are there to help steer the project in the appropriate direction based on the clients business needs. They will also be checking the final delivery as it is created, making sure the deliverables and story we have thread is suitable and valid.",
+    "text": "Insights Analyst\nAnalysts add the bit of human-insight sparkle to our projects. They work closely with the client and stakeholder to help frame our findings so they are suitable for the clients business needs. At a high level, we may say “Our clustering analysis identified five distinct regions of conversation based on the semantics of the language used” whereas an analyst would translate that to “We have five key conversational themes that can be targeted with tailored marketing strategies to boost product reach on socials”. Though this does vary on a project by project basis and we often have to act as a conduit between the science and the client too.\nInsight analysts are who work closely with Sprinklr and other social listening platforms to obtain the data we analyse. They will craft queries to pull the relevant data from a variety of sources and save the data on the Drive for us to access and do science on.\n\n\nAccount Manager\nAccount Managers (AMs) are the point of contact between our business and the client, bridging the gap between the technical teams (in our cases DS or Insights) and the client/stakeholder. They will arrange meetings with the client, help us understand the client’s needs and business objectives, and coordinate project logistics, timelines, and deliverables. As project deadlines approach, account managers will help QA our deliveries (normally in the form of a PowerPoint or Keynote presentation), providing valuable opinion from a non-technical background (it can be easy for us to get stuck in the weeds and forget that stakeholders do not know as much about data as we do). Broadly, AMs make sure both us as a company, and the client, are held accountable for the work we are contracted to do.\n\n\nData/Insight Director\nDepending on the project, there will be a Data Director or Insight Director involved on the project too. You will notice that they will normally be resources on Float Whilst not working on the nitty gritty of the project, they are there to help steer the project in the appropriate direction based on the clients business needs. They will also be checking the final delivery as it is created, making sure the deliverables and story we have thread is suitable and valid.",
     "crumbs": [
       "Project key players"
     ]
@@ -132,21 +132,101 @@
   {
     "objectID": "ai_landscape_workflow.html",
     "href": "ai_landscape_workflow.html",
-    "title": "3  AI landscape",
+    "title": "3  AI Landscape",
     "section": "",
-    "text": "Timbo use this qmd to write everything you need for the AI landscape.\n\n3.0.1 Background of project\nExplain here why Microsoft wanted to perform the project, and the overall goal of the project.\n\n\n3.0.2 Final output of project\nCouple of images of the landscape perhaps- with a summary outlining what was found (don’t worry about specific project details, something like “distinct topics of conversation found by human interpretation of the landscape” is better than “in 726 we found 15 new topics of which conversational AI evolved to encompass the ethics topic” which is too specific)\n\n\n3.0.3 How to get there\nGo through a step by step approach as to how one would go about the project. For now, again don’t worry about details (etc I wouldn’t worry about the particular embedding model here, just say that the posts were embedded using a sentence transformer model etc).\nFeel free to add screenshots of things where needed",
+    "text": "Let him cook!\n\n\nTimbo, use this qmd to write everything you need for the AI landscape.\n\n3.0.1 Background of project\nExplain here why Microsoft wanted to perform the project, and the overall goal of the project.\n\n\n3.0.2 Final output of project\nCouple of images of the landscape perhaps- with a summary outlining what was found (don’t worry about specific project details, something like “distinct topics of conversation found by human interpretation of the landscape” is better than “in 726 we found 15 new topics of which conversational AI evolved to encompass the ethics topic” which is too specific)\n\n\n3.0.3 How to get there\nGo through a step by step approach as to how one would go about the project. For now, again don’t worry about details (etc I wouldn’t worry about the particular embedding model here, just say that the posts were embedded using a sentence transformer model etc).\nFeel free to add screenshots of things where needed",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>AI landscape</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>AI Landscape</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "4  Our Packages",
+    "section": "",
+    "text": "4.1 ParseR\nParseR is the collective name for the techniques SHARE uses for text analysis. It’s primarily based on the tidytext philosophy and the analysis is normally carried out in R.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#connectr",
+    "href": "packages.html#connectr",
+    "title": "4  Our Packages",
+    "section": "4.2 ConnectR",
+    "text": "4.2 ConnectR\n\nConnectR is our package for network analysis. It helps the user find important individuals by graphing retweets and important communities by graphing mentions.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#segmentr",
+    "href": "packages.html#segmentr",
+    "title": "4  Our Packages",
+    "section": "4.3 SegmentR",
+    "text": "4.3 SegmentR\n\nSegmentR is the collective name for the techniques SHARE uses to find latent groups in data.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#bertopicr",
+    "href": "packages.html#bertopicr",
+    "title": "4  Our Packages",
+    "section": "4.4 BertopicR",
+    "text": "4.4 BertopicR\nBertopicR is our package which allows access to BERTopic’s modelling suite in R via reticulate.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#landscaper",
+    "href": "packages.html#landscaper",
+    "title": "4  Our Packages",
+    "section": "4.5 LandscapeR",
+    "text": "4.5 LandscapeR\n\nLandscapeR is our package for exploring text data which has been transformed into a navigable landscape. The package makes use of cutting-edge language models and their dense word embeddings, dimensionality reduction techniques, clustering and/or topic modelling as well as Shiny for an interactive data-exploration & cleaning UI.\nIf the conversation has been mapped appropriately, you will find that mentions close together in the Shiny application/UMAP plot have similar meanings, posts far apart have less similar meanings. This makes it possible to understand and explore thousands, hundreds of thousands, or even millions of posts at a level which was previously impossible.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#limpiar",
+    "href": "packages.html#limpiar",
+    "title": "4  Our Packages",
+    "section": "4.6 LimpiaR",
+    "text": "4.6 LimpiaR\n\nLimpiaR is an R library of functions for cleaning & pre-processing text data. The name comes from ‘limpiar’ the Spanish verb’to clean’. Generally when calling a LimpiaR function, you can think of it as ‘clean…’.\nLimpiaR is primarily used for cleaning unstructured text data, such as that which comes from social media or reviews. In its initial release, it is focused around the Spanish language, however, some of its functions are language-ambivalent.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#displayr",
+    "href": "packages.html#displayr",
+    "title": "4  Our Packages",
+    "section": "4.7 DisplayR",
+    "text": "4.7 DisplayR\nDisplayR is our package for data visualization, offering a wide array of functions tailored to meet various data visualization needs. This versatile package aims to improve data presentation and communication by providing visually engaging and informative graphics.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
+    ]
+  },
+  {
+    "objectID": "packages.html#helpr",
+    "href": "packages.html#helpr",
+    "title": "4  Our Packages",
+    "section": "4.8 HelpR",
+    "text": "4.8 HelpR\n\nHelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Our Packages</span>"
     ]
   },
   {
     "objectID": "glossary.html",
     "href": "glossary.html",
-    "title": "4  Glossary",
+    "title": "Glossary",
     "section": "",
-    "text": "Embedding: Numerical representations of real-world objects (in the form of a vector of real numbers)\nEmbedding Model: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space\nF1 Score: The harmonic mean of precision and recall (enables us to integrate precision and recall into a single metric)\n\\[\nF1 \\space Score = 2 \\times \\dfrac{Precision \\times Recall}{Precision + Recall}\n\\]\nPrecision: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions\n\\[\nPrecision = \\dfrac{TP}{(TP + FP) }\n\\]\nRecall: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances\n\\[\nRecall = \\dfrac{TP}{(TP + FN) }\n\\]\nSentence Embedding: A numerical representation of a sentence\nWord Embedding: A numerical representation of a single word",
+    "text": "SHARE glossary\nDeck: A marketing term used to refer to a slideshow presentation of some kind (i.e. a PowerPoint or Keynote)\nSIP: Social Intelligence Practice- the team at Microsoft we most closely work with on projects. They sit within Microsoft’s market research organisation and partner with many wider teams across Microsoft\nQBR: Quarterly Business Review- a quarterly meeting where goals, outcomes, and development are reviewed. You will see this term used both for our own company QBRs, but also QBRs for clients too.\n\n\nData Science glossary\nEmbedding: Numerical representations of real-world objects (in the form of a vector of real numbers)\nEmbedding Model: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space\nF1 Score: The harmonic mean of precision and recall (enables us to integrate precision and recall into a single metric)\n\\[\nF1 \\space Score = 2 \\times \\dfrac{Precision \\times Recall}{Precision + Recall}\n\\]\nPrecision: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions\n\\[\nPrecision = \\dfrac{TP}{(TP + FP) }\n\\]\nRecall: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances\n\\[\nRecall = \\dfrac{TP}{(TP + FN) }\n\\]\nSentence Embedding: A numerical representation of a sentence\nWord Embedding: A numerical representation of a single word",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Glossary</span>"
+      "Glossary"
     ]
   }
 ]

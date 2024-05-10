@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science at SHARE Creative - Glossary</title>
+<title>Data Science at SHARE Creative - Resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./resources.html" rel="next">
-<link href="./code_best_practices.html" rel="prev">
+<link href="./glossary.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -110,7 +80,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./glossary.html">Glossary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resources.html">Resources</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -185,13 +155,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./resources.html" class="sidebar-item-text sidebar-link">
+  <a href="./resources.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -201,21 +171,14 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#share-glossary" id="toc-share-glossary" class="nav-link active" data-scroll-target="#share-glossary">SHARE glossary</a></li>
-  <li><a href="#data-science-glossary" id="toc-data-science-glossary" class="nav-link" data-scroll-target="#data-science-glossary">Data Science glossary</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Glossary</h1>
+<h1 class="title">Resources</h1>
 </div>
 
 
@@ -232,33 +195,10 @@ window.Quarto = {
 </header>
 
 
-<section id="share-glossary" class="level3">
-<h3 class="anchored" data-anchor-id="share-glossary">SHARE glossary</h3>
-<p><strong>Deck</strong>: A marketing term used to refer to a slideshow presentation of some kind (i.e.&nbsp;a PowerPoint or Keynote)</p>
-<p><strong>SIP</strong>: <em>Social Intelligence Practice</em>- the team at Microsoft we most closely work with on projects. They sit within Microsoft’s market research organisation and partner with many wider teams across Microsoft</p>
-<p><strong>QBR</strong>: <em>Quarterly Business Review</em>- a quarterly meeting where goals, outcomes, and development are reviewed. You will see this term used both for our own company QBRs, but also QBRs for clients too.</p>
-</section>
-<section id="data-science-glossary" class="level3">
-<h3 class="anchored" data-anchor-id="data-science-glossary">Data Science glossary</h3>
-<p><strong>Embedding</strong>: Numerical representations of real-world objects (in the form of a vector of real numbers)</p>
-<p><strong>Embedding Model</strong>: A model that can perform embedding by encapsulating information into dense representations in a multi-dimensional space</p>
-<p><strong>F1 Score</strong>: The harmonic mean of precision and recall (enables us to integrate precision and recall into a single metric)</p>
-<p><span class="math display">\[
-F1 \space Score = 2 \times \dfrac{Precision \times Recall}{Precision + Recall}
-\]</span></p>
-<p><strong>Precision</strong>: The proportion of positive identifications that were actually correct. Precision focuses on the correctness of positive predictions</p>
-<p><span class="math display">\[
-Precision = \dfrac{TP}{(TP + FP) }
-\]</span></p>
-<p><strong>Recall</strong>: The proportion of actual positives that were identified correctly. Recall focuses on capturing all relevant instances</p>
-<p><span class="math display">\[
-Recall = \dfrac{TP}{(TP + FN) }
-\]</span></p>
-<p><strong>Sentence Embedding</strong>: A numerical representation of a sentence</p>
-<p><strong>Word Embedding</strong>: A numerical representation of a single word</p>
+<!-- ::: {#refs} -->
+<!-- ::: -->
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -672,14 +612,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./code_best_practices.html" class="pagination-link" aria-label="Coding best practices">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Coding best practices</span></span>
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glossary</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./resources.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
