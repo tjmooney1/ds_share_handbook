@@ -34,4 +34,8 @@ $$
 
 **Sentence Embedding**: A numerical representation of a sentence
 
+**Token**: The 'building blocks' of text that are readable by a model. Depending on the specific model, a token may be a single word, a character, phrases, or parts of words. 
+
+**Tokenization**: The act of separating a piece of text into smaller units known as tokens. 
+
 **Word Embedding**: A numerical representation of a single word
