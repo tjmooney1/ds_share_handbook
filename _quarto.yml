@@ -14,6 +14,7 @@ book:
     - peaks_pits_workflow.qmd
     - ai_landscape_workflow.qmd
     - packages.qmd
+    - data_cleaning.qmd
     - code_best_practices.qmd
     - glossary.qmd
     - resources.qmd

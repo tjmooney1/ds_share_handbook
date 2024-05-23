@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>data_cleaning</title>
+<title>Data Science at SHARE Creative - 5&nbsp; Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,46 +57,221 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="data_cleaning_files/libs/clipboard/clipboard.min.js"></script>
-<script src="data_cleaning_files/libs/quarto-html/quarto.js"></script>
-<script src="data_cleaning_files/libs/quarto-html/popper.min.js"></script>
-<script src="data_cleaning_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="data_cleaning_files/libs/quarto-html/anchor.min.js"></script>
-<link href="data_cleaning_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="data_cleaning_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="data_cleaning_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="data_cleaning_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="data_cleaning_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./code_best_practices.html" rel="next">
+<link href="./packages.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_cleaning.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science at SHARE Creative</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface to handbook</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Data Science team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">A Data Science project</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_players.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project key players</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peaks_pits_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Peaks and Pits</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ai_landscape_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">AI Landscape</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_cleaning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_best_practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dataset-level-cleaning" id="toc-dataset-level-cleaning" class="nav-link active" data-scroll-target="#dataset-level-cleaning"><span class="header-section-number">5.1</span> Dataset-level cleaning</a>
+  <ul class="collapse">
+  <li><a href="#spam-removal" id="toc-spam-removal" class="nav-link" data-scroll-target="#spam-removal"><span class="header-section-number">5.1.1</span> Spam Removal</a></li>
+  <li><a href="#deduplication" id="toc-deduplication" class="nav-link" data-scroll-target="#deduplication"><span class="header-section-number">5.1.2</span> Deduplication</a></li>
+  </ul></li>
+  <li><a href="#document-level-cleaning" id="toc-document-level-cleaning" class="nav-link" data-scroll-target="#document-level-cleaning"><span class="header-section-number">5.2</span> Document-level cleaning</a>
+  <ul class="collapse">
+  <li><a href="#remove-punctuation" id="toc-remove-punctuation" class="nav-link" data-scroll-target="#remove-punctuation"><span class="header-section-number">5.2.1</span> Remove punctuation</a></li>
+  <li><a href="#remove-stopwords" id="toc-remove-stopwords" class="nav-link" data-scroll-target="#remove-stopwords"><span class="header-section-number">5.2.2</span> Remove stopwords</a></li>
+  <li><a href="#lowercase-text" id="toc-lowercase-text" class="nav-link" data-scroll-target="#lowercase-text"><span class="header-section-number">5.2.3</span> Lowercase text</a></li>
+  <li><a href="#remove-mentions" id="toc-remove-mentions" class="nav-link" data-scroll-target="#remove-mentions"><span class="header-section-number">5.2.4</span> Remove mentions</a></li>
+  <li><a href="#remove-urls" id="toc-remove-urls" class="nav-link" data-scroll-target="#remove-urls"><span class="header-section-number">5.2.5</span> Remove URLs</a></li>
+  <li><a href="#remove-emojisspecial-characters" id="toc-remove-emojisspecial-characters" class="nav-link" data-scroll-target="#remove-emojisspecial-characters"><span class="header-section-number">5.2.6</span> Remove emojis/special characters</a></li>
+  <li><a href="#stemminglemmatization" id="toc-stemminglemmatization" class="nav-link" data-scroll-target="#stemminglemmatization"><span class="header-section-number">5.2.7</span> Stemming/Lemmatization</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.3</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></h1>
+</div>
 
 
 
-<section id="data-cleaning" class="level1 unnumbered">
-<h1 class="unnumbered">Data Cleaning</h1>
-<p>When we receive a dataset from the Insight team, the first step that we must do involves cleaning and pre-processing the text data.</p>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>When we receive a dataset from the Insight team, the first step that we must take involves cleaning and pre-processing the text data.</p>
 <p>Broadly, this data cleaning for unstructured textual data can be categorised into levels of cleaning:</p>
 <ul>
 <li>dataset-level</li>
 <li>document-level</li>
 </ul>
-<section id="dataset-level-cleaning" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-level-cleaning">Dataset-level cleaning</h3>
+<section id="dataset-level-cleaning" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="dataset-level-cleaning"><span class="header-section-number">5.1</span> Dataset-level cleaning</h2>
 <p><strong>Goal</strong>: Ensure the dataset as a whole is relevant and of high quality</p>
-<p>The main steps that we take for this level of cleaning is <em>spam removal</em>, and <em>deduplication</em></p>
-<section id="spam-removal" class="level4">
-<h4 class="anchored" data-anchor-id="spam-removal">Spam Removal</h4>
+<p>The main steps that we take for this level of cleaning is <em>spam removal</em>, <em>uninformative content removal</em> and <em>deduplication</em></p>
+<section id="spam-removal" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="spam-removal"><span class="header-section-number">5.1.1</span> Spam Removal</h3>
 <p>We use the term “spam” quite loosely in our data pre-processing workflows. Whilst the strict definition of “spam” could be something like “unsolicited, repetitive, unwanted content”, we can think of it more broadly any post that displays irregular posting patterns or is not going to provide analytical value to our research project.</p>
-<section id="hashtag-filtering" class="level5">
-<h5 class="anchored" data-anchor-id="hashtag-filtering">Hashtag filtering</h5>
+<section id="hashtag-filtering" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="hashtag-filtering"><span class="header-section-number">5.1.1.1</span> Hashtag filtering</h4>
 <p>There are multiple ways we can identify spam to remove it. The simplest is perhaps something like hashtag spamming, where an excessive number of hashtags, often unrelated to the content of the post, can be indicative of spam.</p>
 <p>We can identify posts like this by counting the number of hashtags, and then filtering out posts that reach a certain (subjective) threshold.</p>
 <div class="cell">
@@ -106,8 +281,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In the example above we have set the threshold to be 5 (so any post that has 5 or more hashtags will be removed), however whilst this is a valid starting point, it is highly recommend to treat each dataset uniquely in determining which threshold to use.</p>
 </section>
-<section id="spam-grams" class="level5">
-<h5 class="anchored" data-anchor-id="spam-grams">Spam-grams</h5>
+<section id="spam-grams" class="level4" data-number="5.1.1.2">
+<h4 data-number="5.1.1.2" class="anchored" data-anchor-id="spam-grams"><span class="header-section-number">5.1.1.2</span> Spam-grams</h4>
 <p>Often-times spam can be identified by repetitive posting of the same post, or very similar posts, over a short period of time.</p>
 <p>We can identify these posts by breaking down posts into <em>n</em>-grams, and counting up the number of posts that contain each <em>n</em>-gram. For example, we might find lots of posts with the <em>6</em>-gram “Click this link for amazing deals”, which we would want to be removed.</p>
 <p>To do this, we can unnest our text data into <em>n</em>-grams (where we decide what value of <em>n</em> we want), count the number of times each <em>n</em>-gram appears in the data, and filter out any post that contains an <em>n</em>-gram above this filtering threshold.</p>
@@ -131,30 +306,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pluck</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="filter-by-post-length" class="level4" data-number="5.1.1.3">
+<h4 data-number="5.1.1.3" class="anchored" data-anchor-id="filter-by-post-length"><span class="header-section-number">5.1.1.3</span> Filter by post length</h4>
+<p>Depending on the specific research question or analysis we will be performing, not all posts are equal in their analytical potential. For example, if we are investigating what specific features contribute to the emotional association of a product with a specific audience, a short post like “I love product” (three words) won’t provide the level of detail required to answer the question.</p>
+<p>While there is no strict rule for overcoming this, we can use a simple heuristic for post length to determine the minimum size a post needs to be before it is considered informative. For instance, a post like “I love product, the features x and y excite me so much” (12 words) is much more informative than the previous example. We might then decide that any post containing fewer than 10 words (or perhaps 25 characters) can be removed from downstream analysis.</p>
+<p>On the other end of the spectrum, exceedingly long posts can also be problematic. These long posts might contain a lot of irrelevant information, which could dilute our ability to extract the core information we need. Additionally, long posts might be too lengthy for certain pipelines. Many embedding models, for example, have a maximum token length and will truncate posts that are longer than this, meaning we could lose valuable information if it appears at the end of the post. Also, from a practical perspective, longer posts take more time to analyse and require more cognitive effort to read, especially if we need to manually identify useful content (e.g.&nbsp;find suitable verbatims).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove posts with fewer than 10 words</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_count</span>(message_column, <span class="st">"</span><span class="sc">\\</span><span class="st">w+"</span>) <span class="sc">&gt;=</span> <span class="dv">10</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove posts with fewer than 25 characters and more than 2500 characters</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cleaned_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_length</span>(message_column) <span class="sc">&gt;=</span> <span class="dv">25</span> <span class="sc">&amp;</span> <span class="fu">str_length</span>(message_column) <span class="sc">&lt;=</span> <span class="dv">2500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="filter-by-post-length" class="level4">
-<h4 class="anchored" data-anchor-id="filter-by-post-length">Filter by post length</h4>
-<p>Depending on the specific research question, or analysis we will be performing, not all posts are equal in their analytical potential. For example, if we are looking at the what specific features can be attributed to the emotional association of a product to a specific audience, a post with the content “I love product” (three words) isn’t going to provide us with the level of granularity required to answer the question. Whilst there is no hard or fast rule, we can think of a simple heuristic for post length that could help determine the minimum size a post needs to be before it is informative. For example, a post with the content “I love product, the features x and y excite me so much” (12 words) is much more informative. We might then decide that any post containing &lt; 10 words (or maybe 25 characters) can be removed from downstream analysis.</p>
-<p>The same can occur at the higher end of the post length distribution scale, where exceeding long posts can be troublesome too. These long posts have the potential to contain a lot of irrelevant information, which could dilute our ability to pluck out the core information we need, or also might be too long for certain pipelines. Many embedding models, for example, have a maximum token length and will truncate posts that are longer than this, meaning we could lose valuable information if it is contained at the end of the post. Furthermore, and more on the pragmatic side, longer posts take more time to analyse, and also more cognitive effort to read the post (depending on the downstream analysis being performed) if we need to manually find useful verbatims etc.</p>
 </section>
-<section id="deduplication" class="level4">
-<h4 class="anchored" data-anchor-id="deduplication">Deduplication</h4>
+<section id="deduplication" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="deduplication"><span class="header-section-number">5.1.2</span> Deduplication</h3>
 <p>While removing spam often addresses repeated content, it’s also important to handle cases of exact duplicates within our dataset. Deduplication focuses on eliminating instances where entire data points, including all their attributes, are repeated.</p>
 <p>A duplicated data point will not only have the same message_column content but also identical values in every other column (e.g., universal_message_id, created_time, permalink). This is different from spam posts, which may repeat the same message but will differ in attributes like universal_message_id and created_time.</p>
 <p>Although the limpiar_spam_grams() function can help identify spam through frequent n-grams, it might not catch these exact duplicates if they occur infrequently. Therefore, it is essential to use a deduplication step to ensure we are not analysing redundant data.</p>
 <p>To remove duplicates, we can use the <code>distinct()</code> function from the <code>dplyr</code> package, ensuring that we retain only unique values of <code>universal_message_id.</code> This step guarantees that each post is represented only once in our dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_no_duplicates <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(universal_message_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data_no_duplicates <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(universal_message_id, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="document-level-cleaning" class="level3">
-<h3 class="anchored" data-anchor-id="document-level-cleaning">Document-level cleaning</h3>
+<section id="document-level-cleaning" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="document-level-cleaning"><span class="header-section-number">5.2</span> Document-level cleaning</h2>
 <p><strong>Goal</strong>: Prepare each individual document (post) for text analysis.</p>
 <p>At a document-level (or individual post level), the steps that we take are more small scale. The necessity to perform each cleaning step will depend on the downstream analysis being performed, but in general the different steps that we can undertake are:</p>
-<section id="remove-punctuation" class="level4">
-<h4 class="anchored" data-anchor-id="remove-punctuation">Remove punctuation</h4>
+<section id="remove-punctuation" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="remove-punctuation"><span class="header-section-number">5.2.1</span> Remove punctuation</h3>
 <p>Often times we will want punctuation to be removed before performing an analysis because they <em>tend</em> to not be useful for text analysis. This is particularly the case with more ‘traditional’ text analytics, where an algorithm will assign punctuation marks a unique numeric identify just like a word. By removing punctuation we create a cleaner dataset by reducing noise.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -174,8 +359,8 @@ Warning on punctuation
 </div>
 </div>
 </section>
-<section id="remove-stopwords" class="level4">
-<h4 class="anchored" data-anchor-id="remove-stopwords">Remove stopwords</h4>
+<section id="remove-stopwords" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="remove-stopwords"><span class="header-section-number">5.2.2</span> Remove stopwords</h3>
 <p>Stopwords are extremely common words such as “and,” “the,” and “is” that often do not carry significant meaning. In text analysis, these words are typically filtered out to improve the efficiency of text analytical models by reducing the volume of non-essential words.</p>
 <p>Removing stopwords is particularly useful in our projects for when we are visualising words, such as a bigram network or a WLO plot, as it is more effective if precious informative space on the plots is not occupied by these uninformative terms.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -197,13 +382,13 @@ Warning on stopword removal
 </div>
 </div>
 </section>
-<section id="lowercase-text" class="level4">
-<h4 class="anchored" data-anchor-id="lowercase-text">Lowercase text</h4>
+<section id="lowercase-text" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="lowercase-text"><span class="header-section-number">5.2.3</span> Lowercase text</h3>
 <p>Converting all text to lowercase standardises the text data, making it uniform. This helps in treating words like “Data” and “data” as the same word, and is especially useful when an analysis requires an understanding of the frequency of a term (we rarely want to count “Data” and “data” as two different things) such as bigram networks.</p>
 </section>
-<section id="remove-mentions" class="level4">
-<h4 class="anchored" data-anchor-id="remove-mentions">Remove mentions</h4>
-<p>Mentions (e.g., <code>@username</code>) are specific to social media platforms and often do not carry significant meaning for text analysis, and in fact may be confuse downstream analyses. For example, if there was a username called <span class="citation" data-cites="I_love_chocolate">@I_love_chocolate</span>, upon punctuation remove this might end up confusing a sentiment algorithm. Removing mentions therefore helps in focusing on the actual content of the text.</p>
+<section id="remove-mentions" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="remove-mentions"><span class="header-section-number">5.2.4</span> Remove mentions</h3>
+<p>Mentions (e.g., <code>@username</code>) are specific to social media platforms and often do not carry significant meaning for text analysis, and in fact may be confuse downstream analyses. For example, if there was a username called <code>@I_love_chocolate</code>, upon punctuation remove this might end up confusing a sentiment algorithm. Removing mentions therefore helps in focusing on the actual content of the text.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -222,30 +407,30 @@ Retaining mentions, sometimes
 </div>
 </div>
 </section>
-<section id="remove-urls" class="level4">
-<h4 class="anchored" data-anchor-id="remove-urls">Remove URLs</h4>
+<section id="remove-urls" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="remove-urls"><span class="header-section-number">5.2.5</span> Remove URLs</h3>
 <p>URLs in posts often point to external content and generally do not provide meaningful information for text analysis. Removing URLs helps to clean the text by eliminating these irrelevant elements.</p>
 </section>
-<section id="remove-emojisspecial-characters" class="level4">
-<h4 class="anchored" data-anchor-id="remove-emojisspecial-characters">Remove emojis/special characters</h4>
+<section id="remove-emojisspecial-characters" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="remove-emojisspecial-characters"><span class="header-section-number">5.2.6</span> Remove emojis/special characters</h3>
 <p>Emojis and special characters can add noise to the text data. While they can be useful for certain analyses (like emoji-specific sentiment analysis - though we rarely do this), they are often removed to simplify text and focus on word-based analysis.</p>
 </section>
-<section id="stemminglemmatization" class="level4">
-<h4 class="anchored" data-anchor-id="stemminglemmatization">Stemming/Lemmatization</h4>
+<section id="stemminglemmatization" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="stemminglemmatization"><span class="header-section-number">5.2.7</span> Stemming/Lemmatization</h3>
 <p>Stemming and lemmatization are both techniques used to reduce words to their base or root form and act as a text normalisation technique.</p>
 <p>Stemming trims word endings to their most basic form, for example changing “clouds” to “cloud” or “trees” to “tree”. However, sometimes stemming reduces words to a form that doesn’t make total sense such as “little” to “littl” or “histories” to “histori”.</p>
 <p>Lemmatization considers the context and grammatical role when normalising words, producing dictionary definition version of words. For example “histories” would become “history”, and “caring” would become “car” (whereas for stemming it would become “car”).</p>
 <p>We tend to use lemmatization over stemming- despite it being a bit slower due to a more complex model, the benefit of lemmitization outweighs this. Similar to lowercasing the text, lemmitization is useful when we need to normalise text where having distinct terms like “change”, “changing”, “changes”, and “changed” isn’t necessary and just “change” is suitable.</p>
 </section>
 </section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<section id="conclusion" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.3</span> Conclusion</h2>
 <p>Despite all of these different techniques, it is important to remember these are not mutually exclusive, and do not always need to be performed. It may very well be the case where a specific project actually required us to mine through the URLs in social posts to see where users a linking too, or perhaps keeping text as all-caps is important for how a specific brand or product is mentioned online. Whilst we can streamline the cleaning steps by using the <code>ParseR</code> function above, it is <strong>always</strong> worth spending time considering the best cleaning steps for each specific part of a project. It is much better spending more time at the beginning of the project getting this right, than realising that the downstream analysis are built on dodgy foundations and the data cleaning step needs to happen again later in the project, rendering intermediate work redundant.</p>
-</section>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -655,6 +840,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./packages.html" class="pagination-link" aria-label="Our Packages">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Our Packages</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./code_best_practices.html" class="pagination-link" aria-label="Coding best practices">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Coding best practices</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
