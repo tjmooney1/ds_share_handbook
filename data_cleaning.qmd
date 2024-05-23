@@ -1,4 +1,4 @@
-# Data Cleaning {.unnumbered}
+# Data Cleaning 
 
 When we receive a dataset from the Insight team, the first step that we must take involves cleaning and pre-processing the text data.
 
@@ -7,17 +7,17 @@ Broadly, this data cleaning for unstructured textual data can be categorised int
 * dataset-level
 * document-level
 
-### Dataset-level cleaning
+## Dataset-level cleaning
 
 **Goal**: Ensure the dataset as a whole is relevant and of high quality
 
 The main steps that we take for this level of cleaning is *spam removal*, *uninformative content removal* and *deduplication*
 
-#### Spam Removal
+### Spam Removal
 
 We use the term "spam" quite loosely in our data pre-processing workflows. Whilst the strict definition of "spam" could be something like "unsolicited, repetitive, unwanted content", we can think of it more broadly any post that displays irregular posting patterns or is not going to provide analytical value to our research project.
 
-##### Hashtag filtering
+#### Hashtag filtering
 
 There are multiple ways we can identify spam to remove it. The simplest is perhaps something like hashtag spamming, where an excessive number of hashtags, often unrelated to the content of the post, can be indicative of spam. 
 
@@ -31,7 +31,7 @@ cleaned_data <- data %>%
 
 In the example above we have set the threshold to be 5 (so any post that has 5 or more hashtags will be removed), however whilst this is a valid starting point, it is highly recommend to treat each dataset uniquely in determining which threshold to use.
 
-##### Spam-grams
+#### Spam-grams
 
 Often-times spam can be identified by repetitive posting of the same post, or very similar posts, over a short period of time. 
 
@@ -60,7 +60,7 @@ clean_data <- spam_grams %>%
   pluck(data)
 ```
 
-##### Filter by post length
+#### Filter by post length
 
 
 Depending on the specific research question or analysis we will be performing, not all posts are equal in their analytical potential. For example, if we are investigating what specific features contribute to the emotional association of a product with a specific audience, a short post like "I love product" (three words) won't provide the level of detail required to answer the question.
@@ -80,7 +80,7 @@ cleaned_data <- data %>%
 ```
 
 
-#### Deduplication
+### Deduplication
 
 While removing spam often addresses repeated content, it's also important to handle cases of exact duplicates within our dataset. Deduplication focuses on eliminating instances where entire data points, including all their attributes, are repeated.
 
@@ -95,13 +95,13 @@ data_no_duplicates <- data %>%
   distinct(universal_message_id, .keep_all = TRUE)
 ```
 
-### Document-level cleaning
+## Document-level cleaning
 
 **Goal**: Prepare each individual document (post) for text analysis.
 
 At a document-level (or individual post level), the steps that we take are more small scale. The necessity to perform each cleaning step will depend on the downstream analysis being performed, but in general the different steps that we can undertake are:
 
-#### Remove punctuation
+### Remove punctuation
 
 Often times we will want punctuation to be removed before performing an analysis because they *tend* to not be useful for text analysis. This is particularly the case with more 'traditional' text analytics, where an algorithm will assign punctuation marks a unique numeric identify just like a word. By removing punctuation we create a cleaner dataset by reducing noise.
 
@@ -113,7 +113,7 @@ For more complex models, such as those that utilise word or sentence embeddings,
 For example, there is a big difference between the sentences "Let's eat, Grandpa" and "Let's eat Grandpa", which is lost if we remove punctuation.
 :::
 
-#### Remove stopwords
+### Remove stopwords
 
 Stopwords are extremely common words such as "and," "the," and "is" that often do not carry significant meaning. In text analysis, these words are typically filtered out to improve the efficiency of text analytical models by reducing the volume of non-essential words.
 
@@ -129,13 +129,13 @@ For example, imagine if we removed the stopword "not" from the sentence "I have 
 Another time to be aware of stopwords is if a key term related to a project is itself a stopword. For example, the stopwords list [`SMART`](https://search.r-project.org/CRAN/refmans/stopwords/html/data_stopwords_smart.html) treats the term "one" as a stopword. If we were studying different Xbox products, then the console "Xbox One" would end up being "Xbox" and we would lose all insight referring to that specific model. For this reason it is always worth double checking which stopwords get removed and whether it is actually suitable.
 :::
 
-#### Lowercase text
+### Lowercase text
 
 Converting all text to lowercase standardises the text data, making it uniform. This helps in treating words like "Data" and "data" as the same word, and is especially useful when an analysis requires an understanding of the frequency of a term (we rarely want to count "Data" and "data" as two different things) such as bigram networks.
 
-#### Remove mentions
+### Remove mentions
 
-Mentions (e.g., `@username`) are specific to social media platforms and often do not carry significant meaning for text analysis, and in fact may be confuse downstream analyses. For example, if there was a username called @I_love_chocolate, upon punctuation remove this might end up confusing a sentiment algorithm. Removing mentions therefore helps in focusing on the actual content of the text.
+Mentions (e.g., `@username`) are specific to social media platforms and often do not carry significant meaning for text analysis, and in fact may be confuse downstream analyses. For example, if there was a username called `@I_love_chocolate`, upon punctuation remove this might end up confusing a sentiment algorithm. Removing mentions therefore helps in focusing on the actual content of the text.
 
 ::: {.callout-tip collapse="true"}
 ## Retaining mentions, sometimes
@@ -145,15 +145,15 @@ We often perform analyses that involve network analyses. For these, we need to h
 However, broadly speaking if the goal is to analyse the content/context of a paste, removing mentions is very much necessary.
 :::
 
-#### Remove URLs
+### Remove URLs
 
 URLs in posts often point to external content and generally do not provide meaningful information for text analysis. Removing URLs helps to clean the text by eliminating these irrelevant elements.
 
-#### Remove emojis/special characters
+### Remove emojis/special characters
 
 Emojis and special characters can add noise to the text data. While they can be useful for certain analyses (like emoji-specific sentiment analysis - though we rarely do this), they are often removed to simplify text and focus on word-based analysis.
 
-#### Stemming/Lemmatization
+### Stemming/Lemmatization
 
 Stemming and lemmatization  are both techniques used to reduce words to their base or root form and act as a text normalisation technique.
 
@@ -163,6 +163,6 @@ Lemmatization considers the context and grammatical role when normalising words,
 
 We tend to use lemmatization over stemming- despite it being a bit slower due to a more complex model, the benefit of lemmitization outweighs this. Similar to lowercasing the text, lemmitization is useful when we need to normalise text where having distinct terms like "change", "changing", "changes", and "changed" isn't necessary and just "change" is suitable.
 
-### Conclusion
+## Conclusion
 
 Despite all of these different techniques, it is important to remember these are not mutually exclusive, and do not always need to be performed. It may very well be the case where a specific project actually required us to mine through the URLs in social posts to see where users a linking too, or perhaps keeping text as all-caps is important for how a specific brand or product is mentioned online. Whilst we can streamline the cleaning steps by using the `ParseR` function above, it is **always** worth spending time considering the best cleaning steps for each specific part of a project. It is much better spending more time at the beginning of the project getting this right, than realising that the downstream analysis are built on dodgy foundations and the data cleaning step needs to happen again later in the project, rendering intermediate work redundant.  
