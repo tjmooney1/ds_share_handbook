@@ -49,15 +49,15 @@ spam_grams <- data %>%
 
 # see remove spam_grams
 spam_grams %>% 
-  pluck(spam_grams)
+  pluck("spam_grams")
 
 # see deleted posts
 spam_grams %>% 
-  pluck(deleted)
+  pluck("deleted")
 
 # save 'clean' posts
 clean_data <- spam_grams %>% 
-  pluck(data)
+  pluck("data")
 ```
 
 #### Filter by post length
