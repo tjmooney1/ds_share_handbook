@@ -1,0 +1,58 @@
+# Conversation Landscape
+The 'Conversation Landscape' method has proven to be an effective tool for querying, auditing, and analyzing both broad concepts and finely grained topics across social conversations on all major platforms, as well as web pages and forums.
+
+### Project Background
+Working with semi-structured or unstructured high-dimensional data, such as text (and in this case, social media posts), poses significant challenges in measuring or quantifying the language used to describe any specific phenomena. One common approach to quantifying language is topic modeling, where a corpus (or collection of documents and in this case, social media posts) is processed and represented in a simplified format. This often involves displaying top terms, verbatims, or threads highlighting any nuances or differences within the data. Traditional topic modeling or text analysis methods, such as Latent Dirichlet Allocation (LDA), operate on the probability or likelihood of terms or n-grams belonging to a set number of topics.
+
+The Conversation Landscape workflow offers a slightly different solution and one that partitions our high-dimensional data without requiring data frames or burdening the user with sifting through rows of data to segment (or sense-check already segmented) data in order to understand or recognize differences across texts, which we will typically later define as topics. This is achieved through sentence transforming, where documents are converted from words to numerical values, which are often referred to as 'embeddings'. These values are calculated based on the content's semantic and syntactic properties. The transformed values are then processed again using dimension reduction techniques, making the data more suitable for visualization. Typically, this involves reducing to two dimensions, though three dimensions may be used to introduce another layer of abstraction between our data points.
+
+Note: This document will delve deeper into the core concepts of sentence transforming and dimension reduction, along with the different methods used to cluster or group topics once the overall landscape is mapped out. We will also take a closer look at an illustrated real-world business use case of this technique.
+
+#### Final output of project
+An ideal output would and should always showcase the positioning of our reduced data points onto the semantic space along with any topic or subtopic explanations with colour coding where appropriate. While sometimes we provide raw counts of documents per topic and subtopic, we always include the % of topic distribution across our corpus, which is occasionally referred to as Share of Voice(SOV). 
+
+![Screenshot Taken from the Final Output of an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_output_example.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
+
+## How to get there
+
+As promised, we will provide some more context as well as the appropriate information surrounding the required steps taken, so that a reader may replicate and implement the methods mentioned throughout so far, providing an efficient analysis tool for any set of documents or corpus regardless of domain specifics. While the output provided above showcases a simplified means for visualizing complex and multifaceted noisy data such as the 'Artificial Intelligence' conversation on social, there are a number of steps that one must take and be mindful of throughout in order to create the best fit model and the optimal output of a Conversational Landscape project.
+
+The steps would include, and as one might find in any project especially within the realms of Natural Language Processing (NLP); Initial Exploratory Data Analysis (check the data is relevant and fit to answer the brief), Cleaning and Processing (the removal of spam, unhelpful or irrelevant data and pre-processing of text variable for embedding), Transforming/Embedding (turning our words to numbers), Dimension Reduction (reducing our representational values of documents to a manageable state in order to visualise) and then Topic model/Clustering (where we scientifically model and define our data).
+
+#### Exploratory Data Analysis (EDA):
+As we are not normally responsible for querying, sourcing or collecting our own data, the first steps in our workflow should always involve some high-level data checks before we proceed with any of the following steps in order to save time downstream and give us confidence to carry over into the data cleaning and processing process.
+
+First, check things like the existing variables and clean or rename any where necessary. This step requires a little forward thinking as to what columns are necessary to complete each stage of the project. Once happy with our variables, we can then check for missing values such as missing dates or days of data, any abnormal distributions across columns like Social Platform that might skew any findings or help to explain/justify the resulting topic model at the end of the workflow. We can then do some bespoke or project specific checks like searching for likely-to-find strings or terms within our text variable to ensure the data is relevant and query had captured the phenomena we are aiming to model.
+
+#### Data Cleaning/Processing:
+Again, as we are not responsible for data collection and as we might expect, our data may contain unhelpful or even problematic information that is unwillingly bought in by the query. Our job at this stage is to minimize the amount of spam or unhelpful data existing in our corpus to ensure our findings are accurate and appropriate, and represent the overall data and concept of the conversation that we are modelling.
+
+The optimal procedures for spam detection and removal are covered in more detail *here(will include link when section complete)*. However, when conducting methods such as these, there are steps one absolutely must take to ensure that the text variable provided to the sentence transformer model is clean and concise so that an accurate and consistent embedding process can take place on our documents. This includes the removal of: 
+
+-    Hashtags #️⃣
+-    User/Account Mentions 💬
+-    URLs or Links 🌐
+-    Emojis 🐙
+-    Non-English Characters 🉐
+
+Often, one might also choose to remove punctuation and/or digits, however in our provided example, we have not done so. There are also things to beware of such as documents beginning with numbers that can influence the later processes so unless necessary, we should remove these where possible to ensure no inappropriate grouping of documents takes place based on these minor similarities, as it's the semantic and pure essence of posts that we want to mainly focus on in this case, grouping similarly natured documents together to form clusters(topics/subtopics).
+
+#### Sentence Transforming/Embedding:
+Once we are happy with the cleanliness and relevance of our data, as well as the text variable we wish to analyse, we can begin embedding our documents so that we have a numerical representation for each that can later be reduced and visualized. Typically, and in this case we leverage pre-trained sentence transformer models hosted on Hugging Face, such as `all-mpnet-base-v2` which we had decided to use for the Microsoft AI project, as it had great performance scores for how lightweight it is, however there are similar models now posting more competitively across these metrics, so one may wish to consult the [Hugging Face leaderboard](https://huggingface.co/spaces/mteb/leaderboard) or simply do some desk research before settling on a model appropriate for their own specific use case.
+
+While the previous steps might have been taken using R and Rstudio making use of SHARE's suite of data cleaning, processing and parsing functionality, the embedding process will need to be completed using Google Colab to take advantage of their premium GPUs and high RAM option as embedding requires a large amount of compute, so much so that most fairly competent machines with standard tech specs will struggle. It is also worth noting that an embedding output may depend on the specific GPU being utilised as well as the version of Python that Colab is currently running, its good practice to make note of both of these (you may thank yourself at a later stage). To get going with sentence transformers and for downloading/importing a model such as [all-mpnet-bas-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2).
+
+#### Dimension Reduction:
+At this stage, we would expect to have our cleaned data and its representative embedding output. This next step, and one responsible for taking this high-dimensional object(often 768 columns and some embedding models output a lot more) to then simplify/reduce these columns down enough to map our documents onto a semantic space where they are represented as a node and positioned based upon their nature, meaning those closer semantically will be closer together upon our abstract space, forming our landscape.
+
+There are a number of ways one can process an embeddings output to produce either a 2 or 3 dimensional representation of data. Each method has its own merits as well as appropriate use cases, which mostly depend whether the user intends to focus on either the local or global structure of their data. For a bit more on the different dimension reduction techniques, the [BERTopic documentation](https://maartengr.github.io/BERTopic/getting_started/dim_reduction/dim_reduction.html) provides some further detail while staying relevant to the subject of Topic Modelling in NLP.
+
+Once we have reduced out embeddings, and in this instance we had used Uniform Manifold Approximation and Projection(UMAP) as it is useful when being mindful of both the local and global structures within data, and reduced to just two dimensions we should be readu to formulate our 2D plot such as the one below.
+
+![Grey Colourless Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_grey.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
+
+#### Topic Modelling/Clustering:
+Information regarding the topic modelling step and different options etc etc, how we go from grey landscape to segmented...
+
+![Segmented Colourful Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_coloured.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
+
