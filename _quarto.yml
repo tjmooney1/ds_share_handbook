@@ -16,6 +16,7 @@ book:
     - packages.qmd
     - data_cleaning.qmd
     - code_best_practices.qmd
+    - package_development.qmd
     - glossary.qmd
     - resources.qmd
 

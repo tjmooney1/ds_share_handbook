@@ -1,1 +1,63 @@
 # Coding best practices
+
+First, make sure you've read the the [Project Management](project_management.qmd) document for general tips on setting up an RStudio project and working with file paths.
+
+## Why are we here?
+
+At SHARE & Capture, code is the language of both our research and our development, so it pays to invest in your coding abilities. There are many [great](#great-coding-resources) (and many terrible) resources on learning how to code. This document will focus on practical tips on how to structure your code to reduce cognitive strain and do the best work you can. 
+
+Let's be clear about what coding is: [coding is thinking not typing](https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.), so good coding is simply good thinking.
+
+## Reproducible Analyses
+
+Above everything else, your scripts, notebooks, markdown files and data assets must be reproducible. What do we mean by reproducible? You and your collaborators should be able to get back to any place in your analysis simply by executing code in the order it occurs in your scripts and notebooks. Hopefully the truth of this statement is self-evident. But if that's the case, why are we talking about it?
+
+For some projects you'll get away with a folder structure which looks something like this:
+```{r}
+#| echo: false
+fs::dir_tree("example_folder")
+```
+
+However, in weeks-long or even months-long research projects, if you're not careful your project will quickly spiral out of control (see the lovely surprise below), your R Environment will begin to store many variables, and you'll begin to pass data objects around between scripts and markdowns in an unstructured way, e.g. you'll reference a variable created inside 'wrangling.Rmd' inside the 'colab_cleaning.Rmd', such that colab_cleaning.Rmd becomes unreproducible.
+<details>
+<summary> A lovely surprise </summary>
+```{r}
+#| echo: false
+fs::dir_tree("example_folder_complex")
+```
+</details>
+
+
+- [ ] Do my markdowns and notebooks render?
+- [ ] 
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+
+## Managing Complexity
+
+> "...let's think of code complexity as how difficult code is to reason about and work with."
+
+There are many heuristics for measuring code complexity, the most basic being 'lines of code' which is closely linked to 'vertical complexity' - the more code we have the longer our scripts and markdowns will be, the harder it is to see all of the relevant code at any one time, the more strain we put on our working memories. A naive strategy for reducing complexity is to reduce lines of code. But if we reduce the number of lines of code by introducing deeply nested function calls, the code becomes more complex not less as the number of lines decreases.
+
+As a rough definition, let's think of code complexity as 'how difficult code is to reason about and work with.' A good test of code complexity is how long it takes future you to remember what each line, or chunk, of code is for.
+
+## On naming
+
+##
+
+## On LLM-generated code
+
+
+
+## Great Coding Resources
+
+Google SWE Book
+[Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
+
+## Exercises
+
+> In your own words, summarise what makes an analysis reproducible.
+
+> Write a line in favour and against the claim 'Code is an asset not a liability' 
