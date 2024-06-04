@@ -52,7 +52,7 @@ Once we have reduced out embeddings, and in this instance we had used Uniform Ma
 ![Grey Colourless Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_grey.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
 
 #### Topic Modelling/Clustering:
-Information regarding the topic modelling step and diferent options etc etc, how we go from grey landscape to segmented...
+Information regarding the topic modelling step and different options etc etc, how we go from grey landscape to segmented...
 
 ![Segmented Colourful Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_coloured.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
 
