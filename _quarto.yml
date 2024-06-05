@@ -12,7 +12,7 @@ book:
     - project_management.qmd
     - project_players.qmd
     - peaks_pits_workflow.qmd
-    - ai_landscape_workflow.qmd
+    - conversation_landscape.qmd
     - packages.qmd
     - data_cleaning.qmd
     - code_best_practices.qmd
