@@ -10,13 +10,13 @@ The Conversation Landscape workflow offers a slightly different solution and one
 
 Note: This documentation will delve deeper into the core concepts of sentence transforming and dimension reduction, along with the different methods used to cluster or group topics once the overall landscape is mapped out, referring back to our illustrated real-world business use case of these techniques. We will then later look at best practices and any downstream flourishes that will help us operate within this work-stream.
 
-#### Final output of project
+### Final output of project
 
 An ideal output, like the one shown below should always showcase the positioning of our reduced data points onto the semantic space, along with any topic or subtopic explanations alongside, using color coding where appropriate. While we sometimes provide raw counts of documents per topic/subtopic, we always include the percentage of topic distribution across our data, occasionally referred to as Share of Voice (SOV).
 
 ![Screenshot Taken from the Final Output of an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_output_example.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
 
-## How to get there
+### How to get there
 
 As promised, we will provide some more context as well as the appropriate information surrounding the required steps taken, so that a reader may replicate and implement the methods mentioned throughout so far, providing an efficient analysis tool to use for any set of documents, regardless of domain specifics. While the example output provided displays a simplified means for visualizing complex and multifaceted noisy data such as the 'Artificial Intelligence' conversation on social, there are a number of steps that one must take carefully and be mindful of throughout, in order to create the best fit model appropriate for a typical Conversation Landscape project.
 
@@ -83,7 +83,7 @@ It's also worth noting that this step requires a significant amount of human int
 
 With the basics of each step covered, we will now touch on a few potentially beneficial concepts worth grasping that may help us overcome anything else that may occur when working within the Conversation Landscape project domain.
 
-#### Model Saving & Reusability:
+### Model Saving & Reusability:
 
 Occasionally, a client may want us to track topics over time or perform a landscape change analysis. In these cases, we need to save both our Dimension Reduction and Clustering models so that new data can be processed using these models, tp produce consistent and comparable results.
 
@@ -92,7 +92,7 @@ This requires careful planning. When we initially reduce embeddings and perform 
 We had earlier, mentioned, that it is crucial to document the versions of the modules and Python interpreter used. When we reduce or cluster new data using our pre-fitted models, it is essential to do so with the exact same versions of important libraries and Python. The reason is that the internal representations and binary structures of the models can differ between versions. If we attempt to load and apply previously saved models with different versions, we risk encountering incompatibility errors. By maintaining version control and documenting the environment in which the models were created, we can ensure the reusability of our models. Overall, this practice allows for us to be accurate when tracking and comparing topics and noting any landscape changes.
 
 
-#### Efficient Parameter Tuning:
+### Efficient Parameter Tuning:
 
 When we're performing certain steps within this workflow, more specifically the Dimension Reduction with likes of UMAP, or if we were to decide we'd want to cluster using HDBSCAN for example, being mindful of and efficient with tuning the different parameters at each step will definitely improve the outcome of our overall model. Therefore, understanding these key parameters and how they can interact will significantly enhance the performance of the techniques being used here.
 
@@ -114,12 +114,3 @@ It's worth noting that the relationship between `min_samples` and `min_cluster_s
 
 
 ##### Tip: Try starting with the default value for all of these parameters, and incrementally adjust based on the desired granularity or effect of any that we wish to amend.
-
-#### Supporting Data Vizualisation:
-
-alternative plots to support the landscape output ...
-
-#### Continuous Learning:
-
-the concepts are covered, but include some further reading ...
-
