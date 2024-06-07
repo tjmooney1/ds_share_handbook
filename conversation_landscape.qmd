@@ -73,21 +73,47 @@ Once we have reduced our embeddings, and for the sake of staying consistent to t
 
 The final steps taken are arguably the most important, this is where we will define our documents and simplify our findings byway of scientific means, in this case using Topic Modelling.
 
-There are a number of algorithms that serve this purpose, but the more commonly used clustering techniques are KMeans and HDBSCAN. However, the example we have shown uses KMeans, where we define the number of clusters that we would expect to find beforehand, where-as if we were to opt for HDBSCAN, we would allow the model to determine how many clusters were present based on some input parameters such as `min_cluster_size` provided by the user. For more on these two techniques and when/how to use them, we can consult the [BERTopic documentation](https://maartengr.github.io/BERTopic/getting_started/clustering/clustering.html#hdbscan) again. It's also worth noting that this step requires a considerable amount of human interpretation, so the user can definitely expect to partake in a considerable amount of trial and error, testing different parameters, determining different model outputs and also checking a different number of clusters per model, with hopes of finding the model of best fit, which they feel accurately represents the given data.
+There are a number of algorithms that serve this purpose, but the more commonly used clustering techniques are KMeans and HDBSCAN. However, the example we have shown uses KMeans, where we define the number of clusters that we would expect to find beforehand and perform clustering on either the original embeddings object output by the sentence transformer model, or we can reduce those embeddings to something much smaller like 10 dimensions and cluster documents based on those. If we were to opt for HDBSCAN however, we would allow the model to determine how many clusters were formed based on some input parameters such as `min_cluster_size` which are provided by the user. For more on these two techniques and when/how to use them in a topic modelling setting, we can consult the [BERTopic documentation](https://maartengr.github.io/BERTopic/getting_started/clustering/clustering.html#hdbscan) once more. 
+
+It's also worth noting that this step requires a significant amount of human interpretation, so the user can definitely expect to partake in an iterative process of trial and error, trying out different values for the clustering parameters which determine the models output, with hopes of finding the model of best fit, which they feel accurately represents the given data.
 
 ![Segmented Colourful Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_coloured.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation" width="675"}
 
 ## Downstream Flourishes
 
-With a basic understanding of each step covered, we will now touch on a few potentially beneficial concepts worth grasping that may help us overcome anything else that may occur when working within the Conversation Landscape project domain.
-
-#### Efficient Parameter Tuning:
-
-improving cluster outputs, handling noise etc ...
+With the basics of each step covered, we will now touch on a few potentially beneficial concepts worth grasping that may help us overcome anything else that may occur when working within the Conversation Landscape project domain.
 
 #### Model Saving & Reusability:
 
-repeat projects etc ...
+Occasionally, a client may want us to track topics over time or perform a landscape change analysis. In these cases, we need to save both our Dimension Reduction and Clustering models so that new data can be processed using these models, tp produce consistent and comparable results.
+
+This requires careful planning. When we initially reduce embeddings and perform clustering, we use the `.fit()` method from `sklearn` when either reducing the dimensions of or clustering on the original embeddings. This ensures that the models are trained on the data they are intended to represent, making future outputs comparable.
+
+We had earlier, mentioned, that it is crucial to document the versions of the modules and Python interpreter used. When we reduce or cluster new data using our pre-fitted models, it is essential to do so with the exact same versions of important libraries and Python. The reason is that the internal representations and binary structures of the models can differ between versions. If we attempt to load and apply previously saved models with different versions, we risk encountering incompatibility errors. By maintaining version control and documenting the environment in which the models were created, we can ensure the reusability of our models. Overall, this practice allows for us to be accurate when tracking and comparing topics and noting any landscape changes.
+
+
+#### Efficient Parameter Tuning:
+
+When we're performing certain steps within this workflow, more specifically the Dimension Reduction with likes of UMAP, or if we were to decide we'd want to cluster using HDBSCAN for example, being mindful of and efficient with tuning the different parameters at each step will definitely improve the outcome of our overall model. Therefore, understanding these key parameters and how they can interact will significantly enhance the performance of the techniques being used here.
+
+##### Dimension Reduction with UMAP:
+n_neighbors: This parameter controls the local neighborhood size used in UMAP. A smaller value focuses more on capturing the local structure, while a larger value considers more global aspects. Efficiently tuning this parameter involves considering the nature of your data and the scale at which you want to observe patterns.
+
+min_dist: The min distance argument determines quite literally how tight our nodes are allowed to be positioned together within our semantic space, a lower value for this will mean nodes will be tightly packed together, whereas a higher number will ensure larger spacing of data points.
+
+n_components: Here is where we decide how many dimensions we wish to reduce our high-dimensional embeddings object down to, for visualisation we will likely set this parameter to a value of 2.
+
+##### KMeans CLustering
+n_clusters: KMeans is a relatively simple algorithm compared to other methods and components, requiring very little input. Here we just provide a value for the number of clusters we wish to form, this will either be clusters in the embeddings or a smaller, more manageable reduced embeddings object as mentiioned previously.
+
+##### HDBSCAN Clustering:
+min_samples: This parameter defines the minimum number of points required to form a dense region. It helps determine the density threshold for clusters and can determine how conservative we want the clustering model to be. Put simply, a higher value can lead to fewer, larger clusters, while a lower value can result in more, smaller clusters.
+
+min_cluster_size: This parameter sets the minimum size of clusters. Like `min_samples` it can directly influence the granularity of the clustering results. In this case, smaller values allow the formation of smaller clusters, while larger values prevent the algorithm from identifying any small clusters(or those below the size of the provided value).
+It's worth noting that the relationship between `min_samples` and `min_cluster_size` is crucial. `min_samples` should generally be less than or equal to `min_cluster_size`. Adjusting these parameters in tandem helps us to control the sensitivity of HDBSCAN, and for us to define what qualifies as a cluster.
+
+
+##### Tip: Try starting with the default value for all of these parameters, and incrementally adjust based on the desired granularity or effect of any that we wish to amend.
 
 #### Supporting Data Vizualisation:
 
