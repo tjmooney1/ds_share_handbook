@@ -28,14 +28,7 @@ book:
     - part: "Tips and Tricks"
       chapters:
         - data_cleaning.qmd
-    # - index.qmd
-    # - summary.qmd
-    # - project_management.qmd
-    # - project_players.qmd
-    # - peaks_pits_workflow.qmd
-    # - conversation_landscape.qmd
-    # - packages.qmd
-    # - data_cleaning.qmd
+  bread-crumbs: false
     # - code_best_practices.qmd
     # - glossary.qmd
     # - resources.qmd
