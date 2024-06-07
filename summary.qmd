@@ -7,5 +7,19 @@ Capture Intelligence is our biggest internal "client" as there are plenty of opp
 
 What this means is as a team we have responsibilities that range from continual development of our own tech stack to help answer specific research questions for external clients to helping empower members of the alliance to use mindful applications of emerging technologies.
 
-## Our ethos
+The team is made up of:
+
+**Mike Tapp**: Data Director
+
+**Jack Penzer**: Global Data Product Lead
+
+**Jamie Hudson**: Senior Data Scientist
+
+**Aoife Ryan**: Data Scientist
+
+**Tim Mooney**: Jr. Data Scientist
+
+**Sophie Thomas**: Jr. Data Scientist
+
+<!-- ## Our ethos -->
 
