@@ -1,4 +1,4 @@
-# A Data Science project {.unnumbered}
+# A Data Science project
 
 ## What is a Data Science project?
 

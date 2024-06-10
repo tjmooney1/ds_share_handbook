@@ -1,4 +1,4 @@
-# The Data Science team {.unnumbered}
+# The Data Science team 
 
 ## Where we sit
 > The Data Science department are a fully global resource within the alliance

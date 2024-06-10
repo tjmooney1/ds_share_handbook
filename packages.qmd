@@ -1,4 +1,4 @@
-# Our Packages {.unnumbered}
+# Our Packages 
 
 We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the Samy Alliance. We don't license the software to clients. What we sell is the knowledge that they can produce. 
 
@@ -49,4 +49,8 @@ DisplayR is our package for data visualization, offering a wide array of functio
 ![](./img/hex/helpr.png){width=20%}
 
 HelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.
+
+As you progress through your data science journey, you may take an interest in developing your own package. Depending on your previous experience developing software, this might be daunting, but don't worry none of us had much experience building packages when we joined; we all learned on the job - and so can you. If you want to.
+
+See the [Package Development](package_development.qmd){target="_blank"} document for more information.
 

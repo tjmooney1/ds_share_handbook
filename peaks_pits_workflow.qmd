@@ -1,6 +1,6 @@
-# Peaks and Pits {.unnumbered}
+# Peaks and Pits 
 
-"Peak and Pits" is one of our fundamental project offerings and a workflow that is a solid representation of good data science work that we perform.
+"Peaks and Pits" is one of our fundamental project offerings and a workflow that is a solid representation of good data science work that we perform.
 
 ## What is the concept/project background?
 
