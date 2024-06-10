@@ -32,8 +32,7 @@ Let's be clear about what coding is: [coding is thinking not typing](https://new
 
 Above everything else, notebooks must be
 [reproducible](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html){target="_blank"}.
-What do we mean by reproducible? You and your collaborators should be able to get back to any place in your analysis simply by executing code in the order it occurs in your scripts and notebooks. Hopefully the
-truth of this statement is self-evident. But if that's the case, why are we talking about it?
+What do we mean by reproducible? You and your collaborators should be able to get back to any place in your analysis simply by executing code in the order it occurs in your scripts and notebooks. Hopefully the truth of this statement is self-evident. But if that's the case, why are we talking about it?
 
 For some projects you'll get away with a folder structure which looks something like this:
 
@@ -42,7 +41,7 @@ For some projects you'll get away with a folder structure which looks something 
 fs::dir_tree("example_folder")
 ```
 
-However, in weeks-long or even months-long research projects, if you're not careful your project will quickly spiral out of control (see the lovely surprise below for a tame exmaple), your R Environment will begin to store many variables, and you'll begin to pass data objects around between scripts and markdowns in an unstructured way, e.g. you'll reference a variable created inside 'wrangling.Rmd' inside the
+However, in weeks-long or even months-long research projects, if you're not careful your project will quickly spiral out of control (see the lovely surprise below for a tame example), your R Environment will begin to store many variables, and you'll begin to pass data objects around between scripts and markdowns in an unstructured way, e.g. you'll reference a variable created inside 'wrangling.Rmd' inside the
 'colab_cleaning.Rmd', such that colab_cleaning.Rmd becomes unreproducible.
 
 <details>
@@ -91,9 +90,6 @@ As a rough definition, let's think of code complexity as 'how difficult code is 
 We'll now explore some tools and heuristics for fighting complexity in our code.
 
 ## On navigation
-
-Let's go out on a limb and say that the data science workflow is **never** linear, you will always move back and forth between cleanin data, inspecting it, and modelling it. Structuring your projects and notebooks with this in mind will save many headaches.
-
 ```{mermaid}
 graph LR
     A[Raw Data] --> B(Cleaning)
@@ -103,6 +99,8 @@ graph LR
     E --> F(Communicating Results)
     E --> B(Cleaning)
 ```
+
+Let's go out on a limb and say that the data science workflow is **never** linear, you will always move back and forth between cleanin data, inspecting it, and modelling it. Structuring your projects and notebooks with this in mind will save many headaches.
 
 ### Readme
 
@@ -134,13 +132,13 @@ You wrote the code in the chunk. So you know what it does, or at least you shoul
 
 ## On comments
 
-When following the literate programming paradigm, coding comments (`# comment...`) should be included in code chunks - save the markdown text for what your audience needs to see.
+When following the literate programming paradigm, coding comments (`# comment...`) should be included in code chunks with `echo = False` unless you explicitly want your audience to see the code and the comments - save the markdown text for what your audience needs to see.
 
 Generally code comments should be used sparingly, if you find yourself needing a lot of comments it's a sign the code is too complex, consider re-factoring or abstracting (more on abstractions later).
 
 ## On repeating yourself #1 - Variables
 
-Storing code in multiple places tends to be a liability - if you want to make changes to that piece of code, you have to do it multiple times. More importantly than the time lost making the changes, you need to remember that the code has been duplicated.
+Storing code in multiple places tends to be a liability - if you want to make changes to that piece of code, you have to do it multiple times. More importantly than the time lost making the changes, you need to remember that the code has been duplicated and where all the copies are.
 
 Without variables coding would be 'nasty, brutish and <s>short</s> long.'. It's difficult to find the Goldilocks zone between 'more variables than I can possibly name' and 'YOLO the project title is typed out 36 times'.
 
@@ -182,7 +180,9 @@ mtcars %>%
   labs(title = paste0(project_title, " Horsepower vs Miles per Gallon"))
 ```
 
-Give your variables descriptive names and use tab completion to help you access long names.
+::: {.callout-tipe} 
+Give your variables descriptive names and use your IDE's tab completion to help you access long names.
+:::
 
 Let's say you're creating a data frame that you're not sure you'll need. Assume you will need it and delete after if not, don't fall into the trap of naming things poorly
 
@@ -216,11 +216,19 @@ Make them! There are *lots* of reasons to write your own functions and make your
 
 For a more comprehensive resource, check in with the [R4DS functions section](https://r4ds.had.co.nz/functions.html?q=functions#functions)
 
-Also see the [Tidyverse Design Guide](https://design.tidyverse.org/unifying.html) for a lot of stellar advice on building functions for Tidyverse functions.
+Also see the [Tidyverse Design Guide](https://design.tidyverse.org/unifying.html) for stellar advice on building functions for Tidyverse functions.
 
 ### On anonymous functions
 
 Functions are particularly useful when you want to use iterators like {purrr}'s `map` family of functions or base R's `apply` family. Often these functions are one-time use only so it's not worth giving them a name or defining them explicitly, in which case you can use anonymous functions.
+
+Anonymous functions can be called in three main ways:
+
+1. Using `function()` e.g. `function(x) x + 2` will add 2 to every input
+2. Using the new anonymous function notation: `\x x + 2`
+3. Using the formula notation e.g. `map(list, ~.x + 2)`
+
+You will see a mixture of these, with 3. being used more often in older code, and 2. in more recent code.
 
 ## On packages
 
@@ -239,7 +247,7 @@ see also: [Package Resources](resources.qmd#package-development){target="_blank"
 
 ## On version control
 
-By default your projects should be stored on the Google Drive, in the event of disaster (or minor inconvenience) this means your code and data artefacts should be backed up. However, it's still advisable to use a version control system like git - using branches to explore different avenues, or re-factor your code, can be a real headache saver and efficiency gain.
+By default your projects should be stored on Google Drive inside the "data_science_project_work" folder, in the event of disaster (or minor inconvenience) this means your code and data artefacts should be backed up. However, it's still advisable to use a version control system like git - using branches to explore different avenues, or re-factor your code, can be a real headache preventer and efficiency gain.
 
 Aim to commit your code multiple times per day, push to a remote branch (not necessarily main or master) once a day and merge + pull request when a large chunk of work has been finished. Keep your work code and projects in a private repository, add .Rhistory to .gitignore and make sure API keys are stored securely, i.e. not in scripts and notebooks.
 
@@ -253,13 +261,19 @@ You're here because you can problem solve and pick up new skills when you need t
 
 ## Great Coding Resources {#great-coding-resources}
 
-Google SWE Book [Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
+[Google SWE Book](https://abseil.io/resources/swe-book)
+[Hands on programming with R](https://rstudio-education.github.io/hopr/)
+[Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
 
 ## Exercises
 
 > In your own words, summarise what makes an analysis reproducible.
 
 > Write a line in favour and against the claim 'Code is an asset not a liability.'
+
+> Set up a private github repo on a project inside data_science_project_work/internal_projects and create a new branch then commit, push and pull request a change.
+
+> Add your own best practices to this document!
 
 # Other Resources
 
