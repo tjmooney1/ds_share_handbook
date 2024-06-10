@@ -3,10 +3,14 @@
 <!-- ::: {#refs} -->
 <!-- ::: -->
 
+## Data Visualisation
+- [Capture Cookbook](https://github.com/jamiehshare/capture_cookbook) 
+- [R Graph Gallery](https://r-graph-gallery.com/)
+
+
 ## Literate Programming
 - [Quarto Guide](https://quarto.org/docs/guide/)
 - [Quarto Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
-
 
 ## Package Development
 
