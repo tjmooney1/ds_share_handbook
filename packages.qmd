@@ -50,3 +50,7 @@ DisplayR is our package for data visualization, offering a wide array of functio
 
 HelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.
 
+As you progress through your data science journey, you may take an interest in developing your own package. Depending on your previous experience developing software, this might be daunting, but don't worry none of us had much experience building packages when we joined; we all learned on the job - and so can you. If you want to.
+
+See the [Package Development](package_development.qmd){target="_blank"} document for more information.
+
