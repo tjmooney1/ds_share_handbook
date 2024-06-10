@@ -1,8 +1,11 @@
+---
+lightbox: true
+---
 # Package Development
 
-One of the beautiful things of Data Science at SAMY is that you get to choose your path between research, development and a hybrid If you're reading this, you've probably decided that you want to explore development. 
+One of the beautiful things of Data Science at SAMY is that you get to choose your path between research, development, or a hybrid. If you're reading this, you've probably decided that you want to explore some development. What better way to start than building your own package?
 
-For a high-level overview of our packages, refer to the [our packages](packages.qmd) document.
+For a high-level overview of our existing packages, refer to the [our packages](packages.qmd) document.
 
 We build packages because they are convenient ways to share our code & data and democratise access to our tools - besides, that Google Doc of functions is getting heavy, and copying & pasting code from project to project is getting tiresome. Eventually you'll want the familiar `library()` syntax.
 
@@ -19,8 +22,6 @@ Reticulate is an R package that allows us to import Python packages and function
 
 Using reticulate requires managing Python environments from R, this leads to difficulties of its own.
 </details>
-
-## Getting Started
 
 # R
 
@@ -108,7 +109,7 @@ Once you've built the package there are some things you will want to do regularl
 
 - [ ] Build out tests for new logic in tests/
 
-- [ ] Ensure function-level documentation is added to any new logic, including @headline, @description, @details, @parameters, return value, @examples and @export if function is to be exported, or @internal otherwise. Let roxygen2 take care of @usage. 
+- [ ] Ensure function-level documentation is added to any new logic, including @title, @description, @details, @param, @returns, @examples and @export if function is to be exported, or @internal otherwise. Let roxygen2 take care of @usage. 
 
 - [ ] Keep re-running tests and check!
 
@@ -128,7 +129,19 @@ Generally code should sit in the R/ folder, you can choose between a script per 
 
 ### Documentation
 
-We use roxygen2 tags to document our functions. 
+::::{.columns}
+:::{.column width="40%"}
+We use {roxygen2} tags to document our functions. Visit the [documenting functions](https://roxygen2.r-lib.org/articles/rd.html) article for a primer.
+
+Using the roxygen2 skeleton leads to consistent documentation, check out `?ParseR::count_ngram` to see the rendered documentation. As you document your own functions, check out how their documentation renders too.
+
+:::
+:::{.column width="20%"}
+:::
+:::{.column width="40%"}
+![](img/parser_documentation.png){width=50% height=50%}
+:::
+::::
 
 ### Data
 
