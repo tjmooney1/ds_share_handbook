@@ -1,4 +1,4 @@
-# Data Cleaning {.unnumbered}
+# Data Cleaning 
 
 When we receive a dataset from the Insight team, the first step that we must take involves cleaning and pre-processing the text data.
 

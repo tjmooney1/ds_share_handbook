@@ -1,4 +1,4 @@
-# Our Packages {.unnumbered}
+# Our Packages 
 
 We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the Samy Alliance. We don't license the software to clients. What we sell is the knowledge that they can produce. 
 

@@ -33,8 +33,9 @@ book:
     - text: "---"
     - part: "Tips and Tricks"
       chapters:
-        - data_cleaning.qmd
         - code_best_practices.qmd
+        - data_cleaning.qmd
+        - resources.qmd
   bread-crumbs: false
     # - code_best_practices.qmd
     # - glossary.qmd

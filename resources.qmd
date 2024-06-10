@@ -1,4 +1,4 @@
-# Resources {.unnumbered}
+# Resources
 
 <!-- ::: {#refs} -->
 <!-- ::: -->
@@ -16,7 +16,6 @@
 -   [usethis](https://usethis.r-lib.org/)
 -   [devtools](https://devtools.r-lib.org/)
 -   [testthat](https://testthat.r-lib.org/)
-
 -   [Tidyverse Design Guide](https://design.tidyverse.org/)
 -   [Happy Git with R](https://happygitwithr.com/)
 
@@ -28,16 +27,15 @@
 ## YouTube Channels
 
 These channels will help you see the power and flexibility of data analysis & science in R:
+
 -   [Julia Silge](https://www.youtube.com/@JuliaSilge)
 -   [David Robinson](https://www.youtube.com/user/safe4democracy/videos)
-
 
 ## Shiny
 
 -   [Mastering Shiny](https://mastering-shiny.org/)
 -   [Engineering Enterprise-grade Shiny Applications with Golem](https://engineering-shiny.org/foreword.html)
 -   [Outstanding Shiny Interfaces](https://unleash-shiny.rinterface.com/)
-
 -   [Modularising Shiny Apps, YT](https://www.youtube.com/watch?v=oOYaHsPXLvs)
 -   [Presenting Golem, YT](https://www.youtube.com/watch?v=SE6TnUV4nC4&ab_channel=PositPBC)
 -   [Styling Shiny, Joe Chen, YT](https://www.youtube.com/watch?v=GHBwprI_Py4)
