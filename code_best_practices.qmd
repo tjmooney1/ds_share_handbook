@@ -17,10 +17,8 @@ library(tidyverse)
 First, make sure you've read the the [Project
 Management](project_management.qmd){target="_blank"} document for general tips on setting up an RStudio project and working with file paths.
 
-::: {.callout-note} To avoid being cumbersome, we'll use 'notebook' to
-refer to the set of interactive documents in which data science usually takes place. They'll tend to end with one of the following extensions:
-.md, .Rmd, .qmd, or .ipynb file -
-
+::: {.callout-note} 
+To avoid being cumbersome, we'll use 'notebook' to refer to the set of interactive software in which data science usually takes place. They'll tend to end with one of the following extensions: .md, .Rmd, .qmd, or .ipynb. 
 :::
 
 ## Why are we here?
@@ -65,11 +63,11 @@ fs::dir_tree("example_folder_complex")
 Notebooks have become the de factor vehicles for [Literate Programming](https://guides.nyu.edu/datascience/literate-prog) and reproducible research. They allow you to couple your code, data, visualisations, interpretations and analysis. You can and should use the knit/render buttons regularly (found in the RStudio IDE) to keep track of whether your code is reproducible or not - follow the error messages
 to ensure reproducibility.
 
+-   [ ] Have I turned off the restore .RData setting in tools --> global options?
 -   [ ] Have I separated raw data and clean data?
 -   [ ] Have I recorded in code my data cleaning & transformation steps?
 -   [ ] Do my markdowns and notebooks render?
--   \[ \]
--   \[ \]
+-   [ ] Am I using relative or absolute filepaths within my scripts & notebooks?
 -   \[ \]
 -   \[ \]
 
@@ -90,10 +88,6 @@ There are many heuristics for measuring code complexity, the most basic being 'l
 
 As a rough definition, let's think of code complexity as 'how difficult code is to reason about and work with.' A good test of code complexity is how long it takes future you to remember what each line, or chunk, of code is for.
 
-How about an illustrated example?
-
-TODO: write some easy to understand vs hard to understand code
-
 We'll now explore some tools and heuristics for fighting complexity in our code.
 
 ## On navigation
@@ -112,19 +106,31 @@ graph LR
 
 ### Readme
 
-For each project, add a`README.md` or `README.Rmd`, here you can outline what and who the project is for and guide people to notebooks, data artefacts, and any other resource you consider important.
+For each project, add a`README.md` or `README.Rmd`, here you can outline what and who the project is for and guide people to notebooks, data artefacts, and any important resources. You may find it useful to maintain a to-do list here, or provide high-level findings - it's really up to you, just keep your audience in mind.
 
 ### Section Titles
 
-:::: {.columns} ::: {.column width="60%"} example text ::: ::: {.column
-width="30%"} ![Rstudio
-Outline](example_folder_complex/code/images/outline_image.png) ::: ::::
+:::: {.columns} 
+::: {.column width="60%"} 
+Section titles help order your thoughts - when done well they let you see the big picture of your document. They will also help your collaborators to navigate and understand your document, and they'll function as HTML headers in your rendered documents. When in the RStudio IDE the outline tab allows click-to-navigate with your section titles.
+
+::: {.callout-tip}
+Set the toc-depth: in your quarto yaml to control how many degrees of nesting are shown in your rendered document's table of contents.
+:::
+
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="30%"} 
+![Rstudio Outline](docs/img/outline_image.png) 
+::: 
+::::
 
 ### Code chunks
 
 You wrote the code in the chunk. So you know what it does, or at least you should. However, when rendering your document (which you should do regularly) it's handy to have named chunks so that you know precisely which chunk is taking a long time to render, or has a problem. Furthermore, that 8-line pipe inside the chunk might not be as easy to understand at a glance in the future, and it certainly won't be for your collaborators. It's much easier to understand what a descriptively named chunk is doing than 8 piped function calls.
-
-TODO: visual of named code chunks vs unnamed
 
 ## On comments
 
@@ -151,7 +157,6 @@ mpg_horesepower_bar_chart  <- mpg_horesepower_bar_chart  + labs(title = "666 - P
 
 mpg_horesepower_bar_chart 
 ```
-
 Instead of this:
 
 ```{r}
@@ -163,7 +168,7 @@ mtcars %>%
   labs(title = "666 - Peaks & Pits - Xbox Horsepower vs Miles per Gallon")
 ```
 
-Place strings you'll use a lot at the top of your notebook, and then paste them where necessary. This way, when you need to change the title of the project you won't have to mess around with cmd + f or manually change each title for every plot.
+Place strings you'll use a lot in variables at the top of your notebook, and then use the paste function, rather than cmd + c, to use the contents of the variable where necessary. This way, when you need to change the title of the project you won't have to mess around with cmd + f or manually change each title for every plot.
 
 ```{r}
 #| echo: true
@@ -191,8 +196,7 @@ The primary objects for which naming is important are variables, functions, code
 
 ## On repeating yourself #2 - Abstractions
 
-Do Not Repeat Yourself, so the adage goes. But some repetition is natural, desirable, and harmless whereas attempts to avoid all repetition [can be the
-opposite](https://testing.googleblog.com/2024/05/dont-dry-your-code-prematurely.html).
+Do Not Repeat Yourself, so the adage goes. But some repetition is natural, desirable, and harmless whereas attempts to avoid all repetition [can be the opposite](https://testing.googleblog.com/2024/05/dont-dry-your-code-prematurely.html).
 As a rule-of-thumb, if you write the same piece of code three times you should consider creating an abstraction.
 
 Reasonable people disagree on the precise definition of 'abstraction' when it comes to coding & programming. For our needs, we'll think about it as simplifying code by hiding some complexity. A good abstraction helps us to focus only on the important details, a bad abstraction hides important details from us.
@@ -208,9 +212,15 @@ We'll focus on functions and packages.
 
 ### On functions
 
+Make them! There are *lots* of reasons to write your own functions and make your code more readable and re-usable. We can't hope to cover them all here, but we want to impress their importance. Writing functions will help you think better about your code and understand it on a deeper level, as well as making it easier to read, understand and maintain.
 
+For a more comprehensive resource, check in with the [R4DS functions section](https://r4ds.had.co.nz/functions.html?q=functions#functions)
+
+Also see the [Tidyverse Design Guide](https://design.tidyverse.org/unifying.html) for a lot of stellar advice on building functions for Tidyverse functions.
 
 ### On anonymous functions
+
+Functions are particularly useful when you want to use iterators like {purrr}'s `map` family of functions or base R's `apply` family. Often these functions are one-time use only so it's not worth giving them a name or defining them explicitly, in which case you can use anonymous functions.
 
 ## On packages
 
@@ -221,31 +231,35 @@ are, it may be time to create a package.
 At first building a package is likely to seem overwhelming and something
 that 'other people do'. However, in reality the time it takes to create
 a package reduces rapidly the more you create them. And the benefits for
-sharing your code are
+sharing your code with others are considerable. Eventually you'll be able to spin up a new package for personal use in a matter of minutes, over time it will become clear which packages should be developed, left behind, or merged into an existing SHARE package.
+
+Visit the [Package Development](package_development.qmd){target="_blank"} document for practical tips and guidelines for developing R packages
+
+see also: [Package Resources](resources.qmd#package-development){target="_blank"}
 
 ## On version control
 
-TODO:
-Version control is your best friend, start using it for every project.
-Stage + commit multiple times per day, push at the end of a large chunk
-of work (probably daily). Use branches to re-factor not command + z, c,
-v. Clean your branches when done.
+By default your projects should be stored on the Google Drive, in the event of disaster (or minor inconvenience) this means your code and data artefacts should be backed up. However, it's still advisable to use a version control system like git - using branches to explore different avenues, or re-factor your code, can be a real headache saver and efficiency gain.
 
-Private repo Upstream
+Aim to commit your code multiple times per day, push to a remote branch (not necessarily main or master) once a day and merge + pull request when a large chunk of work has been finished. Keep your work code and projects in a private repository, add .Rhistory to .gitignore and make sure API keys are stored securely, i.e. not in scripts and notebooks.
 
 ## On LLM-generated code
 
+GitHub Copilot, ChatGPT, Claude and other LLM-based code generators can be extremely useful, but they are a double-edged sword and should be used responsibly. If you find yourself relying on code you don't understand, or couldn't re-build yourself, you're going to run in to trouble somewhere down the line. You have the time and space to learn things deeply here, so do read the docs, do reference textbooks, and do ask for help internally before relying on LLM-generated code which often **looks right** but is outdated or subtly incorrect/buggy.
+
+::: {.callout-tip}
+You're here because you can problem solve and pick up new skills when you need them - don't be afraid to spend extra time understanding a concept or a library.
+:::
+
 ## Great Coding Resources {#great-coding-resources}
 
-Google SWE Book [Reproducible Analysis, Jenny
-Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
+Google SWE Book [Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
 
 ## Exercises
 
 > In your own words, summarise what makes an analysis reproducible.
 
-> Write a line in favour and against the claim 'Code is an asset not a
-> liability'
+> Write a line in favour and against the claim 'Code is an asset not a liability.'
 
 # Other Resources
 
