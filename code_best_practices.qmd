@@ -23,7 +23,7 @@ To avoid being cumbersome, we'll use 'notebook' to refer to the set of interacti
 
 ## Why are we here?
 
-At SHARE & Capture, code is the language of both our research and our development, so it pays to invest in your coding abilities. There are many [great](#great-coding-resources) (and many terrible) resources on learning how to code. This document will focus on practical tips on how to structure your code to reduce [cognitive
+At SAMY, code is the language of both our research and our development, so it pays to invest in your coding abilities. There are many [great](#great-coding-resources) (and many terrible) resources on learning how to code. This document will focus on practical tips on how to structure your code to reduce [cognitive
 strain](https://link.springer.com/article/10.1007/s10648-019-09465-5){target="_blank"} and do the best work you can.
 
 Let's be clear about what coding is: [coding is thinking not typing](https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.){target="_blank"}, so good coding is simply good thinking and arranging our code well will help us to think better.

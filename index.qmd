@@ -1,6 +1,6 @@
 # Welcome to the Data Science Handbook 
 
-Welcome to our Data Science Handbook, your comprehensive guide to the methods, case studies, and best practices that define our approach to data science here at SHARE Creative. This handbook is designed to be a dynamic resource for our team, evolving with new insights, tools, and technologies.
+Welcome to our Data Science Handbook, your comprehensive guide to the methods, case studies, and best practices that define our approach to data science here at SAMY. This handbook is designed to be a dynamic resource for our team, evolving with new insights, tools, and technologies.
 
 Within these pages, you'll find detailed case studies showcasing our successful projects, high-level concepts that underpin our strategies, and practical coding examples to help you apply these techniques in your own work. Irrespective of your experience in data science, this handbook aims to provide valuable insights and practical guidance to enhance your skills and knowledge.
 
