@@ -30,6 +30,7 @@ book:
     - part: "Development"
       chapters:
         - packages.qmd
+        - package_development.qmd
     - text: "---"
     - part: "Tips and Tricks"
       chapters:
@@ -41,12 +42,12 @@ book:
     # - glossary.qmd
     # - resources.qmd
     
-
-
 bibliography: references.bib
 
 format:
   html:
+    link-external-icon: true
+    link-external-newwindow: true
     theme: 
       light: lumen
       dark: [lumen, theme-dark.scss]
