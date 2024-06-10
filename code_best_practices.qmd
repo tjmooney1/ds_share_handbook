@@ -239,17 +239,75 @@ are, it may be time to create a package.
 At first building a package is likely to seem overwhelming and something
 that 'other people do'. However, in reality the time it takes to create
 a package reduces rapidly the more you create them. And the benefits for
-sharing your code with others are considerable. Eventually you'll be able to spin up a new package for personal use in a matter of minutes, over time it will become clear which packages should be developed, left behind, or merged into an existing SHARE package.
+sharing your code with others are considerable. Eventually you'll be able to spin up a new package for personal use in a matter of minutes, over time it will become clear which packages should be developed, left behind, or merged into an existing SAMY package.
 
 Visit the [Package Development](package_development.qmd){target="_blank"} document for practical tips and guidelines for developing R packages
 
 see also: [Package Resources](resources.qmd#package-development){target="_blank"}
+
+## On namespaces and function conflicts
+
+R manages functions via namespaces. Depending on the order that you import your packages, you may find a function doesn't behave as expected. For example, the {stats} package has a `filter()` function, but so does {dplyr}. By default R will use the most recently-imported package's namespace to avoid any conflicts, so `filter()` will now refer to {dplyr}'s implementation. 
+
+If you're experiencing weirdness with a function, you may want to restart your R session, change the order of your imports to prevent the same weirdness occurring again. However, a more straightforward approach is to use the `package::` notation to explicitly refer to the function you intended to use e.g. `dplyr::filter()` will avoid any potential conflicts and confusion.
 
 ## On version control
 
 By default your projects should be stored on Google Drive inside the "data_science_project_work" folder, in the event of disaster (or minor inconvenience) this means your code and data artefacts should be backed up. However, it's still advisable to use a version control system like git - using branches to explore different avenues, or re-factor your code, can be a real headache preventer and efficiency gain.
 
 Aim to commit your code multiple times per day, push to a remote branch (not necessarily main or master) once a day and merge + pull request when a large chunk of work has been finished. Keep your work code and projects in a private repository, add .Rhistory to .gitignore and make sure API keys are stored securely, i.e. not in scripts and notebooks.
+
+## On Managing Dependencies
+
+Applying the Anna Karenina principle to virtual environments:
+
+> "All happy virtual environments are alike; each unhappy virtual environment is unhappy in its own way"
+
+### R
+
+The R ecosystem - led by CRAN and posit (formerly RStudio) - does a great job in managing package-level dependencies. It's rare to end up in dependency hell R. However, there is still scope for 'works on my machine' when working with collaborators who have different versions of a package, e.g. person 1 upgrades their {dplyr} version before person 2, and now that .by argument person 1 has used is breaking code on person 2's machine.
+
+To avoid this, we advise using something like the {renv} package to manage package versions.
+
+::: {.callout-tip collapse=true}
+## On using renv collaboratively
+renv helps us keep track of package & R versions, which makes deployment 10x easier than without it. However, it can get tricky if we're using renv in different ways.
+
+Start a renv project off with`renv::init()`, this will essentially remove all of your packages. You could choose to take your current packages with you, but it's not advised.  These packages are linked to your RStudio project when using RStudio, which means other RStudio projects will have your current packages if they're not themselves using renv.
+
+`renv::init()` creates a renv lockfile, you'll need to keep this up to date as you work through the project - especially important if collaborating with other people on a project that uses renv. Once installed inside your local project, you can add single packages to the lockfile by `renv::record("package_name")`. This is preferable to adding a bunch of packages at a time with `renv::snapshot()` particularly when collaborating.  Generally it will be better to give one person control of the lockfile and to communicate about adding packages as and when.
+
+If you're working in a Quarto Doc or an RMarkdownfile to develop things that don't need to pushed to the repo, you can create a `.renvignore` file like .Rbuildignore, .gitignore etc. and add the folder where the markdowns sit to make sure renv doesn't try to sync itself with the packages you're experimenting with.
+
+At any time you can check your environment is still synced with `renv::status()`, if your project is out of sync, you may want to `renv::clean()`, if you've got a bunch of packages that are like this:
+
+`The following package(s) are in an inconsistent state:`
+ 
+ `package       installed recorded used`
+ 
+ `backports     y         y        n`
+ 
+ `blob          y         y        n`
+ 
+ `broom         y         y        n`
+ 
+ `callr         y         y        n`
+ 
+ `cellranger    y         y        n`
+ 
+Then you'll need to `renv::clean(actions = "unused.packages")`, which should get you in working order. There's a lot more to {renv} when collaborating but these steps will do a lot to keep your environment in sync and allow collaborators to use your code.
+:::
+
+### Python
+
+![](img/pyenv.png){width=50% height=50%}
+
+Unlike R, it's pretty easy to get into deep, deep trouble when working with Python environments. We advise using miniconda, keeping your base environment completely free of packages, and creating virtual environments for projects or large, but commonly-used and important packages like torch.
+
+::: {.callout-tip}
+Just remember to activate the correct environment every time you need to install a package!
+:::
+
 
 ## On LLM-generated code
 
@@ -261,9 +319,9 @@ You're here because you can problem solve and pick up new skills when you need t
 
 ## Great Coding Resources {#great-coding-resources}
 
-[Google SWE Book](https://abseil.io/resources/swe-book)
-[Hands on programming with R](https://rstudio-education.github.io/hopr/)
-[Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
+- [Google SWE Book](https://abseil.io/resources/swe-book)
+- [Hands on programming with R](https://rstudio-education.github.io/hopr/)
+- [Reproducible Analysis, Jenny Bryan](https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html)
 
 ## Exercises
 
@@ -277,6 +335,6 @@ You're here because you can problem solve and pick up new skills when you need t
 
 # Other Resources
 
-[cognitive strain](https://link.springer.com/article/10.1007/s10648-019-09465-5)
-[coding is thinking not typing](https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.)
-[Google Code Health](https://testing.googleblog.com/2017/04/code-health-googles-internal-code.html)
+- [cognitive strain](https://link.springer.com/article/10.1007/s10648-019-09465-5)
+- [coding is thinking not typing](https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.)
+- [Google Code Health](https://testing.googleblog.com/2017/04/code-health-googles-internal-code.html)
