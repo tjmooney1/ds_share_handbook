@@ -124,7 +124,7 @@ Set the toc-depth: in your quarto yaml to control how many degrees of nesting ar
 :::
 
 ::: {.column width="30%"} 
-![Rstudio Outline](docs/img/outline_image.png) 
+![Rstudio Outline](img/outline_image.png) 
 ::: 
 ::::
 
