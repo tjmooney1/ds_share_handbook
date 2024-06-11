@@ -49,6 +49,7 @@ format:
   html:
     link-external-icon: true
     link-external-newwindow: true
+    lightbox: true
     theme: 
       light: lumen
       dark: [lumen, theme-dark.scss]
