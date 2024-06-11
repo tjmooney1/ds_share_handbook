@@ -9,8 +9,10 @@
 
 
 ## Literate Programming
-- [Quarto Guide](https://quarto.org/docs/guide/)
-- [Quarto Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+-   [Quarto Guide](https://quarto.org/docs/guide/)
+-   [Quarto Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+-   [RStudio R Markdown guide](https://rmarkdown.rstudio.com/lesson-1.html)
+-   [Visual R Markdown](https://rstudio.github.io/visual-markdown-editing/#/)
 
 ## Package Development
 
@@ -22,11 +24,6 @@
 -   [testthat](https://testthat.r-lib.org/)
 -   [Tidyverse Design Guide](https://design.tidyverse.org/)
 -   [Happy Git with R](https://happygitwithr.com/)
-
-## Reproducible Research
-
--   [RStudio R Markdown guide](https://rmarkdown.rstudio.com/lesson-1.html)
--   [Visual R Markdown](https://rstudio.github.io/visual-markdown-editing/#/)
 
 ## YouTube Channels
 
