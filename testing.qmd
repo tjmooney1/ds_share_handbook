@@ -2,7 +2,11 @@
 
 When developing packages in R, we usually lean on {testthat}. Creating unit tests with {testthat} (leaving aside integration tests for now) is pretty simple, first we write a function which performs some actions, then we write some tests which check that our function still performs those actions - or if following Test Driven Development (TDD) practices, we write the tests first and then write the functionality, in either case, {testthat} makes it pretty seamless.
 
-As a quick refresher, let's look at how to write some basic unit tests in R; for brevity we won't follow a strict TDD workflow - we'll test a couple of functions that we've inherited - is_even and is_odd, where is_odd calls is_even.
+As a quick refresher, let's look at how to write some basic unit tests in R; for brevity we won't follow a strict TDD workflow - we'll test a couple of functions that we've inherited - `is_even()` and `is_odd()`.
+
+::: {.callout-tip}
+The `is_odd()` function calls the `is_even()` function, so it makes sense to test the `is_even()` function first. Once we've tested the implementation of `is_even()`, we only need to test the additional logic introduced by `is_odd()`.
+:::
 
 ## Testable Functions
 

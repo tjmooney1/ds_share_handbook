@@ -50,6 +50,8 @@ format:
     link-external-icon: true
     link-external-newwindow: true
     lightbox: true
+    code-block-bg: true
+    code-block-border-left: true
     theme: 
       light: lumen
       dark: [lumen, theme-dark.scss]
