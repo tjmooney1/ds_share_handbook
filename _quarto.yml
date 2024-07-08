@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Data Science at SHARE Creative"
+  title: "Data Science at SAMY"
   author: ""
   sidebar: 
     # style: floating
@@ -30,6 +30,8 @@ book:
     - part: "Development"
       chapters:
         - packages.qmd
+        - package_development.qmd
+        - testing.qmd
     - text: "---"
     - part: "Tips and Tricks"
       chapters:
@@ -41,12 +43,15 @@ book:
     # - glossary.qmd
     # - resources.qmd
     
-
-
 bibliography: references.bib
 
 format:
   html:
+    link-external-icon: true
+    link-external-newwindow: true
+    lightbox: true
+    code-block-bg: true
+    code-block-border-left: true
     theme: 
       light: lumen
       dark: [lumen, theme-dark.scss]
