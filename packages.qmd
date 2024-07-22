@@ -1,12 +1,12 @@
-# Our Packages
+# Our Packages 
 
-We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the Samy Alliance. We don't license the software to clients. What we sell is the knowledge that they can produce. 
+We have a suite of R packages that have been developed internally. They all serve different purposes on a project, but together aim to empower the SAMY Alliance. We don't license the software to clients. What we sell is the knowledge that they can produce. 
 
 ## [ParseR](https://parser.shareldn.com/index.html)
 
 ![](./img/hex/parser.png){width=20%}
 
-ParseR is the collective name for the techniques SHARE uses for text analysis. It's primarily based on the tidytext philosophy and the analysis is normally carried out in R.
+ParseR is the collective name for the techniques SAMY uses for text analysis. It's primarily based on the tidytext philosophy and the analysis is normally carried out in R.
 
 ## [ConnectR](https://avery-island.github.io/ConnectR/index.html)
 
@@ -18,7 +18,7 @@ ConnectR is our package for network analysis. It helps the user find important i
 
 ![](./img/hex/segmentr.png){width=20%}
 
-SegmentR is the collective name for the techniques SHARE uses to find latent groups in data.
+SegmentR is the collective name for the techniques SAMY uses to find latent groups in data.
 
 ## [BertopicR](https://aoiferyan-sc.github.io/BertopicR/articles/manipulating-the-model.html)
 
@@ -48,5 +48,9 @@ DisplayR is our package for data visualization, offering a wide array of functio
 
 ![](./img/hex/helpr.png){width=20%}
 
-HelpR is SHARE’s R package for miscellaneous functions that can come in handy across a variety of workflows.
+HelpR is SAMY’s R package for miscellaneous functions that can come in handy across a variety of workflows.
+
+As you progress through your data science journey, you may take an interest in developing your own package. Depending on your previous experience developing software, this might be daunting, but don't worry none of us had much experience building packages when we joined; we all learned on the job - and so can you. If you want to.
+
+See the [Package Development](package_development.qmd){target="_blank"} document for more information.
 

@@ -1,4 +1,49 @@
-# Resources {.unnumbered}
+# Resources
 
 <!-- ::: {#refs} -->
 <!-- ::: -->
+
+## Data Visualisation
+- [Capture Cookbook](https://github.com/jamiehshare/capture_cookbook) 
+- [R Graph Gallery](https://r-graph-gallery.com/)
+
+
+## Literate Programming
+-   [Quarto Guide](https://quarto.org/docs/guide/)
+-   [Quarto Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+-   [RStudio R Markdown guide](https://rmarkdown.rstudio.com/lesson-1.html)
+-   [Visual R Markdown](https://rstudio.github.io/visual-markdown-editing/#/)
+
+## Package Development
+
+-   [R Packages Book](https://r-pkgs.org/)
+-   [pkgdown](https://pkgdown.r-lib.org/)
+-   [roxygen2](https://roxygen2.r-lib.org/)
+-   [usethis](https://usethis.r-lib.org/)
+-   [devtools](https://devtools.r-lib.org/)
+-   [testthat](https://testthat.r-lib.org/)
+-   [Tidyverse Design Guide](https://design.tidyverse.org/)
+-   [Happy Git with R](https://happygitwithr.com/)
+
+## YouTube Channels
+
+These channels will help you see the power and flexibility of data analysis & science in R:
+
+-   [Julia Silge](https://www.youtube.com/@JuliaSilge)
+-   [David Robinson](https://www.youtube.com/user/safe4democracy/videos)
+
+## Shiny
+
+-   [Mastering Shiny](https://mastering-shiny.org/)
+-   [Engineering Enterprise-grade Shiny Applications with Golem](https://engineering-shiny.org/foreword.html)
+-   [Outstanding Shiny Interfaces](https://unleash-shiny.rinterface.com/)
+-   [Modularising Shiny Apps, YT](https://www.youtube.com/watch?v=oOYaHsPXLvs)
+-   [Presenting Golem, YT](https://www.youtube.com/watch?v=SE6TnUV4nC4&ab_channel=PositPBC)
+-   [Styling Shiny, Joe Chen, YT](https://www.youtube.com/watch?v=GHBwprI_Py4)
+
+## Text Analytics
+
+-   [Text Mining with R (Tidytext)](https://www.tidytextmining.com/)
+-   [Supervised Machine Learning for Text Analysis in R](https://smltar.com/)
+-   [Speech & Language Processing](https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf)
+-   [Natural Language Processing with Transformers](https://github.com/nlp-with-transformers/notebooks) - we have a physical copy floating around the office

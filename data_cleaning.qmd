@@ -25,7 +25,8 @@ We can identify posts like this by counting the number of hashtags, and then fil
 
 ```{r, eval = F}
 cleaned_data <- data %>% 
-  mutate(number_of_hashtags = str_extract_all(message_column, "#\\S+")) %>% 
+  mutate(extracted_hashtags = str_extract_all(message_column, "#\\S+"),
+         number_of_hashtags = lengths(extracted_hashtags)) %>% 
   filter(number_of_hashtags < 5)
 ```
 

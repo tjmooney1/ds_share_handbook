@@ -3,27 +3,58 @@ project:
   output-dir: docs
 
 book:
-  title: "Data Science at SHARE Creative"
-  author: "Jamie Hudson"
-  date: "5/7/2024"
+  title: "Data Science at SAMY"
+  author: ""
+  sidebar: 
+    # style: floating
+    # background: light
+    search: true
+    collapse-level: 1
+    border: true
   chapters:
-    - index.qmd
-    - summary.qmd
-    - project_management.qmd
-    - project_players.qmd
-    - peaks_pits_workflow.qmd
-    - conversation_landscape.qmd
-    - packages.qmd
-    - data_cleaning.qmd
-    - code_best_practices.qmd
-    - glossary.qmd
-    - resources.qmd
-
+    - part: "Introduction"
+      chapters:
+        - index.qmd
+        - summary.qmd
+    - text: "---"
+    - part: "Case Studies"
+      chapters:
+        - peaks_pits_workflow.qmd
+        - conversation_landscape.qmd
+    - text: "---"
+    - part: "Project work"
+      chapters:
+        - project_management.qmd
+        - project_players.qmd
+    - text: "---"
+    - part: "Development"
+      chapters:
+        - packages.qmd
+        - package_development.qmd
+        - testing.qmd
+    - text: "---"
+    - part: "Tips and Tricks"
+      chapters:
+        - code_best_practices.qmd
+        - data_cleaning.qmd
+        - resources.qmd
+  bread-crumbs: false
+    # - code_best_practices.qmd
+    # - glossary.qmd
+    # - resources.qmd
+    
 bibliography: references.bib
 
 format:
   html:
-    theme: lumen
+    link-external-icon: true
+    link-external-newwindow: true
+    lightbox: true
+    code-block-bg: true
+    code-block-border-left: true
+    theme: 
+      light: lumen
+      dark: [lumen, theme-dark.scss]
   pdf:
     documentclass: scrreprt
 

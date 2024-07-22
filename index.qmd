@@ -1,6 +1,12 @@
-# Preface to handbook {.unnumbered}
+# Welcome to the Data Science Handbook 
 
-This section will provide an overview of this handbook.
+Welcome to our Data Science Handbook, your comprehensive guide to the methods, case studies, and best practices that define our approach to data science here at SAMY. This handbook is designed to be a dynamic resource for our team, evolving with new insights, tools, and technologies.
+
+Within these pages, you'll find detailed case studies showcasing our successful projects, high-level concepts that underpin our strategies, and practical coding examples to help you apply these techniques in your own work. Irrespective of your experience in data science, this handbook aims to provide valuable insights and practical guidance to enhance your skills and knowledge.
+
+We believe that sharing knowledge and continuously learning are key to staying ahead in the fast-paced world of data science. As such, this handbook is not just a static document but a collaborative space where ideas are exchanged, and innovation thrives.
+
+Happy data sciencing!
 
 ::: {.callout-note collapse="false"}
 
@@ -8,13 +14,13 @@ If you have any questions at all, ask any member of the team. Whilst this Handbo
 
 :::
 
-### Handbook styling guide
+<!-- ### Handbook styling guide -->
 
-Timbo, we want this Handbook to appear written as a "DS Scientist at SHARE" rather than the Jimbo + Timbo show. To help streamline this, I suggest we follow the following guidelines to help ensure we are consistent with our writing style. Some of these points will not be relevant for all section, but I think we would be wise to always keep them in the back of our mind throughout:
+<!-- Timbo, we want this Handbook to appear written as a "DS Scientist at SHARE" rather than the Jimbo + Timbo show. To help streamline this, I suggest we follow the following guidelines to help ensure we are consistent with our writing style. Some of these points will not be relevant for all section, but I think we would be wise to always keep them in the back of our mind throughout: -->
 
--   Tone, we should be friendly but professional. We can definitely joke, but always try and make sure the point we are getting across is clear.
--   Let's make sure we use the active voice rather than passive voice and talk in the first person plural (i.e. we, us rather than I, me etc).
--   If we are referring to a general data scientist or person, let's be inclusive and refer to them as "they/them". For example if we had the sentence "Imagine a data scientist needs to embed a sentence, there are many models available on HuggingFace for *them* to choose from".
--   We need to take responsibility for what we write (this will be more relevant in the later sections of the handbook). We need to be make sure we understand concepts before committing them to the handbook- the creation of this handbook will not only help any newcomer get on board quicker, but also help cement DS concepts ourselves.
+<!-- -   Tone, we should be friendly but professional. We can definitely joke, but always try and make sure the point we are getting across is clear. -->
+<!-- -   Let's make sure we use the active voice rather than passive voice and talk in the first person plural (i.e. we, us rather than I, me etc). -->
+<!-- -   If we are referring to a general data scientist or person, let's be inclusive and refer to them as "they/them". For example if we had the sentence "Imagine a data scientist needs to embed a sentence, there are many models available on HuggingFace for *them* to choose from". -->
+<!-- -   We need to take responsibility for what we write (this will be more relevant in the later sections of the handbook). We need to be make sure we understand concepts before committing them to the handbook- the creation of this handbook will not only help any newcomer get on board quicker, but also help cement DS concepts ourselves. -->
 
-> "If you can't explain it simply, you don't understand it well enough" - Albert Einstein
+<!-- > "If you can't explain it simply, you don't understand it well enough" - Albert Einstein -->

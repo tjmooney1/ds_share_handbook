@@ -1,0 +1,341 @@
+---
+format:
+  html:
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    toc-expand: true
+---
+# Package Development
+
+One of the beautiful things about Data Science at SAMY is that you get to choose your path between research, development, or a hybrid. If you're reading this, you've probably decided that you want to explore some development - what better way to start than building your own package?
+
+::: {.callout-note}
+For a high-level overview of our existing packages, refer to the [our packages](packages.qmd) document.
+:::
+
+We build packages because they are convenient ways to share our code & data and democratise access to our tools & workflows - besides, that Google Doc of functions is getting heavy, and copying & pasting code from project to project is getting tiresome. Eventually you'll want the familiar `library()` syntax.
+
+Historically our packages have been built in R for two key reasons:
+
+1. The profile/experience of people in the team
+2. The ecosystem for building packages is well-maintained and documented
+
+In recent times we have moved to more of a hybrid approach between R & Python - the former we find to be considerably more easy to use for data wrangling and visualisation, and the latter for modelling and anything to do with LLMs. Internal development for Python has lagged behind R, but we expect this to change over time as we seek to be tool agnostic and focus on the right tool for the job at hand.
+
+::: {.callout-note collapse="true"}
+
+## Reticulate
+
+Reticulate is an R package that allows us to import Python packages and functions in R. Currently this is a one-way street - we can't use reticulate to import R functions and packages. This has impacted our decision in the past, e.g. with BertopicR. We envisioned Insight Analysts using BertopicR as a drop-in or replacement for topic modelling with SegmentR. Weighing up the additional difficulty in development vs the time and resource necessary for Analysts to learn Python as well as R, we opted for reticulate.
+
+Using reticulate requires managing Python environments from R, this leads to difficulties of its own.
+:::
+
+# R
+
+Here we'll look at how to get off the ground in R using the R package stack - {usethis}, {pkgdown}, {devtools}, {testthat} and {roxygen2}.
+
+## Building your own package
+
+The (nearly) DIY way:
+
+This check-list should get you **most of the way** there, but it's always possible that we've forgotten something or there has been <s>a disturbance in the force</s> a change in the package ecosystem. When this happens, open up an issue or submit a PR and help the next person who comes along.
+
+- [ ] Create a new repository on GitHub
+- [ ] Clone the repository 
+
+::: {.callout-tip collapse="true"}
+## Folder management
+Create a folder at your home directory named 'git_repos' and store all of your repositories here:
+<pre>
+mkdir ~/git_repos
+cd ~/git_repos
+git clone 'repo.url'
+</pre>
+:::
+
+- [ ] Open RStudio and call `usethis::create_package()`
+- [ ] `usethis::use_git()` in the console and commit files
+- [ ] Check git has been set up with `usethis::git_sitrep()` (or `git status` in the terminal)
+- [ ] Set an upstream branch e.g. `git remote add upstream <link_to_repo_main>` in the terminal
+- [ ] `usethis::use_vignette()` to add a vignettes folder and start your first vignette
+- [ ] Add individual functions/scripts with `use_r("script_name")` - these appear in your R/ folder
+- [ ] Document each function following roxygen2's structure [Roxygen2 guidelines](#roxygen2-gl)
+- [ ] Call `use_package()` whenever you use an external package inside your package.
+
+::: {.callout-tip collapse=true}
+## DESCRIPTION
+Your package will now have a DESCRIPTION file, add external packages your package requires to Imports. Add additional packages used in vignettes to Suggests. - But be careful, it's generally not advisable to use packages just for vignettes!
+
+You can use the `usethis::use_latest_dependencies()` to add recent versions to your packages, but beware this can be restrictive. Ideally you would add the minimum package version necessary to run your code.
+:::
+- [ ] `usethis::use_*_license()` - default to usethis::use_mit_license()
+- [ ] `usethis::use_testthat()` and `use_test("script_name")` to start writing units tests for your functions and add testthat to suggests.
+- [ ] Call `usethis::use_readme_rmd()` to allow for markdown code chunks in your readme - just remember to `devtools::build_readme()` when you're done.
+- [ ] Call `usethis::use_news_md()`
+- [ ] When you're ready to add a website, call `usethis::use_pkgdown()` `pkgdown::init_site()`, `pkgdown::build_home_index()`, `pkgdown::build_search()`, `pkgdown::build_reference()`, `pgkdown::build_articles()`, and then `pkgdown::build_site()`
+- [ ] Add each function to pkgdown.yml's reference section (we recommend viewing a working yml file from one of the other packages to get you started).
+
+The Easy Way (Tidy functions)
+Read through the [usethis-setup guide](https://usethis.r-lib.org/articles/usethis-setup.html) and then use the 
+`usethis::create_tidy_package()` to create a package with some guardrails.
+
+::: {.callout-tip}
+## Guardrails or no guardrails?
+The `usethis::create_tidy_package()` function is a helpful abstraction, but it will be better for your long-term development if you know how to do this stuff without the abstraction. That way, when you need to fix something, or do something slightly different than the prescribed way, you'll have a better chance of success.
+:::
+
+Want to go deeper?
+Check out the [R Packages Book](https://r-pkgs.org/), we recommend skimming first and then using it as a reference manual.
+
+## Development workflow
+
+:::: {.columns}
+::: {.column width="30%"}
+Once you've built the package there are some things you will want to do regularly to ensure your package stays in good shape. This is by no means an exhaustive list - be sure to add your tips & tricks as you amass them.
+:::
+::: {.column width="20%"}
+:::
+::: {.column}
+![](img/bernie.png)
+:::
+::::
+<br>
+
+- [ ] Run `testthat::test_package()` often to check for regressions in your code
+- [ ] Run `devtools::check()` occasionally to make sure you haven't made any obvious mistakes - try to keep notes, warnings and errors to 0!
+- [ ] Use `devtools::load_all()` to reload the package when you've made changes. (`devtools::document()` also calls `load_all()` when called)
+- [ ] Run `roxygen2::roxygenise(clean = TRUE)` if your documentation doesn't look as you expect after
+- [ ] Use `pkgdown::build_site()` when you expect to see changes in your package's website
+- [ ] Use `pkgdown::clean_site()` and `pkgdown::build_site()` when expected changes aren't reflecting in your preview
+
+## Contributing to existing packages
+
+- [ ] Pull current state of repo/package from origin	
+
+- [ ] Create a new branch, can use `usethis::pr_init()` from usethis to make this a bit easier, otherwise `git checkout -b "branch_name"`
+
+- [ ] Run `devtools::test()` `devtools::check()` at regular intervals, keep errors, warnings, notes down to minimum	
+
+- [ ] Build out logic for new changes, add to R/ where necessary. `usethis::use_r()` function to add new scripts properly	
+
+- [ ] Build out tests for new logic in tests/
+
+- [ ] Ensure function-level documentation is added to any new logic, including \@title, \@description, \@details, \@param, \@returns, \@examples and \@export if function is to be exported, or \@internal otherwise. Let roxygen2 take care of \@usage. 
+
+- [ ] Keep re-running tests and check!
+
+- [ ] If you're introducing something new, update package-level documentation e.g. vignettes and/or readme explaining what you've introduced and how it should be used. Provide examples where possible. If you're building out a new capability you may need a whole new vignette, use the `usethis::use_vignette()` function.
+
+::: {.callout-tip}
+## What are vignettes?
+
+Vignettes are long-form guides that provide in-depth documentation for your package. They go beyond the basic function documentation and explain how to use the package to solve specific problems, often with detailed examples and code. Vignettes showcase your package's full range of capabilities and help users understand how to effectively utilise its features
+:::
+
+- [ ] If you're updating legacy code, check that vignettes are up-to-date with the changes you've made - we want to avoid code-documentation drift where possible.
+
+- [ ] Add your function to the reference section in _pkgdown,yml if it's being exported.
+
+- [ ] Add data objects, `.Rhistory`, `*.Rproj`, `.Rprofile`, `.DS_Store`, to `.gitignore`
+
+- [ ] Run `pkgdown::clean_site()` and `pkgdown::build site()`, visually inspect each section of the site	
+
+Pull request when ready.
+
+### Code
+
+Generally code should sit in the R/ folder, you can choose between a script per function or use scripts as modules, where a module is a particular use case, or logical unit. Historically we sided on the former, but as a package grows it can become difficult to manage/navigate, and there can be a decoupling of logic. Ultimately this is a matter of taste in R. 
+
+#### Exercises - code
+
+::: {.callout-warning collapse="true"}
+
+## Exercises
+
+You may need to consult external resources to answer the exercises, we've tried to provide links to help you along the way, but we encourage you to embrace the joy of discovery and find relevant sources/fill in the gaps where necessary!
+
+:::
+
+1. What are the practical differences between `.gitignore` and `.Rbuildignore`?
+  - What objects should go in `.gitignore` but not `.Rbuildignore`, and vice versa?
+2. What does the DESCRIPTION file do?
+3. Write your own description for each of the following packages, detailing what they are for where they sit in the R package stack: 
+  - [ ] testthat
+  - [ ] roxygen2
+  - [ ] devtools
+  - [ ] pkgdown
+  - [ ] usethis
+
+### Tests
+
+>In a perfect world, every <s>dog</s> implementation detail would have a <s>home</s> test and every <s>home</s> test would have an implementation detail.
+
+There is a balance to be struck between testing *absolutely everything* and testing what needs to be tested. Before we get into the finer details, let's establish why we're writing tests in the first place. The first reason for writing tests is to help you write software that works. The second reason is to help you do this fast, and with confidence. 
+
+Testing is not to prove that your code has no bugs, or cannot have any bugs in the future. Whenever you do find a bug, or someone reports one, write a test as you fix the issue.
+
+For more information and another opinion, check out the [R Packages testing section](https://r-pkgs.org/testing-basics.html), and the [Testing document](testing.qmd){target="_blank"}
+
+::: {.callout-tip}
+Don't let testing paralyse your development process, they're there to help not hinder. As a rule-of-thumb, if your tests for a function are more complex than your function, you've gone too far.
+:::
+
+### Documentation
+
+::::{.columns}
+:::{.column width="40%"}
+We use {roxygen2} tags to document our functions. Visit the [documenting functions](https://roxygen2.r-lib.org/articles/rd.html) article for a primer.
+
+Using the roxygen2 skeleton promotes consistent documentation, check out a function's help page (e.g. `?ParseR::count_ngram`) to see how rendered documentation looks - do this regularly with your own functions. 
+
+We tend to find our documentation could always be better, more complete. You can't hope to cover **everything** a user could do with your function, but make sure it's clear from the documentation what your function is for and what its primary uses are. 
+
+:::
+:::{.column width="20%"}
+:::
+:::{.column width="40%"}
+![](img/parser_documentation.png)
+:::
+::::
+
+::: {.callout-warning}
+Most people will scroll straight past the \@description and \@details and go directly to your code examples.
+:::
+
+#### Guidelines for commonly-used Roxygen tags {#roxygen2-gl}
+
+| Tag | Description |
+|-----|-------------|
+| \@title | One-line description of what your function does  |
+| \@description | A paragraph elaborating on your title |
+| \@details | A more detailed description of the function e.g. explaining how its arguments interact, or other key implementation details.|
+| \@param | A description of the function's parameters |
+| \@return | A description of the function's return value |
+| \@examples | Examples of how to use the function |
+| \@export | Whether the function is exported or not |
+
+#### Exercises - Documentation
+
+1. What is the title of {dplyr}'s `mutate()` function?
+2. \@examples must be self-contained, create an example that is not self-contained, and one that is.
+3. Which package(s) (any programming language) stick out in your mind as being well-documented and easy to use, what did the creators do well?
+4. Audit SAMY's R packages, find a function with sub-par documentation and upgrade it. Then fire in a Pull Request!
+
+
+### Data
+
+You're probably going to need some package-level data for your \@examples or your vignettes. Before going off and finding or creating a new data set:
+
+1. Check whether you can demonstrate what you need with existing datasets - call `data()` in your console
+2. Make sure the dataset you have chosen comes from a package your package explicitly Imports or Suggests
+
+
+If you still can't find the right dataset, create one!
+
+1. Load the dataset into memory
+2. Call `usethis::use_data(dataset_variable_name)`
+3. Document the columns
+
+If you choose this route, some interesting problems may lie in wait. Skip to Exercises 1. 
+
+To go deeper view the [R Packages Dataset Section](https://r-pkgs.org/data.html)
+
+::: .callout-tip
+Datasets from the {datasets} package come with base R
+:::
+
+#### Exercises - Data
+
+1. Why might you add your data artefacts to `.Rbuildignore` or `.gitignore`?
+2. Which package does the `diamonds` dataset ship with?
+
+You're probably going to need some data...
+existing data...
+adding new
+usethis::use_data()
+usethis::use_data_raw()
+
+### Website
+
+pkgdown
+.nojekyll
+
+#### Exercises - Website
+1. Explain in your own words what .nojekyll is for.
+  - Where should it be placed in your package?
+  - What problems arise when you don't have one?
+2. 
+
+# Python
+
+::: {.callout-warning}
+This document is very much a work in progress, key steps may be missing.
+:::
+
+## Folder Setup
+
+The first step in creating a Python package is setting up the project structure. Create a new directory for your project and organize it with the following subdirectories and files:
+
+- [ ] your_package_name/: The main package directory containing your Python modules and code. Make sure to add a `__init__.py` file to the source and any modules.
+
+::: {.callout-tip collapse=true}
+## __init__.py
+Create a directory for your package and place an empty __init__.py file inside it.
+If your package has sub-packages or modules, create additional directories for them and place __init__.py files in each directory.
+Import your package or its modules in your Python scripts using the import statement or the from package import module syntax.
+:::
+
+- [ ] tests/: Directory for test files to ensure the correctness of your package's functionality.
+- [ ] docs/: Directory for storing comprehensive documentation files.
+- [ ] setup.py: File specifying package metadata, dependencies, and build instructions.
+- [ ] MANIFEST.in: File listing the files to include in the package distribution.
+- [ ] requirements.txt: File listing the package dependencies for easy installation.
+- [ ] README.md: File providing an overview, installation instructions, and usage examples for your package.
+- [ ] LICENSE: File specifying the license under which your package is distributed.
+- [ ] .gitignore: File specifying files and directories to ignore in version control.
+- [ ] Initialize a Git repository in your project directory and create a new repository on GitHub for collaboration and issue tracking.
+
+
+## Git - Terminal
+
+To set up a Git repository for your Python package from the terminal, follow these steps:
+
+1. Open your terminal and navigate to the root directory of your Python package using the cd command. For example:
+`cd /path/to/your/package` 
+
+2. Initialize a new Git repository by running the git init command:
+`git init`
+
+3. Add all the files in your package directory to the Git staging area using the git add command:
+`git add .`
+
+4. Create an initial commit to save the current state of your package by running the git commit command with a meaningful commit message:
+`git commit -m "Initial commit"`
+
+5. Add the remote repository URL to your local Git repository using the git remote add command:
+`git remote add origin <repo_url>`
+
+6. Push your local commits to the remote repository using the git push command:
+`git push -u origin main`
+
+## Vignettes
+
+- [ ] Write the vignette content in a readable format such as Markdown (.md) or reStructuredText (.rst).
+- [ ] Place the vignette file in a dedicated directory within your package, typically named vignettes/ or docs/vignettes/
+- [ ] Use a documentation tool like Quarto, Sphinx or MkDocs to convert the vignette file into HTML or PDF format. We advise using Quarto to keep it simple.
+- [ ] Configure your package's setup.py file to include the vignette files in the package distribution.  Add the vignette directory to the package_data argument of the setup() function.
+- [ ] If using Sphinx or mkdocs: 
+  Generate the package documentation by running the documentation tool's build command, such as sphinx-build or mkdocs build. This will create the HTML or PDF files for your vignettes.
+- [ ] Publish the generated vignette files along with your package distribution. Include them in the source distribution (sdist) and wheel distribution (bdist_wheel) that you upload to PyPI or conda.
+
+## Tests
+
+There are multiple viable frameworks, but for simplicity we recommend [Pytest](https://docs.pytest.org/en/stable/contents.html) which functions quite similarly to {testthat}.
+
+Pytest has great docs, work through the [how-to guides](https://docs.pytest.org/en/stable/how-to/index.html) to get up to speed.
+
+# Continuous Integration/Continuous Deployment
+R templates etc. from RStudio
+Python templates

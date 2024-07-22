@@ -92,15 +92,15 @@ For example, the below shows a screenshot of a `viz` folder for a project that l
 
 ![Example viz directory hierarchy for a Peaks and Pits project](./img/viz_directory.png){width=40% fig-align=center}
 
-## Bonus for making it this far
+<!-- ## Bonus for making it this far -->
 
-We actually have a function that can create an initiate an RStudio project in seconds.
+<!-- We actually have a function that can create an initiate an RStudio project in seconds. -->
 
-**Need to speak to Jack about this, to make sure we aren't crossing paths/confusing anybody**
+<!-- **Need to speak to Jack about this, to make sure we aren't crossing paths/confusing anybody** -->
 
-```{r, eval=FALSE}
-JPackage::folder_setup(project_name = "00_PROJECT",
-                       subdir = "microsoft/project_work")
-```
+<!-- ```{r, eval=FALSE} -->
+<!-- JPackage::folder_setup(project_name = "00_PROJECT", -->
+<!--                        subdir = "microsoft/project_work") -->
+<!-- ``` -->
 
 
