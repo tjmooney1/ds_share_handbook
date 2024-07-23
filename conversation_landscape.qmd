@@ -74,7 +74,7 @@ There are a number of ways the user can process an embeddings output. Each metho
 
 Once we have reduced our embeddings, and for the sake of staying consistent to the context of our given example, lets say we have decided to use Uniform Manifold Approximation and Projection (UMAP), a technique which is helpful for when we wish to represent both the local and global structures of our data. The output of this step should have resulted in taking our high dimensional embedding data (often 768 columns or sometimes more) and reduced these values down to just 2 columns so that we can plot them onto our semantic space (our conversation landscape plot), using these 2 reduced values as if to serve as X and Y coordinates to appropriately map each data point, we often name these two columns `V1` and `V2`.
 
-At this stage, we can use the `LandscapeR` package to render a static visualisation of the entire landscape, and we can select the desired colour of our nodes by making use of the `fill_colour` parameter. In this instance, we've mapped our documents onto the semantic space represented as nodes using columns `V1` and `V2` and colour them a dark grey. 
+At this stage, we can use the `LandscapeR` package to render a static visualisation of the entire landscape, and we can select the desired colour of our nodes by making use of the `fill_colour` parameter. In this instance, we've mapped our documents onto the semantic space represented as nodes using columns `V1` and `V2` and coloured them a dark grey. 
 ```{r, eval=FALSE}
 data %>% 
   LandscapeR::ls_plot_static(x_var = V1,
@@ -84,7 +84,7 @@ data %>%
 
 ![Grey Colourless Landscape Plot from an AI Landscape Microsoft Project - Q2 FY24](/img/ai_landscape_grey.png){fig-alt="A screenshot of a powerpoint slide showcasing a Topic/Subtopic Breakdown of the Artificial Intelligence Conversation"}
 
-It's worth pointing out, that there are ways for the user to interactively explore the landscape at this stage, scanning over each node for its contents becoming familiar with each region of the landscape before clustering. The `plotly` package serves as a user friendly means for this purpose, helping us gather a 'lay of the land' and identify the dense and not so dense sections of our data.
+It's worth pointing out, that there are a number of ways for the user to interactively explore the landscape at this stage by scanning over each node, checking the documents contents. This helps the user to familiarise with each region of the landscape before clustering. The `plotly` package serves as a user friendly means for this purpose, helping us gather a 'lay of the land' and identify the dense and not so dense sections of our data.
 
 *NOTE: This shows just a 20K sample from our data, which is done only to comply with data size limits on GitHub and to be more conservative with compute and memory usage. Here, we also use a message column with breaks every 10 words to ensure the visual is neater*
 ```{r}
@@ -167,21 +167,21 @@ min_cluster_size: This parameter sets the minimum size of clusters. Like `min_sa
 ##### Tip: Try starting with the default value for all of these parameters, and incrementally adjust based on the desired granularity or effect of any that we wish to amend.
 
 #### Supporting Data Visualisation:
-Once we have our landscape output, as shown in `Final output of project`, we will inevitably need to display some further information regarding our topics, most commonly; Volume over Time (VOT) and Sentiment Distribution for each.
+Once we have our landscape output, as shown in [Final output of project](http://localhost:6377/conversation_landscape.html#final-output-of-project), we will inevitably need to display some further information regarding our topics, most commonly; Volume over Time (VOT) and Sentiment Distribution for each.
 
-We'll ideally keep some formatting consistencies when plotting our data, as we have mentioned previously, the colouring of our topic, ensuring they match up to their previous representation in any earlier visuals such as the landscape output. We also want to ensure that any visual we create ideally orders our topics by volume. With a few extra lines of code, we can ensure that these two things are possible.
+When doing so, we would ideally keep some formatting consistencies when plotting, as we mentioned previously, the colouring of our topics must remain the same throughout so that they match up with any previous representations in existing visuals such as the landscape output. We would also want to ensure that any plot we create orders our topics by volume or at least in the same order throughout our project. We can order our topics in terms of volume easily with just a few lines of code.
 
-First, we'll set the factor levels of our topics using the `dplyr::count()` output when called on the `topic_name` column, and the levels feature of the `factor()` base function like so:
+First, we'll make sure to set the factor levels of our topics by using `dplyr::count()` on the `topic_name` column, and setting the levels feature of the `factor()` base function based on the counted output.
 ```{r}
 # sort topics by order of volume
 topic_order <- data %>% dplyr::count(topic_name, sort = TRUE)
-# set levels determined by volume of topic, this orders the group when plotting
+# set levels determined by volume of topic, this orders the group variable for plotting
 data <- data %>% 
   dplyr::mutate(topic_name = factor(topic_name, levels = topic_order$topic_name))
 ```
 
 ##### Topic Volume over Time
-Starting with volume over time, we often choose to render a faceted plot that includes all topics and their VOT for comparison. We can do so by using functionality found in packages such as `JPackage`.
+Starting with volume over time, we often choose to render a faceted plot that includes all topics and their VOT for comparison. We can do so by using functionality found in packages such as `JPackage` for this.
 ```{r}
 # plot topic volume over time using 'plot_group_vol_time()' function
 data %>% 
@@ -193,7 +193,7 @@ data %>%
 ```
 
 ##### Topic Sentiment Distribution
-Next, we might want/need to break each of our topics out by their sentiment distribution to help shine light on any of particular interest or to help us tell a more refined story using our topic model. This can be done by using the `dr_plot_sent_group()` function of `DisplayR`.
+Next, we might want/need to break each of our topics out by their sentiment distribution to help shine light on any of particular interest or to help us tell a more refined story using our topic model. This can be done by using the `dr_plot_sent_group()` function of the `DisplayR` package.
 ```{r}
 data %>% 
   DisplayR::dr_plot_sent_group(group_var = topic_name,
@@ -204,6 +204,6 @@ data %>%
 ```
 
 ##### Alternative Visualisations
-While the two visuals we have displayed so far are relatively basic and nearly always used, its not to say we won't require alternative methods to display topic-level information. Often, we render ngrams per topic to display the relationships that exist between terms/phrases and we may create plots to showcase things such as data source or Social Network/Platform distributions within topics.
+While the two visuals we have displayed so far are relatively basic and commonly used, this does not mean that we won't require alternative methods to display topic-level information. Often, we may render n-grams per topic to display the relationships that exist between terms/phrases, and we may create plots to showcase things such as data source or social network/platform distributions across topics.
 
-With that said, it's worth noting that the need for specific methods entirely depends on the project domain and brief, as well as any outcome/findings derived, meaning we aught to be flexible in our approach to utilising data visualisation techniques to help support our project narrative.
+Finally, it's worth noting that the need for specific data visualisation methods entirely depends on the project domain and brief, as well as any outcomes/findings derived throughout. This means we ought to be flexible in our approach to utilising any technique that may assist with strengthening our understanding of the data and/or supporting our analyses.
