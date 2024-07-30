@@ -1,11 +1,3 @@
-```{r, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
-# load libraries
-library(tidyverse)
-
-# load some purposed data for this document
-data <- readr::read_csv("data/conversation_landscape_sample.csv")
-```
-
 # Conversation Landscape
 
 The 'Conversation Landscape' method has proven to be an effective tool for querying, auditing, and analysing both broad concepts and finely grained topics across social conversations on all major platforms, as well as web pages and forums.
@@ -77,6 +69,15 @@ There are a number of ways the user can process an embeddings output. Each metho
 Once we have reduced our embeddings, and for the sake of staying consistent to the context of our given example, lets say we have decided to use Uniform Manifold Approximation and Projection (UMAP), a technique which is helpful for when we wish to represent both the local and global structures of our data. The output of this step should have resulted in taking our high dimensional embedding data (often 768 columns or sometimes more) and reduced these values down to just 2 columns so that we can plot them onto our semantic space (our conversation landscape plot), using these 2 reduced values as if to serve as X and Y coordinates to appropriately map each data point, we often name these two columns `V1` and `V2`.
 
 At this stage, we can use the `LandscapeR` package to render a static visualisation of the entire landscape, and we can select the desired colour of our nodes by making use of the `fill_colour` parameter. In this instance, we've mapped our documents onto the semantic space represented as nodes using columns `V1` and `V2` and coloured them a dark grey. 
+
+```{r, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
+# load libraries
+library(tidyverse)
+
+# load some purposed data for this document
+data <- readr::read_csv("data/conversation_landscape_sample.csv")
+```
+
 ```{r, eval=FALSE}
 data %>% 
   LandscapeR::ls_plot_static(x_var = V1,
