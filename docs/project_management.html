@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science at SHARE Creative - 5&nbsp; A Data Science project</title>
+<title>Data Science at SAMY - 5&nbsp; A Data Science project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,6 +42,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -97,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Data Science at SHARE Creative</a> 
+      <a href="./">Data Science at SAMY</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -152,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conversation_landscape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conversation Landscape</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">load libraries</span></span></a>
   </div>
 </li>
       </ul>
@@ -197,6 +200,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./package_development.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Package Development</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Testing in R</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -212,19 +227,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_best_practices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -280,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Within the <code>data_science_project_work</code> directory there are subdirectories of all of our clients, such as <code>data_science_project_work/microsoft</code>, <code>data_science_project_work/dyson</code> etc.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./img/drive_screenshot.png" class="img-fluid figure-img"></p>
+<p><a href="./img/drive_screenshot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Screenshot of the data_science_project_work/ directory with client-specific subdirectories"><img src="./img/drive_screenshot.png" class="img-fluid figure-img" alt="Screenshot of the data_science_project_work/ directory with client-specific subdirectories"></a></p>
 <figcaption>Screenshot of the <code>data_science_project_work/</code> directory with client-specific subdirectories</figcaption>
 </figure>
 </div>
@@ -308,7 +323,7 @@ File paths
 <p>To create a RStudio Project, click File &gt; New Project and then follow the below steps, but call the directory the name of the project (if a Microsoft project, appended by the project number) rather than ‘r4ds’. Be sure to make sure the option ‘Create project as subdirectory of’ is the client directory on the Drive (in the case of Microsoft, this is <code>Share_Clients/data_science_project_work/microsoft/project_work/</code>).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./img/new_project_workflow.png" class="img-fluid figure-img"></p>
+<p><a href="./img/new_project_workflow.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-glightbox="description: .lightbox-desc-2" title="Steps to create a new project, taken from R for Data Science (2e) https://r4ds.hadley.nz/workflow-scripts.html#projects"><img src="./img/new_project_workflow.png" class="img-fluid figure-img" alt="Steps to create a new project, taken from R for Data Science (2e) https://r4ds.hadley.nz/workflow-scripts.html#projects"></a></p>
 <figcaption>Steps to create a new project, taken from R for Data Science (2e) https://r4ds.hadley.nz/workflow-scripts.html#projects</figcaption>
 </figure>
 </div>
@@ -320,7 +335,7 @@ File paths
 <p>DS projects consist of a parent project directory, with an associated <code>.Rproj</code> file, and three compulsory subdirectories <code>code</code>, <code>data</code>, and <code>viz</code> (all of which are made manually).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./img/project_directory.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
+<p><a href="./img/project_directory.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="./img/project_directory.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></a></p>
 </figure>
 </div>
 <p>Whilst there are no prizes for what goes in each subdirectory, it can be useful to have a structure in place to facilitate workflow ease.</p>
@@ -371,7 +386,11 @@ Save liberally
 <p>For example, the below shows a screenshot of a <code>viz</code> folder for a project that looked at three products. Within <code>viz</code> the plots for each brand are in their own folder, and within each brand (<code>chatgpt</code>, <code>copilot</code>, <code>gemini</code>) there are further folders to split up the type of visualisations created (<code>area_charts</code>, <code>eda</code> etc), with even a third level of subdirectory (<code>area_charts/peaks</code> and <code>area_charts/pits</code>).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./img/viz_directory.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./img/viz_directory.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-glightbox="description: .lightbox-desc-4" title="Example viz directory hierarchy for a Peaks and Pits project"><img src="./img/viz_directory.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%" alt="Example viz directory hierarchy for a Peaks and Pits project"></a></p>
+</figure>
+</div>
 <figcaption>Example viz directory hierarchy for a Peaks and Pits project</figcaption>
 </figure>
 </div>
@@ -384,6 +403,11 @@ Save liberally
 <!-- ``` -->
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Screenshot of the <code>data_science_project_work/</code> directory with client-specific subdirectories</span>
+<span class="glightbox-desc lightbox-desc-2">Steps to create a new project, taken from R for Data Science (2e) https://r4ds.hadley.nz/workflow-scripts.html#projects</span>
+<span class="glightbox-desc lightbox-desc-4">Example viz directory hierarchy for a Peaks and Pits project</span>
+</div>
 </section>
 </section>
 
@@ -627,6 +651,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -951,6 +982,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","loop":false,"closeEffect":"zoom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

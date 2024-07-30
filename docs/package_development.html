@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science at SAMY - 8&nbsp; Package Development</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./testing.html" rel="next">
+<link href="./packages.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Package Development</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Science at SAMY</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome to the Data Science Handbook</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Data Science team</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peaks_pits_workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Peaks and Pits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conversation_landscape.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">load libraries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Project work</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A Data Science project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_players.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project key players</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./package_development.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Package Development</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Testing in R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Tips and Tricks</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./code_best_practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r"><span class="header-section-number">9</span> R</a>
+  <ul>
+  <li><a href="#building-your-own-package" id="toc-building-your-own-package" class="nav-link" data-scroll-target="#building-your-own-package"><span class="header-section-number">9.1</span> Building your own package</a></li>
+  <li><a href="#development-workflow" id="toc-development-workflow" class="nav-link" data-scroll-target="#development-workflow"><span class="header-section-number">9.2</span> Development workflow</a></li>
+  <li><a href="#contributing-to-existing-packages" id="toc-contributing-to-existing-packages" class="nav-link" data-scroll-target="#contributing-to-existing-packages"><span class="header-section-number">9.3</span> Contributing to existing packages</a>
+  <ul class="collapse">
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">9.3.1</span> Code</a>
+  <ul class="collapse">
+  <li><a href="#exercises---code" id="toc-exercises---code" class="nav-link" data-scroll-target="#exercises---code"><span class="header-section-number">9.3.1.1</span> Exercises - code</a></li>
+  </ul></li>
+  <li><a href="#tests" id="toc-tests" class="nav-link" data-scroll-target="#tests"><span class="header-section-number">9.3.2</span> Tests</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">9.3.3</span> Documentation</a>
+  <ul class="collapse">
+  <li><a href="#roxygen2-gl" id="toc-roxygen2-gl" class="nav-link" data-scroll-target="#roxygen2-gl"><span class="header-section-number">9.3.3.1</span> Guidelines for commonly-used Roxygen tags</a></li>
+  <li><a href="#exercises---documentation" id="toc-exercises---documentation" class="nav-link" data-scroll-target="#exercises---documentation"><span class="header-section-number">9.3.3.2</span> Exercises - Documentation</a></li>
+  </ul></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">9.3.4</span> Data</a>
+  <ul class="collapse">
+  <li><a href="#exercises---data" id="toc-exercises---data" class="nav-link" data-scroll-target="#exercises---data"><span class="header-section-number">9.3.4.1</span> Exercises - Data</a></li>
+  </ul></li>
+  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website"><span class="header-section-number">9.3.5</span> Website</a>
+  <ul class="collapse">
+  <li><a href="#exercises---website" id="toc-exercises---website" class="nav-link" data-scroll-target="#exercises---website"><span class="header-section-number">9.3.5.1</span> Exercises - Website</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">10</span> Python</a>
+  <ul>
+  <li><a href="#folder-setup" id="toc-folder-setup" class="nav-link" data-scroll-target="#folder-setup"><span class="header-section-number">10.1</span> Folder Setup</a></li>
+  <li><a href="#git---terminal" id="toc-git---terminal" class="nav-link" data-scroll-target="#git---terminal"><span class="header-section-number">10.2</span> Git - Terminal</a></li>
+  <li><a href="#vignettes" id="toc-vignettes" class="nav-link" data-scroll-target="#vignettes"><span class="header-section-number">10.3</span> Vignettes</a></li>
+  <li><a href="#tests-1" id="toc-tests-1" class="nav-link" data-scroll-target="#tests-1"><span class="header-section-number">10.4</span> Tests</a></li>
+  </ul></li>
+  <li><a href="#continuous-integrationcontinuous-deployment" id="toc-continuous-integrationcontinuous-deployment" class="nav-link" data-scroll-target="#continuous-integrationcontinuous-deployment"><span class="header-section-number">11</span> Continuous Integration/Continuous Deployment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Package Development</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>One of the beautiful things about Data Science at SAMY is that you get to choose your path between research, development, or a hybrid. If you’re reading this, you’ve probably decided that you want to explore some development - what better way to start than building your own package?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a high-level overview of our existing packages, refer to the <a href="./packages.html">our packages</a> document.</p>
+</div>
+</div>
+<p>We build packages because they are convenient ways to share our code &amp; data and democratise access to our tools &amp; workflows - besides, that Google Doc of functions is getting heavy, and copying &amp; pasting code from project to project is getting tiresome. Eventually you’ll want the familiar <code>library()</code> syntax.</p>
+<p>Historically our packages have been built in R for two key reasons:</p>
+<ol type="1">
+<li>The profile/experience of people in the team</li>
+<li>The ecosystem for building packages is well-maintained and documented</li>
+</ol>
+<p>In recent times we have moved to more of a hybrid approach between R &amp; Python - the former we find to be considerably more easy to use for data wrangling and visualisation, and the latter for modelling and anything to do with LLMs. Internal development for Python has lagged behind R, but we expect this to change over time as we seek to be tool agnostic and focus on the right tool for the job at hand.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reticulate
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Reticulate is an R package that allows us to import Python packages and functions in R. Currently this is a one-way street - we can’t use reticulate to import R functions and packages. This has impacted our decision in the past, e.g.&nbsp;with BertopicR. We envisioned Insight Analysts using BertopicR as a drop-in or replacement for topic modelling with SegmentR. Weighing up the additional difficulty in development vs the time and resource necessary for Analysts to learn Python as well as R, we opted for reticulate.</p>
+<p>Using reticulate requires managing Python environments from R, this leads to difficulties of its own.</p>
+</div>
+</div>
+</div>
+<section id="r" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> R</h1>
+<p>Here we’ll look at how to get off the ground in R using the R package stack - {usethis}, {pkgdown}, {devtools}, {testthat} and {roxygen2}.</p>
+<section id="building-your-own-package" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="building-your-own-package"><span class="header-section-number">9.1</span> Building your own package</h2>
+<p>The (nearly) DIY way:</p>
+<p>This check-list should get you <strong>most of the way</strong> there, but it’s always possible that we’ve forgotten something or there has been <s>a disturbance in the force</s> a change in the package ecosystem. When this happens, open up an issue or submit a PR and help the next person who comes along.</p>
+<ul class="task-list">
+<li><label><input type="checkbox">Create a new repository on GitHub</label></li>
+<li><label><input type="checkbox">Clone the repository</label></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Folder management
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+Create a folder at your home directory named ‘git_repos’ and store all of your repositories here:
+<pre>mkdir ~/git_repos
+cd ~/git_repos
+git clone 'repo.url'
+</pre>
+</div>
+</div>
+</div>
+<ul class="task-list">
+<li><label><input type="checkbox">Open RStudio and call <code>usethis::create_package()</code></label></li>
+<li><label><input type="checkbox"><code>usethis::use_git()</code> in the console and commit files</label></li>
+<li><label><input type="checkbox">Check git has been set up with <code>usethis::git_sitrep()</code> (or <code>git status</code> in the terminal)</label></li>
+<li><label><input type="checkbox">Set an upstream branch e.g.&nbsp;<code>git remote add upstream &lt;link_to_repo_main&gt;</code> in the terminal</label></li>
+<li><label><input type="checkbox"><code>usethis::use_vignette()</code> to add a vignettes folder and start your first vignette</label></li>
+<li><label><input type="checkbox">Add individual functions/scripts with <code>use_r("script_name")</code> - these appear in your R/ folder</label></li>
+<li><label><input type="checkbox">Document each function following roxygen2’s structure <a href="#roxygen2-gl">Roxygen2 guidelines</a></label></li>
+<li><label><input type="checkbox">Call <code>use_package()</code> whenever you use an external package inside your package.</label></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+DESCRIPTION
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Your package will now have a DESCRIPTION file, add external packages your package requires to Imports. Add additional packages used in vignettes to Suggests. - But be careful, it’s generally not advisable to use packages just for vignettes!</p>
+<p>You can use the <code>usethis::use_latest_dependencies()</code> to add recent versions to your packages, but beware this can be restrictive. Ideally you would add the minimum package version necessary to run your code.</p>
+</div>
+</div>
+</div>
+<ul class="task-list">
+<li><label><input type="checkbox"><code>usethis::use_*_license()</code> - default to usethis::use_mit_license()</label></li>
+<li><label><input type="checkbox"><code>usethis::use_testthat()</code> and <code>use_test("script_name")</code> to start writing units tests for your functions and add testthat to suggests.</label></li>
+<li><label><input type="checkbox">Call <code>usethis::use_readme_rmd()</code> to allow for markdown code chunks in your readme - just remember to <code>devtools::build_readme()</code> when you’re done.</label></li>
+<li><label><input type="checkbox">Call <code>usethis::use_news_md()</code></label></li>
+<li><label><input type="checkbox">When you’re ready to add a website, call <code>usethis::use_pkgdown()</code> <code>pkgdown::init_site()</code>, <code>pkgdown::build_home_index()</code>, <code>pkgdown::build_search()</code>, <code>pkgdown::build_reference()</code>, <code>pgkdown::build_articles()</code>, and then <code>pkgdown::build_site()</code></label></li>
+<li><label><input type="checkbox">Add each function to pkgdown.yml’s reference section (we recommend viewing a working yml file from one of the other packages to get you started).</label></li>
+</ul>
+<p>The Easy Way (Tidy functions) Read through the <a href="https://usethis.r-lib.org/articles/usethis-setup.html">usethis-setup guide</a> and then use the <code>usethis::create_tidy_package()</code> to create a package with some guardrails.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Guardrails or no guardrails?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>usethis::create_tidy_package()</code> function is a helpful abstraction, but it will be better for your long-term development if you know how to do this stuff without the abstraction. That way, when you need to fix something, or do something slightly different than the prescribed way, you’ll have a better chance of success.</p>
+</div>
+</div>
+<p>Want to go deeper? Check out the <a href="https://r-pkgs.org/">R Packages Book</a>, we recommend skimming first and then using it as a reference manual.</p>
+</section>
+<section id="development-workflow" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="development-workflow"><span class="header-section-number">9.2</span> Development workflow</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>Once you’ve built the package there are some things you will want to do regularly to ensure your package stays in good shape. This is by no means an exhaustive list - be sure to add your tips &amp; tricks as you amass them.</p>
+</div><div class="column" style="width:20%;">
+
+</div><div class="column">
+<p><a href="img/bernie.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="img/bernie.png" class="img-fluid"></a></p>
+</div>
+</div>
+<p><br></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Run <code>testthat::test_package()</code> often to check for regressions in your code</label></li>
+<li><label><input type="checkbox">Run <code>devtools::check()</code> occasionally to make sure you haven’t made any obvious mistakes - try to keep notes, warnings and errors to 0!</label></li>
+<li><label><input type="checkbox">Use <code>devtools::load_all()</code> to reload the package when you’ve made changes. (<code>devtools::document()</code> also calls <code>load_all()</code> when called)</label></li>
+<li><label><input type="checkbox">Run <code>roxygen2::roxygenise(clean = TRUE)</code> if your documentation doesn’t look as you expect after</label></li>
+<li><label><input type="checkbox">Use <code>pkgdown::build_site()</code> when you expect to see changes in your package’s website</label></li>
+<li><label><input type="checkbox">Use <code>pkgdown::clean_site()</code> and <code>pkgdown::build_site()</code> when expected changes aren’t reflecting in your preview</label></li>
+</ul>
+</section>
+<section id="contributing-to-existing-packages" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="contributing-to-existing-packages"><span class="header-section-number">9.3</span> Contributing to existing packages</h2>
+<ul class="task-list">
+<li><p><label><input type="checkbox">Pull current state of repo/package from origin</label></p></li>
+<li><p><label><input type="checkbox">Create a new branch, can use <code>usethis::pr_init()</code> from usethis to make this a bit easier, otherwise <code>git checkout -b "branch_name"</code></label></p></li>
+<li><p><label><input type="checkbox">Run <code>devtools::test()</code> <code>devtools::check()</code> at regular intervals, keep errors, warnings, notes down to minimum</label></p></li>
+<li><p><label><input type="checkbox">Build out logic for new changes, add to R/ where necessary. <code>usethis::use_r()</code> function to add new scripts properly</label></p></li>
+<li><p><label><input type="checkbox">Build out tests for new logic in tests/</label></p></li>
+<li><p><label><input type="checkbox">Ensure function-level documentation is added to any new logic, including @title, @description, @details, @param, @returns, @examples and @export if function is to be exported, or @internal otherwise. Let roxygen2 take care of @usage.</label></p></li>
+<li><p><label><input type="checkbox">Keep re-running tests and check!</label></p></li>
+<li><p><label><input type="checkbox">If you’re introducing something new, update package-level documentation e.g.&nbsp;vignettes and/or readme explaining what you’ve introduced and how it should be used. Provide examples where possible. If you’re building out a new capability you may need a whole new vignette, use the <code>usethis::use_vignette()</code> function.</label></p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What are vignettes?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vignettes are long-form guides that provide in-depth documentation for your package. They go beyond the basic function documentation and explain how to use the package to solve specific problems, often with detailed examples and code. Vignettes showcase your package’s full range of capabilities and help users understand how to effectively utilise its features</p>
+</div>
+</div>
+<ul class="task-list">
+<li><p><label><input type="checkbox">If you’re updating legacy code, check that vignettes are up-to-date with the changes you’ve made - we want to avoid code-documentation drift where possible.</label></p></li>
+<li><p><label><input type="checkbox">Add your function to the reference section in _pkgdown,yml if it’s being exported.</label></p></li>
+<li><p><label><input type="checkbox">Add data objects, <code>.Rhistory</code>, <code>*.Rproj</code>, <code>.Rprofile</code>, <code>.DS_Store</code>, to <code>.gitignore</code></label></p></li>
+<li><p><label><input type="checkbox">Run <code>pkgdown::clean_site()</code> and <code>pkgdown::build site()</code>, visually inspect each section of the site</label></p></li>
+</ul>
+<p>Pull request when ready.</p>
+<section id="code" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="code"><span class="header-section-number">9.3.1</span> Code</h3>
+<p>Generally code should sit in the R/ folder, you can choose between a script per function or use scripts as modules, where a module is a particular use case, or logical unit. Historically we sided on the former, but as a package grows it can become difficult to manage/navigate, and there can be a decoupling of logic. Ultimately this is a matter of taste in R.</p>
+<section id="exercises---code" class="level4" data-number="9.3.1.1">
+<h4 data-number="9.3.1.1" class="anchored" data-anchor-id="exercises---code"><span class="header-section-number">9.3.1.1</span> Exercises - code</h4>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercises
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You may need to consult external resources to answer the exercises, we’ve tried to provide links to help you along the way, but we encourage you to embrace the joy of discovery and find relevant sources/fill in the gaps where necessary!</p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>What are the practical differences between <code>.gitignore</code> and <code>.Rbuildignore</code>?</li>
+</ol>
+<ul>
+<li>What objects should go in <code>.gitignore</code> but not <code>.Rbuildignore</code>, and vice versa?</li>
+</ul>
+<ol start="2" type="1">
+<li>What does the DESCRIPTION file do?</li>
+<li>Write your own description for each of the following packages, detailing what they are for where they sit in the R package stack:</li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox">testthat</label></li>
+<li><label><input type="checkbox">roxygen2</label></li>
+<li><label><input type="checkbox">devtools</label></li>
+<li><label><input type="checkbox">pkgdown</label></li>
+<li><label><input type="checkbox">usethis</label></li>
+</ul>
+</section>
+</section>
+<section id="tests" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="tests"><span class="header-section-number">9.3.2</span> Tests</h3>
+<blockquote class="blockquote">
+<p>In a perfect world, every <s>dog</s> implementation detail would have a <s>home</s> test and every <s>home</s> test would have an implementation detail.</p>
+</blockquote>
+<p>There is a balance to be struck between testing <em>absolutely everything</em> and testing what needs to be tested. Before we get into the finer details, let’s establish why we’re writing tests in the first place. The first reason for writing tests is to help you write software that works. The second reason is to help you do this fast, and with confidence.</p>
+<p>Testing is not to prove that your code has no bugs, or cannot have any bugs in the future. Whenever you do find a bug, or someone reports one, write a test as you fix the issue.</p>
+<p>For more information and another opinion, check out the <a href="https://r-pkgs.org/testing-basics.html">R Packages testing section</a>, and the <a href="./testing.html" target="_blank">Testing document</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Don’t let testing paralyse your development process, they’re there to help not hinder. As a rule-of-thumb, if your tests for a function are more complex than your function, you’ve gone too far.</p>
+</div>
+</div>
+</section>
+<section id="documentation" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="documentation"><span class="header-section-number">9.3.3</span> Documentation</h3>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>We use {roxygen2} tags to document our functions. Visit the <a href="https://roxygen2.r-lib.org/articles/rd.html">documenting functions</a> article for a primer.</p>
+<p>Using the roxygen2 skeleton promotes consistent documentation, check out a function’s help page (e.g.&nbsp;<code>?ParseR::count_ngram</code>) to see how rendered documentation looks - do this regularly with your own functions.</p>
+<p>We tend to find our documentation could always be better, more complete. You can’t hope to cover <strong>everything</strong> a user could do with your function, but make sure it’s clear from the documentation what your function is for and what its primary uses are.</p>
+</div><div class="column" style="width:20%;">
+
+</div><div class="column" style="width:40%;">
+<p><a href="img/parser_documentation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/parser_documentation.png" class="img-fluid"></a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most people will scroll straight past the @description and @details and go directly to your code examples.</p>
+</div>
+</div>
+<section id="roxygen2-gl" class="level4" data-number="9.3.3.1">
+<h4 data-number="9.3.3.1" class="anchored" data-anchor-id="roxygen2-gl"><span class="header-section-number">9.3.3.1</span> Guidelines for commonly-used Roxygen tags</h4>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>@title</td>
+<td>One-line description of what your function does</td>
+</tr>
+<tr class="even">
+<td>@description</td>
+<td>A paragraph elaborating on your title</td>
+</tr>
+<tr class="odd">
+<td>@details</td>
+<td>A more detailed description of the function e.g.&nbsp;explaining how its arguments interact, or other key implementation details.</td>
+</tr>
+<tr class="even">
+<td>@param</td>
+<td>A description of the function’s parameters</td>
+</tr>
+<tr class="odd">
+<td>@return</td>
+<td>A description of the function’s return value</td>
+</tr>
+<tr class="even">
+<td>@examples</td>
+<td>Examples of how to use the function</td>
+</tr>
+<tr class="odd">
+<td>@export</td>
+<td>Whether the function is exported or not</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exercises---documentation" class="level4" data-number="9.3.3.2">
+<h4 data-number="9.3.3.2" class="anchored" data-anchor-id="exercises---documentation"><span class="header-section-number">9.3.3.2</span> Exercises - Documentation</h4>
+<ol type="1">
+<li>What is the title of {dplyr}’s <code>mutate()</code> function?</li>
+<li>@examples must be self-contained, create an example that is not self-contained, and one that is.</li>
+<li>Which package(s) (any programming language) stick out in your mind as being well-documented and easy to use, what did the creators do well?</li>
+<li>Audit SAMY’s R packages, find a function with sub-par documentation and upgrade it. Then fire in a Pull Request!</li>
+</ol>
+</section>
+</section>
+<section id="data" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="data"><span class="header-section-number">9.3.4</span> Data</h3>
+<p>You’re probably going to need some package-level data for your @examples or your vignettes. Before going off and finding or creating a new data set:</p>
+<ol type="1">
+<li>Check whether you can demonstrate what you need with existing datasets - call <code>data()</code> in your console</li>
+<li>Make sure the dataset you have chosen comes from a package your package explicitly Imports or Suggests</li>
+</ol>
+<p>If you still can’t find the right dataset, create one!</p>
+<ol type="1">
+<li>Load the dataset into memory</li>
+<li>Call <code>usethis::use_data(dataset_variable_name)</code></li>
+<li>Document the columns</li>
+</ol>
+<p>If you choose this route, some interesting problems may lie in wait. Skip to Exercises 1.</p>
+<p>To go deeper view the <a href="https://r-pkgs.org/data.html">R Packages Dataset Section</a></p>
+<div class=".callout-tip">
+<p>Datasets from the {datasets} package come with base R</p>
+</div>
+<section id="exercises---data" class="level4" data-number="9.3.4.1">
+<h4 data-number="9.3.4.1" class="anchored" data-anchor-id="exercises---data"><span class="header-section-number">9.3.4.1</span> Exercises - Data</h4>
+<ol type="1">
+<li>Why might you add your data artefacts to <code>.Rbuildignore</code> or <code>.gitignore</code>?</li>
+<li>Which package does the <code>diamonds</code> dataset ship with?</li>
+</ol>
+<p>You’re probably going to need some data… existing data… adding new usethis::use_data() usethis::use_data_raw()</p>
+</section>
+</section>
+<section id="website" class="level3" data-number="9.3.5">
+<h3 data-number="9.3.5" class="anchored" data-anchor-id="website"><span class="header-section-number">9.3.5</span> Website</h3>
+<p>pkgdown .nojekyll</p>
+<section id="exercises---website" class="level4" data-number="9.3.5.1">
+<h4 data-number="9.3.5.1" class="anchored" data-anchor-id="exercises---website"><span class="header-section-number">9.3.5.1</span> Exercises - Website</h4>
+<ol type="1">
+<li>Explain in your own words what .nojekyll is for.</li>
+</ol>
+<ul>
+<li>Where should it be placed in your package?</li>
+<li>What problems arise when you don’t have one?</li>
+</ul>
+<ol start="2" type="1">
+<li></li>
+</ol>
+</section>
+</section>
+</section>
+</section>
+<section id="python" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Python</h1>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This document is very much a work in progress, key steps may be missing.</p>
+</div>
+</div>
+<section id="folder-setup" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="folder-setup"><span class="header-section-number">10.1</span> Folder Setup</h2>
+<p>The first step in creating a Python package is setting up the project structure. Create a new directory for your project and organize it with the following subdirectories and files:</p>
+<ul class="task-list">
+<li><label><input type="checkbox">your_package_name/: The main package directory containing your Python modules and code. Make sure to add a <code>__init__.py</code> file to the source and any modules.</label></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>init</strong>.py
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Create a directory for your package and place an empty <strong>init</strong>.py file inside it. If your package has sub-packages or modules, create additional directories for them and place <strong>init</strong>.py files in each directory. Import your package or its modules in your Python scripts using the import statement or the from package import module syntax.</p>
+</div>
+</div>
+</div>
+<ul class="task-list">
+<li><label><input type="checkbox">tests/: Directory for test files to ensure the correctness of your package’s functionality.</label></li>
+<li><label><input type="checkbox">docs/: Directory for storing comprehensive documentation files.</label></li>
+<li><label><input type="checkbox">setup.py: File specifying package metadata, dependencies, and build instructions.</label></li>
+<li><label><input type="checkbox">MANIFEST.in: File listing the files to include in the package distribution.</label></li>
+<li><label><input type="checkbox">requirements.txt: File listing the package dependencies for easy installation.</label></li>
+<li><label><input type="checkbox">README.md: File providing an overview, installation instructions, and usage examples for your package.</label></li>
+<li><label><input type="checkbox">LICENSE: File specifying the license under which your package is distributed.</label></li>
+<li><label><input type="checkbox">.gitignore: File specifying files and directories to ignore in version control.</label></li>
+<li><label><input type="checkbox">Initialize a Git repository in your project directory and create a new repository on GitHub for collaboration and issue tracking.</label></li>
+</ul>
+</section>
+<section id="git---terminal" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="git---terminal"><span class="header-section-number">10.2</span> Git - Terminal</h2>
+<p>To set up a Git repository for your Python package from the terminal, follow these steps:</p>
+<ol type="1">
+<li><p>Open your terminal and navigate to the root directory of your Python package using the cd command. For example: <code>cd /path/to/your/package</code></p></li>
+<li><p>Initialize a new Git repository by running the git init command: <code>git init</code></p></li>
+<li><p>Add all the files in your package directory to the Git staging area using the git add command: <code>git add .</code></p></li>
+<li><p>Create an initial commit to save the current state of your package by running the git commit command with a meaningful commit message: <code>git commit -m "Initial commit"</code></p></li>
+<li><p>Add the remote repository URL to your local Git repository using the git remote add command: <code>git remote add origin &lt;repo_url&gt;</code></p></li>
+<li><p>Push your local commits to the remote repository using the git push command: <code>git push -u origin main</code></p></li>
+</ol>
+</section>
+<section id="vignettes" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="vignettes"><span class="header-section-number">10.3</span> Vignettes</h2>
+<ul class="task-list">
+<li><label><input type="checkbox">Write the vignette content in a readable format such as Markdown (.md) or reStructuredText (.rst).</label></li>
+<li><label><input type="checkbox">Place the vignette file in a dedicated directory within your package, typically named vignettes/ or docs/vignettes/</label></li>
+<li><label><input type="checkbox">Use a documentation tool like Quarto, Sphinx or MkDocs to convert the vignette file into HTML or PDF format. We advise using Quarto to keep it simple.</label></li>
+<li><label><input type="checkbox">Configure your package’s setup.py file to include the vignette files in the package distribution. Add the vignette directory to the package_data argument of the setup() function.</label></li>
+<li><label><input type="checkbox">If using Sphinx or mkdocs: Generate the package documentation by running the documentation tool’s build command, such as sphinx-build or mkdocs build. This will create the HTML or PDF files for your vignettes.</label></li>
+<li><label><input type="checkbox">Publish the generated vignette files along with your package distribution. Include them in the source distribution (sdist) and wheel distribution (bdist_wheel) that you upload to PyPI or conda.</label></li>
+</ul>
+</section>
+<section id="tests-1" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="tests-1"><span class="header-section-number">10.4</span> Tests</h2>
+<p>There are multiple viable frameworks, but for simplicity we recommend <a href="https://docs.pytest.org/en/stable/contents.html">Pytest</a> which functions quite similarly to {testthat}.</p>
+<p>Pytest has great docs, work through the <a href="https://docs.pytest.org/en/stable/how-to/index.html">how-to guides</a> to get up to speed.</p>
+</section>
+</section>
+<section id="continuous-integrationcontinuous-deployment" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Continuous Integration/Continuous Deployment</h1>
+<p>R templates etc. from RStudio Python templates</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./packages.html" class="pagination-link" aria-label="Our Packages">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Our Packages</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./testing.html" class="pagination-link" aria-label="Testing in R">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Testing in R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+</body></html>
