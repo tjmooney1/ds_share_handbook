@@ -1,0 +1,105 @@
+# Sentiment Analysis
+
+As we’ve briefly touched on throughout the Handbook, a common request in projects is to provide the client with an analysis of sentiment ascribed to the documents we are modelling. We nearly always provide details surrounding the breakdown of 'Positive', 'Negative', and 'Neutral' posts across the entire dataset (whether raw or cleaned). Alternatively, we may have a Topic Model or some text classifications upon which we wish to investigate further by breaking out by sentiment, to highlight the most emotive topics within a specific conversation.
+
+## Understanding Sentiment
+
+Sentiment is the term used to describe the tone of language or the nature of a document based on the users intent of what is being said. For example, if a user posts something like "I love X product for Y reason…", we'd almost definitely expect to see this document ascribed with a 'Positive' sentiment. The waters can become quite murky when dealing with sarcasm, jokes or trending language or jargon that machines struggle to classify/understand fully. These classifications can come already baked into a dataset that we'd export from platforms like Sprinklr or Radarly.
+
+::: {.callout-note collapse="true"} 
+*We won't always know the origins of our data in terms of where it's been exported, so it's likely that the column containing sentiment-based information may be named something like 'tone' or similar… *
+:::
+
+## Steps Taken in Sentiment Analysis
+
+There are a number of ideal steps one must take to ensure an accurate and meaningful sentiment analysis is being conducted. This section will serve to break those steps down into a more manageable and easy to follow pipeline.
+
+- Data Processing: A inevitable step to take is the pre-processing and preparation of our data which will set us up for gathering more meaningful insights downstream, with findings more representative of the true nature of our data.
+- Sentiment Classification: While we can't be sure of where our data will come from in any project, it’s useful (and sometimes optimal) for us to get our own classifications using pre-trained classifiers that are hosted on open source platforms such as HuggingFace. 
+- Analyse Outcome: Analyse the sentiment of the entire dataset first, make note of any heavy skews in Positivity or Negativity. Compare or contrast this to any topic model or segmented data and the sentiment within those.
+- Visualise and Report: Finally, create meaningful visualisations to portray findings derived from the analysis that illustrate the overall sentiment distribution. Compile the visuals highlighting the insights and key trends that we have observed.
+
+## Data Processing
+
+We won't dwell on this step too much, as data cleaning is a vast topic and is covered in greater detail [here](http://localhost:7177/data_cleaning.html) in the Tips and Tricks section. However, it is crucial to ensure high data quality when performing any analysis, especially when analysing sentiment. Unclean data can significantly distort sentiment distributions. For example, spam and promotional content often found on social media tend to skew positively due to their use of overly enthusiastic and optimistic language. In summary of this section, be sure to clean data thoroughly and perform the necessary text processing steps on any documents being classified.
+
+## Sentiment Classification
+
+As we mentioned earlier, most (if not all) datasets we receive from Sprinklr or Radarly will contain some sentiment or similar information related to a post or document. However, we may wish to calculate our own classifications using out-of-the-box pre-trained models or even a classifier we build ourselves. This section will cover a straightforward process for doing so using a pre-trained model from HuggingFace. Each step will be performed using Python modules, with a simple code layout provided throughout, making it easy to follow.
+
+### Import Model
+
+First, we'll import any modules/libraries that we may need for the workflow as well as the sentiment model. In this instance, we will use the `twitter-roberta-base-sentiment-latest` model which has been trained on Twitter data and can be retrieved via the `transformers` module. We will make use of the `pandas` library for any data manipulation steps.
+```{r, eval = FALSE}
+# {Python Code}
+from transformers import pipeline
+import pandas as pd 
+
+# import model from transformers using pipeline and 
+sentiment_model = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment-latest")
+```
+
+### Data
+To perform any kind of text classification, we need texts, so here we will create some data with a column 'message' to resemble a real-world example.
+```{python, eval = FALSE}
+# {Python Code}
+# create a dataframe object with one Positive, Negative and Neutral 'message' to classify
+data = {
+    "doc_id": list(range(1, 6)),
+    "message": [
+      "I love using this product, it has changed my life.",
+      "A really good product",
+      "A good product",
+      "This product sucks so bad, don't waste your money",
+      "Very unhappy with the service, it was a disaster.",
+      "I can't recommend this product enough!",
+      "I haven't used it yet, heard it works though"
+      ]
+}
+df = pd.DataFrame(data)
+```
+
+::: {.callout-note collapse="true"}
+*For demonstrative purposes, we’ve used a manually constructed dataframe, but it’s likely the user will need something like this to import their data:*
+
+`data = pd.read_csv('input/the/path/to/the/files/directory.csv')`
+:::
+
+### Classify Documents
+Now we have some data, let's look at how we classify texts and retrieve the desired output. First, we'll ensure the column containing our documents is isolated and in the correct format, as a string type list. We can then provide this object to the model so it can perform sentiment classification on each row of data(or document).
+```{python, eval = FALSE}
+# {Python Code}
+texts = data['message'].astype(str).tolist() # make sure texts is a list of type string
+sentiment_output = sentiment_model(texts) # using the imported model, derive sentiment classifications
+
+# display the results...
+sentiment_output
+
+[{'label': 'positive', 'score': 0.9894090890884399},
+ {'label': 'negative', 'score': 0.9547233581542969},
+ {'label': 'negative', 'score': 0.9378408193588257},
+ {'label': 'positive', 'score': 0.983325719833374},
+ {'label': 'neutral', 'score': 0.6355203986167908}]
+```
+
+### Handling Output
+In our use-case example here, we see the model label posts positive, negative or neutral as we might have expected to, but also provide a score with it, where numbers closer to 1 are considered higher and more fitting to the label. 
+
+So now we have our labels and confidence scores for each classification, we can go ahead and either save them individually or join them to our original data and then save them for later use. Here's how we'd perform the second option, of joining to the original data-frame.
+```{python, eval = FALSE}
+# {Python Code}
+# isolate labels and scores
+labels = [output['label'] for output in sentiment_output]
+scores = [output['score'] for output in sentiment_output]
+
+# add sentiment and scores to the original df
+df['hf_sentiment'] = labels
+df['hf_sentiment_score'] = scores
+```
+
+As we normally do a lot of our work using Rstudio and often set up directories based around R projects, we may wish to save this output in CSV format, so that the later stages such as visualisation can be performed by any means.
+```{python, eval = FALSE}
+# {Python Code}
+# save dataframe
+df.to_csv("/path/to/your/project/folder/name_of_data.csv", index=False)
+```

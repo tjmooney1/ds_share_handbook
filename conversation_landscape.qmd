@@ -52,7 +52,7 @@ First, one should always check things like the existing variables and clean or r
 
 Again, as we may not always be responsible for data collection, we can expect that our data may contain unhelpful or even problematic information which is often the result of data being unwillingly bought in by the query. Our job at this stage is to minimize the amount of unhelpful data existing in our corpus to ensure our findings are accurate as well as appropriate for the data which we will be modelling.
 
-Optimal procedures for spam detection and removal are covered in more detail \[here\]*will include link when data cleaning section is complete*. However, there are steps the user absolutely must take to ensure that the text variable which will be provided to the sentence transformer model is clean and concise so that an accurate embedding process can take place upon our documents. This includes the removal of:
+Optimal procedures for spam detection and removal are covered in more detail [here](http://localhost:7177/data_cleaning.html). However, there are steps the user absolutely must take to ensure that the text variable which will be provided to the sentence transformer model is clean and concise so that an accurate embedding process can take place upon our documents. This includes the removal of:
 
 -   Hashtags #️⃣
 -   User/Account Mentions 💬

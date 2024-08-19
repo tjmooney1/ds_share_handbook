@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science at SHARE Creative - 8&nbsp; Coding best practices</title>
+<title>Data Science at SAMY - 11&nbsp; Coding best practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,6 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding best practices</span></h1>
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coding best practices</span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -134,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Data Science at SHARE Creative</a> 
+      <a href="./">Data Science at SAMY</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -189,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conversation_landscape.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conversation Landscape</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">load libraries</span></span></a>
   </div>
 </li>
       </ul>
@@ -222,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
- <span class="menu-text">Development</span></a>
+ <span class="menu-text">Workflows</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -230,8 +233,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
+  <a href="./sentiment_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sentiment Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -239,29 +242,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Tips and Tricks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+ <span class="menu-text">Development</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Our Packages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./package_development.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Package Development</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing in R</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Tips and Tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./code_best_practices.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coding best practices</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_cleaning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,33 +309,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-are-we-here" id="toc-why-are-we-here" class="nav-link active" data-scroll-target="#why-are-we-here"><span class="header-section-number">8.1</span> Why are we here?</a></li>
-  <li><a href="#reproducible-analyses" id="toc-reproducible-analyses" class="nav-link" data-scroll-target="#reproducible-analyses"><span class="header-section-number">8.2</span> Reproducible Analyses</a>
+  <li><a href="#why-are-we-here" id="toc-why-are-we-here" class="nav-link active" data-scroll-target="#why-are-we-here"><span class="header-section-number">11.1</span> Why are we here?</a></li>
+  <li><a href="#reproducible-analyses" id="toc-reproducible-analyses" class="nav-link" data-scroll-target="#reproducible-analyses"><span class="header-section-number">11.2</span> Reproducible Analyses</a>
   <ul class="collapse">
-  <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link" data-scroll-target="#literate-programming"><span class="header-section-number">8.2.1</span> Literate Programming</a></li>
+  <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link" data-scroll-target="#literate-programming"><span class="header-section-number">11.2.1</span> Literate Programming</a></li>
   </ul></li>
-  <li><a href="#on-flow-and-focus" id="toc-on-flow-and-focus" class="nav-link" data-scroll-target="#on-flow-and-focus"><span class="header-section-number">8.3</span> On flow and focus</a></li>
-  <li><a href="#on-managing-complexity" id="toc-on-managing-complexity" class="nav-link" data-scroll-target="#on-managing-complexity"><span class="header-section-number">8.4</span> On managing complexity</a></li>
-  <li><a href="#on-navigation" id="toc-on-navigation" class="nav-link" data-scroll-target="#on-navigation"><span class="header-section-number">8.5</span> On navigation</a>
+  <li><a href="#on-flow-and-focus" id="toc-on-flow-and-focus" class="nav-link" data-scroll-target="#on-flow-and-focus"><span class="header-section-number">11.3</span> On flow and focus</a></li>
+  <li><a href="#on-managing-complexity" id="toc-on-managing-complexity" class="nav-link" data-scroll-target="#on-managing-complexity"><span class="header-section-number">11.4</span> On managing complexity</a></li>
+  <li><a href="#on-navigation" id="toc-on-navigation" class="nav-link" data-scroll-target="#on-navigation"><span class="header-section-number">11.5</span> On navigation</a>
   <ul class="collapse">
-  <li><a href="#readme" id="toc-readme" class="nav-link" data-scroll-target="#readme"><span class="header-section-number">8.5.1</span> Readme</a></li>
-  <li><a href="#section-titles" id="toc-section-titles" class="nav-link" data-scroll-target="#section-titles"><span class="header-section-number">8.5.2</span> Section Titles</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">8.5.3</span> Code chunks</a></li>
+  <li><a href="#readme" id="toc-readme" class="nav-link" data-scroll-target="#readme"><span class="header-section-number">11.5.1</span> Readme</a></li>
+  <li><a href="#section-titles" id="toc-section-titles" class="nav-link" data-scroll-target="#section-titles"><span class="header-section-number">11.5.2</span> Section Titles</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">11.5.3</span> Code chunks</a></li>
   </ul></li>
-  <li><a href="#on-comments" id="toc-on-comments" class="nav-link" data-scroll-target="#on-comments"><span class="header-section-number">8.6</span> On comments</a></li>
-  <li><a href="#on-repeating-yourself-1---variables" id="toc-on-repeating-yourself-1---variables" class="nav-link" data-scroll-target="#on-repeating-yourself-1---variables"><span class="header-section-number">8.7</span> On repeating yourself #1 - Variables</a></li>
-  <li><a href="#on-naming" id="toc-on-naming" class="nav-link" data-scroll-target="#on-naming"><span class="header-section-number">8.8</span> On naming</a></li>
-  <li><a href="#on-repeating-yourself-2---abstractions" id="toc-on-repeating-yourself-2---abstractions" class="nav-link" data-scroll-target="#on-repeating-yourself-2---abstractions"><span class="header-section-number">8.9</span> On repeating yourself #2 - Abstractions</a>
+  <li><a href="#on-comments" id="toc-on-comments" class="nav-link" data-scroll-target="#on-comments"><span class="header-section-number">11.6</span> On comments</a></li>
+  <li><a href="#on-repeating-yourself-1---variables" id="toc-on-repeating-yourself-1---variables" class="nav-link" data-scroll-target="#on-repeating-yourself-1---variables"><span class="header-section-number">11.7</span> On repeating yourself #1 - Variables</a></li>
+  <li><a href="#on-naming" id="toc-on-naming" class="nav-link" data-scroll-target="#on-naming"><span class="header-section-number">11.8</span> On naming</a></li>
+  <li><a href="#on-repeating-yourself-2---abstractions" id="toc-on-repeating-yourself-2---abstractions" class="nav-link" data-scroll-target="#on-repeating-yourself-2---abstractions"><span class="header-section-number">11.9</span> On repeating yourself #2 - Abstractions</a>
   <ul class="collapse">
-  <li><a href="#on-functions" id="toc-on-functions" class="nav-link" data-scroll-target="#on-functions"><span class="header-section-number">8.9.1</span> On functions</a></li>
-  <li><a href="#on-anonymous-functions" id="toc-on-anonymous-functions" class="nav-link" data-scroll-target="#on-anonymous-functions"><span class="header-section-number">8.9.2</span> On anonymous functions</a></li>
+  <li><a href="#on-functions" id="toc-on-functions" class="nav-link" data-scroll-target="#on-functions"><span class="header-section-number">11.9.1</span> On functions</a></li>
+  <li><a href="#on-anonymous-functions" id="toc-on-anonymous-functions" class="nav-link" data-scroll-target="#on-anonymous-functions"><span class="header-section-number">11.9.2</span> On anonymous functions</a></li>
   </ul></li>
-  <li><a href="#on-packages" id="toc-on-packages" class="nav-link" data-scroll-target="#on-packages"><span class="header-section-number">8.10</span> On packages</a></li>
-  <li><a href="#on-version-control" id="toc-on-version-control" class="nav-link" data-scroll-target="#on-version-control"><span class="header-section-number">8.11</span> On version control</a></li>
-  <li><a href="#on-llm-generated-code" id="toc-on-llm-generated-code" class="nav-link" data-scroll-target="#on-llm-generated-code"><span class="header-section-number">8.12</span> On LLM-generated code</a></li>
-  <li><a href="#great-coding-resources" id="toc-great-coding-resources" class="nav-link" data-scroll-target="#great-coding-resources"><span class="header-section-number">8.13</span> Great Coding Resources</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.14</span> Exercises</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">9</span> Other Resources</a></li>
+  <li><a href="#on-packages" id="toc-on-packages" class="nav-link" data-scroll-target="#on-packages"><span class="header-section-number">11.10</span> On packages</a></li>
+  <li><a href="#on-namespaces-and-function-conflicts" id="toc-on-namespaces-and-function-conflicts" class="nav-link" data-scroll-target="#on-namespaces-and-function-conflicts"><span class="header-section-number">11.11</span> On namespaces and function conflicts</a></li>
+  <li><a href="#on-version-control" id="toc-on-version-control" class="nav-link" data-scroll-target="#on-version-control"><span class="header-section-number">11.12</span> On version control</a></li>
+  <li><a href="#on-managing-dependencies" id="toc-on-managing-dependencies" class="nav-link" data-scroll-target="#on-managing-dependencies"><span class="header-section-number">11.13</span> On Managing Dependencies</a>
+  <ul class="collapse">
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">11.13.1</span> R</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python"><span class="header-section-number">11.13.2</span> Python</a></li>
+  </ul></li>
+  <li><a href="#on-llm-generated-code" id="toc-on-llm-generated-code" class="nav-link" data-scroll-target="#on-llm-generated-code"><span class="header-section-number">11.14</span> On LLM-generated code</a></li>
+  <li><a href="#great-coding-resources" id="toc-great-coding-resources" class="nav-link" data-scroll-target="#great-coding-resources"><span class="header-section-number">11.15</span> Great Coding Resources</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.16</span> Exercises</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">12</span> Other Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -311,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Coding best practices</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Coding best practices</span></h1>
 </div>
 
 
@@ -342,13 +381,13 @@ Note
 <p>To avoid being cumbersome, we’ll use ‘notebook’ to refer to the set of interactive software in which data science usually takes place. They’ll tend to end with one of the following extensions: .md, .Rmd, .qmd, or .ipynb.</p>
 </div>
 </div>
-<section id="why-are-we-here" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="why-are-we-here"><span class="header-section-number">8.1</span> Why are we here?</h2>
-<p>At SHARE &amp; Capture, code is the language of both our research and our development, so it pays to invest in your coding abilities. There are many <a href="#great-coding-resources">great</a> (and many terrible) resources on learning how to code. This document will focus on practical tips on how to structure your code to reduce <a href="https://link.springer.com/article/10.1007/s10648-019-09465-5" target="_blank">cognitive strain</a> and do the best work you can.</p>
+<section id="why-are-we-here" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="why-are-we-here"><span class="header-section-number">11.1</span> Why are we here?</h2>
+<p>At SAMY, code is the language of both our research and our development, so it pays to invest in your coding abilities. There are many <a href="#great-coding-resources">great</a> (and many terrible) resources on learning how to code. This document will focus on practical tips on how to structure your code to reduce <a href="https://link.springer.com/article/10.1007/s10648-019-09465-5" target="_blank">cognitive strain</a> and do the best work you can.</p>
 <p>Let’s be clear about what coding is: <a href="https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&amp;text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited." target="_blank">coding is thinking not typing</a>, so good coding is simply good thinking and arranging our code well will help us to think better.</p>
 </section>
-<section id="reproducible-analyses" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="reproducible-analyses"><span class="header-section-number">8.2</span> Reproducible Analyses</h2>
+<section id="reproducible-analyses" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="reproducible-analyses"><span class="header-section-number">11.2</span> Reproducible Analyses</h2>
 <p>Above everything else, notebooks must be <a href="https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html" target="_blank">reproducible</a>. What do we mean by reproducible? You and your collaborators should be able to get back to any place in your analysis simply by executing code in the order it occurs in your scripts and notebooks. Hopefully the truth of this statement is self-evident. But if that’s the case, why are we talking about it?</p>
 <p>For some projects you’ll get away with a folder structure which looks something like this:</p>
 <div class="cell">
@@ -419,8 +458,8 @@ A lovely surprise
 </div>
 </div>
 </details>
-<section id="literate-programming" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="literate-programming"><span class="header-section-number">8.2.1</span> Literate Programming</h3>
+<section id="literate-programming" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="literate-programming"><span class="header-section-number">11.2.1</span> Literate Programming</h3>
 <blockquote class="blockquote">
 <p>“a script, notebook, or computational document that contains an explanation of the program logic in a natural language (e.g.&nbsp;English or Mandarin), interspersed with snippets of macros and source code, which can be compiled and rerun. You can think of it as an executable paper!”</p>
 </blockquote>
@@ -436,14 +475,14 @@ A lovely surprise
 </ul>
 </section>
 </section>
-<section id="on-flow-and-focus" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="on-flow-and-focus"><span class="header-section-number">8.3</span> On flow and focus</h2>
+<section id="on-flow-and-focus" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="on-flow-and-focus"><span class="header-section-number">11.3</span> On flow and focus</h2>
 <p>Most of us cannot do our best work on the most difficult challenges for 8 hours per day. In fact, conservative estimates suggest we have 2-3 hours per day, or 4 hours on a good day, where we can work at maximum productivity on challenging tasks. Knowing that about ourselves, we should proactively introduce periods of high <strong>and</strong> low intensity to our days.</p>
 <p>In periods of high intensity we’ll be problem solving - inspecting our data, selecting cleaning steps, running small scale experiments on our data: ‘What happens if I…’ and recording and interpreting the results. When the task is at the correct difficulty, you’ll naturally fall into a flow state. Try your best to prevent interruptions during this time. Protect your focus - don’t check your work emails, turn Slack off etc.</p>
 <p>Whilst these high-intensity periods are rewarding and hyper-productive, at the other end there is often a messy notebook or some questionable coding practices. Allocate time each and every day to revisit the code, add supporting comments, write assertions and tests, rename variables to be more descriptive, tidy up unused data artefacts, study your visualisations to understand what the data can really tell you etc. or anything else you can do to let your brain rest, recharge and come back stronger tomorrow. You’ll sometimes feel like you don’t have time to do these things, but it’s quite the opposite - you don’t have time not to do them.</p>
 </section>
-<section id="on-managing-complexity" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="on-managing-complexity"><span class="header-section-number">8.4</span> On managing complexity</h2>
+<section id="on-managing-complexity" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="on-managing-complexity"><span class="header-section-number">11.4</span> On managing complexity</h2>
 <blockquote class="blockquote">
 <p>“…let’s think of code complexity as how difficult code is to reason about and work with.”</p>
 </blockquote>
@@ -451,8 +490,8 @@ A lovely surprise
 <p>As a rough definition, let’s think of code complexity as ‘how difficult code is to reason about and work with.’ A good test of code complexity is how long it takes future you to remember what each line, or chunk, of code is for.</p>
 <p>We’ll now explore some tools and heuristics for fighting complexity in our code.</p>
 </section>
-<section id="on-navigation" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="on-navigation"><span class="header-section-number">8.5</span> On navigation</h2>
+<section id="on-navigation" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="on-navigation"><span class="header-section-number">11.5</span> On navigation</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -472,12 +511,12 @@ A lovely surprise
 </div>
 </div>
 <p>Let’s go out on a limb and say that the data science workflow is <strong>never</strong> linear, you will always move back and forth between cleanin data, inspecting it, and modelling it. Structuring your projects and notebooks with this in mind will save many headaches.</p>
-<section id="readme" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="readme"><span class="header-section-number">8.5.1</span> Readme</h3>
+<section id="readme" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="readme"><span class="header-section-number">11.5.1</span> Readme</h3>
 <p>For each project, add a<code>README.md</code> or <code>README.Rmd</code>, here you can outline what and who the project is for and guide people to notebooks, data artefacts, and any important resources. You may find it useful to maintain a to-do list here, or provide high-level findings - it’s really up to you, just keep your audience in mind.</p>
 </section>
-<section id="section-titles" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="section-titles"><span class="header-section-number">8.5.2</span> Section Titles</h3>
+<section id="section-titles" class="level3" data-number="11.5.2">
+<h3 data-number="11.5.2" class="anchored" data-anchor-id="section-titles"><span class="header-section-number">11.5.2</span> Section Titles</h3>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>Section titles help order your thoughts - when done well they let you see the big picture of your document. They will also help your collaborators to navigate and understand your document, and they’ll function as HTML headers in your rendered documents. When in the RStudio IDE the outline tab allows click-to-navigate with your section titles.</p>
@@ -499,25 +538,25 @@ Tip
 </div><div class="column" style="width:30%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/rstudio_outline.png" class="img-fluid figure-img"></p>
+<p><a href="img/rstudio_outline.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-glightbox="description: .lightbox-desc-1" title="Rstudio Outline"><img src="img/rstudio_outline.png" class="img-fluid figure-img" alt="Rstudio Outline"></a></p>
 <figcaption>Rstudio Outline</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="code-chunks" class="level3" data-number="8.5.3">
-<h3 data-number="8.5.3" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">8.5.3</span> Code chunks</h3>
+<section id="code-chunks" class="level3" data-number="11.5.3">
+<h3 data-number="11.5.3" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">11.5.3</span> Code chunks</h3>
 <p>You wrote the code in the chunk. So you know what it does, or at least you should. However, when rendering your document (which you should do regularly) it’s handy to have named chunks so that you know precisely which chunk is taking a long time to render, or has a problem. Furthermore, that 8-line pipe inside the chunk might not be as easy to understand at a glance in the future, and it certainly won’t be for your collaborators. It’s much easier to understand what a descriptively named chunk is doing than 8 piped function calls.</p>
 </section>
 </section>
-<section id="on-comments" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="on-comments"><span class="header-section-number">8.6</span> On comments</h2>
+<section id="on-comments" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="on-comments"><span class="header-section-number">11.6</span> On comments</h2>
 <p>When following the literate programming paradigm, coding comments (<code># comment...</code>) should be included in code chunks with <code>echo = False</code> unless you explicitly want your audience to see the code and the comments - save the markdown text for what your audience needs to see.</p>
 <p>Generally code comments should be used sparingly, if you find yourself needing a lot of comments it’s a sign the code is too complex, consider re-factoring or abstracting (more on abstractions later).</p>
 </section>
-<section id="on-repeating-yourself-1---variables" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="on-repeating-yourself-1---variables"><span class="header-section-number">8.7</span> On repeating yourself #1 - Variables</h2>
+<section id="on-repeating-yourself-1---variables" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="on-repeating-yourself-1---variables"><span class="header-section-number">11.7</span> On repeating yourself #1 - Variables</h2>
 <p>Storing code in multiple places tends to be a liability - if you want to make changes to that piece of code, you have to do it multiple times. More importantly than the time lost making the changes, you need to remember that the code has been duplicated and where all the copies are.</p>
 <p>Without variables coding would be ‘nasty, brutish and <s>short</s> long.’. It’s difficult to find the Goldilocks zone between ‘more variables than I can possibly name’ and ‘YOLO the project title is typed out 36 times’.</p>
 <p>Magrittr’s pipe operator (%&gt;% or command + shift + m) can save you from having to create too many variables. It would be quite ugly if we had to always code like this:</p>
@@ -553,12 +592,12 @@ Tip
 <p>tmp_df ❌</p>
 <p>screen_name_counts ✅</p>
 </section>
-<section id="on-naming" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="on-naming"><span class="header-section-number">8.8</span> On naming</h2>
+<section id="on-naming" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="on-naming"><span class="header-section-number">11.8</span> On naming</h2>
 <p>The primary objects for which naming is important are variables, functions, code chunks, section titles, and files. Give each of these clear names which describe precisely what they do or why they are there.</p>
 </section>
-<section id="on-repeating-yourself-2---abstractions" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="on-repeating-yourself-2---abstractions"><span class="header-section-number">8.9</span> On repeating yourself #2 - Abstractions</h2>
+<section id="on-repeating-yourself-2---abstractions" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="on-repeating-yourself-2---abstractions"><span class="header-section-number">11.9</span> On repeating yourself #2 - Abstractions</h2>
 <p>Do Not Repeat Yourself, so the adage goes. But some repetition is natural, desirable, and harmless whereas attempts to avoid all repetition <a href="https://testing.googleblog.com/2024/05/dont-dry-your-code-prematurely.html">can be the opposite</a>. As a rule-of-thumb, if you write the same piece of code three times you should consider creating an abstraction.</p>
 <p>Reasonable people disagree on the precise definition of ‘abstraction’ when it comes to coding &amp; programming. For our needs, we’ll think about it as simplifying code by hiding some complexity. A good abstraction helps us to focus only on the important details, a bad abstraction hides important details from us.</p>
 <p>The main tools for creating abstractions are:</p>
@@ -569,14 +608,14 @@ Tip
 <li>Packages</li>
 </ul>
 <p>We’ll focus on functions and packages.</p>
-<section id="on-functions" class="level3" data-number="8.9.1">
-<h3 data-number="8.9.1" class="anchored" data-anchor-id="on-functions"><span class="header-section-number">8.9.1</span> On functions</h3>
+<section id="on-functions" class="level3" data-number="11.9.1">
+<h3 data-number="11.9.1" class="anchored" data-anchor-id="on-functions"><span class="header-section-number">11.9.1</span> On functions</h3>
 <p>Make them! There are <em>lots</em> of reasons to write your own functions and make your code more readable and re-usable. We can’t hope to cover them all here, but we want to impress their importance. Writing functions will help you think better about your code and understand it on a deeper level, as well as making it easier to read, understand and maintain.</p>
 <p>For a more comprehensive resource, check in with the <a href="https://r4ds.had.co.nz/functions.html?q=functions#functions">R4DS functions section</a></p>
 <p>Also see the <a href="https://design.tidyverse.org/unifying.html">Tidyverse Design Guide</a> for stellar advice on building functions for Tidyverse functions.</p>
 </section>
-<section id="on-anonymous-functions" class="level3" data-number="8.9.2">
-<h3 data-number="8.9.2" class="anchored" data-anchor-id="on-anonymous-functions"><span class="header-section-number">8.9.2</span> On anonymous functions</h3>
+<section id="on-anonymous-functions" class="level3" data-number="11.9.2">
+<h3 data-number="11.9.2" class="anchored" data-anchor-id="on-anonymous-functions"><span class="header-section-number">11.9.2</span> On anonymous functions</h3>
 <p>Functions are particularly useful when you want to use iterators like {purrr}’s <code>map</code> family of functions or base R’s <code>apply</code> family. Often these functions are one-time use only so it’s not worth giving them a name or defining them explicitly, in which case you can use anonymous functions.</p>
 <p>Anonymous functions can be called in three main ways:</p>
 <ol type="1">
@@ -587,20 +626,83 @@ Tip
 <p>You will see a mixture of these, with 3. being used more often in older code, and 2. in more recent code.</p>
 </section>
 </section>
-<section id="on-packages" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="on-packages"><span class="header-section-number">8.10</span> On packages</h2>
+<section id="on-packages" class="level2" data-number="11.10">
+<h2 data-number="11.10" class="anchored" data-anchor-id="on-packages"><span class="header-section-number">11.10</span> On packages</h2>
 <p>Depending on how many functions you’ve created, how likely you are to repeat the analysis, and how generalisable the elements of your code are, it may be time to create a package.</p>
-<p>At first building a package is likely to seem overwhelming and something that ‘other people do’. However, in reality the time it takes to create a package reduces rapidly the more you create them. And the benefits for sharing your code with others are considerable. Eventually you’ll be able to spin up a new package for personal use in a matter of minutes, over time it will become clear which packages should be developed, left behind, or merged into an existing SHARE package.</p>
-<p>Visit the <a href="package_development.qmd" target="_blank">Package Development</a> document for practical tips and guidelines for developing R packages</p>
+<p>At first building a package is likely to seem overwhelming and something that ‘other people do’. However, in reality the time it takes to create a package reduces rapidly the more you create them. And the benefits for sharing your code with others are considerable. Eventually you’ll be able to spin up a new package for personal use in a matter of minutes, over time it will become clear which packages should be developed, left behind, or merged into an existing SAMY package.</p>
+<p>Visit the <a href="./package_development.html" target="_blank">Package Development</a> document for practical tips and guidelines for developing R packages</p>
 <p>see also: <a href="./resources.html#package-development" target="_blank">Package Resources</a></p>
 </section>
-<section id="on-version-control" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="on-version-control"><span class="header-section-number">8.11</span> On version control</h2>
+<section id="on-namespaces-and-function-conflicts" class="level2" data-number="11.11">
+<h2 data-number="11.11" class="anchored" data-anchor-id="on-namespaces-and-function-conflicts"><span class="header-section-number">11.11</span> On namespaces and function conflicts</h2>
+<p>R manages functions via namespaces. Depending on the order that you import your packages, you may find a function doesn’t behave as expected. For example, the {stats} package has a <code>filter()</code> function, but so does {dplyr}. By default R will use the most recently-imported package’s namespace to avoid any conflicts, so <code>filter()</code> will now refer to {dplyr}’s implementation.</p>
+<p>If you’re experiencing weirdness with a function, you may want to restart your R session, change the order of your imports to prevent the same weirdness occurring again. However, a more straightforward approach is to use the <code>package::</code> notation to explicitly refer to the function you intended to use e.g.&nbsp;<code>dplyr::filter()</code> will avoid any potential conflicts and confusion.</p>
+</section>
+<section id="on-version-control" class="level2" data-number="11.12">
+<h2 data-number="11.12" class="anchored" data-anchor-id="on-version-control"><span class="header-section-number">11.12</span> On version control</h2>
 <p>By default your projects should be stored on Google Drive inside the “data_science_project_work” folder, in the event of disaster (or minor inconvenience) this means your code and data artefacts should be backed up. However, it’s still advisable to use a version control system like git - using branches to explore different avenues, or re-factor your code, can be a real headache preventer and efficiency gain.</p>
 <p>Aim to commit your code multiple times per day, push to a remote branch (not necessarily main or master) once a day and merge + pull request when a large chunk of work has been finished. Keep your work code and projects in a private repository, add .Rhistory to .gitignore and make sure API keys are stored securely, i.e.&nbsp;not in scripts and notebooks.</p>
 </section>
-<section id="on-llm-generated-code" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="on-llm-generated-code"><span class="header-section-number">8.12</span> On LLM-generated code</h2>
+<section id="on-managing-dependencies" class="level2" data-number="11.13">
+<h2 data-number="11.13" class="anchored" data-anchor-id="on-managing-dependencies"><span class="header-section-number">11.13</span> On Managing Dependencies</h2>
+<p>Applying the Anna Karenina principle to virtual environments:</p>
+<blockquote class="blockquote">
+<p>“All happy virtual environments are alike; each unhappy virtual environment is unhappy in its own way”</p>
+</blockquote>
+<section id="r" class="level3" data-number="11.13.1">
+<h3 data-number="11.13.1" class="anchored" data-anchor-id="r"><span class="header-section-number">11.13.1</span> R</h3>
+<p>The R ecosystem - led by CRAN and posit (formerly RStudio) - does a great job in managing package-level dependencies. It’s rare to end up in dependency hell R. However, there is still scope for ‘works on my machine’ when working with collaborators who have different versions of a package, e.g.&nbsp;person 1 upgrades their {dplyr} version before person 2, and now that .by argument person 1 has used is breaking code on person 2’s machine.</p>
+<p>To avoid this, we advise using something like the {renv} package to manage package versions.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+On using renv collaboratively
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>renv helps us keep track of package &amp; R versions, which makes deployment 10x easier than without it. However, it can get tricky if we’re using renv in different ways.</p>
+<p>Start a renv project off with<code>renv::init()</code>, this will essentially remove all of your packages. You could choose to take your current packages with you, but it’s not advised. These packages are linked to your RStudio project when using RStudio, which means other RStudio projects will have your current packages if they’re not themselves using renv.</p>
+<p><code>renv::init()</code> creates a renv lockfile, you’ll need to keep this up to date as you work through the project - especially important if collaborating with other people on a project that uses renv. Once installed inside your local project, you can add single packages to the lockfile by <code>renv::record("package_name")</code>. This is preferable to adding a bunch of packages at a time with <code>renv::snapshot()</code> particularly when collaborating. Generally it will be better to give one person control of the lockfile and to communicate about adding packages as and when.</p>
+<p>If you’re working in a Quarto Doc or an RMarkdownfile to develop things that don’t need to pushed to the repo, you can create a <code>.renvignore</code> file like .Rbuildignore, .gitignore etc. and add the folder where the markdowns sit to make sure renv doesn’t try to sync itself with the packages you’re experimenting with.</p>
+<p>At any time you can check your environment is still synced with <code>renv::status()</code>, if your project is out of sync, you may want to <code>renv::clean()</code>, if you’ve got a bunch of packages that are like this:</p>
+<p><code>The following package(s) are in an inconsistent state:</code></p>
+<p><code>package       installed recorded used</code></p>
+<p><code>backports     y         y        n</code></p>
+<p><code>blob          y         y        n</code></p>
+<p><code>broom         y         y        n</code></p>
+<p><code>callr         y         y        n</code></p>
+<p><code>cellranger    y         y        n</code></p>
+<p>Then you’ll need to <code>renv::clean(actions = "unused.packages")</code>, which should get you in working order. There’s a lot more to {renv} when collaborating but these steps will do a lot to keep your environment in sync and allow collaborators to use your code.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="python" class="level3" data-number="11.13.2">
+<h3 data-number="11.13.2" class="anchored" data-anchor-id="python"><span class="header-section-number">11.13.2</span> Python</h3>
+<p><a href="img/pyenv.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="img/pyenv.png" style="width:50.0%;height:50.0%"></a></p>
+<p>Unlike R, it’s pretty easy to get into deep, deep trouble when working with Python environments. We advise using miniconda, keeping your base environment completely free of packages, and creating virtual environments for projects or large, but commonly-used and important packages like torch.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just remember to activate the correct environment every time you need to install a package!</p>
+</div>
+</div>
+</section>
+</section>
+<section id="on-llm-generated-code" class="level2" data-number="11.14">
+<h2 data-number="11.14" class="anchored" data-anchor-id="on-llm-generated-code"><span class="header-section-number">11.14</span> On LLM-generated code</h2>
 <p>GitHub Copilot, ChatGPT, Claude and other LLM-based code generators can be extremely useful, but they are a double-edged sword and should be used responsibly. If you find yourself relying on code you don’t understand, or couldn’t re-build yourself, you’re going to run in to trouble somewhere down the line. You have the time and space to learn things deeply here, so do read the docs, do reference textbooks, and do ask for help internally before relying on LLM-generated code which often <strong>looks right</strong> but is outdated or subtly incorrect/buggy.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -616,12 +718,16 @@ Tip
 </div>
 </div>
 </section>
-<section id="great-coding-resources" class="level2" data-number="8.13">
-<h2 data-number="8.13" class="anchored" data-anchor-id="great-coding-resources"><span class="header-section-number">8.13</span> Great Coding Resources</h2>
-<p><a href="https://abseil.io/resources/swe-book">Google SWE Book</a> <a href="https://rstudio-education.github.io/hopr/">Hands on programming with R</a> <a href="https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html">Reproducible Analysis, Jenny Bryan</a></p>
+<section id="great-coding-resources" class="level2" data-number="11.15">
+<h2 data-number="11.15" class="anchored" data-anchor-id="great-coding-resources"><span class="header-section-number">11.15</span> Great Coding Resources</h2>
+<ul>
+<li><a href="https://abseil.io/resources/swe-book">Google SWE Book</a></li>
+<li><a href="https://rstudio-education.github.io/hopr/">Hands on programming with R</a></li>
+<li><a href="https://jennhuck.github.io/workshops/repro_analysis_R_RStudio.html">Reproducible Analysis, Jenny Bryan</a></li>
+</ul>
 </section>
-<section id="exercises" class="level2" data-number="8.14">
-<h2 data-number="8.14" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.14</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="11.16">
+<h2 data-number="11.16" class="anchored" data-anchor-id="exercises"><span class="header-section-number">11.16</span> Exercises</h2>
 <blockquote class="blockquote">
 <p>In your own words, summarise what makes an analysis reproducible.</p>
 </blockquote>
@@ -635,11 +741,18 @@ Tip
 <p>Add your own best practices to this document!</p>
 </blockquote>
 </section>
-<section id="other-resources" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Other Resources</h1>
-<p><a href="https://link.springer.com/article/10.1007/s10648-019-09465-5">cognitive strain</a> <a href="https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&amp;text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.">coding is thinking not typing</a> <a href="https://testing.googleblog.com/2017/04/code-health-googles-internal-code.html">Google Code Health</a></p>
+<section id="other-resources" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Other Resources</h1>
+<ul>
+<li><a href="https://link.springer.com/article/10.1007/s10648-019-09465-5">cognitive strain</a></li>
+<li><a href="https://news.ycombinator.com/item?id=40103407#:~:text=Programming%20Is%20Mostly%20Thinking%20(2014)%20%7C%20Hacker%20News&amp;text=While%20that%20may%20be%20true,at%20all%20is%20extremely%20limited.">coding is thinking not typing</a></li>
+<li><a href="https://testing.googleblog.com/2017/04/code-health-googles-internal-code.html">Google Code Health</a></li>
+</ul>
 
 
+<div class="hidden" aria-hidden="true">
+<span class="glightbox-desc lightbox-desc-1">Rstudio Outline</span>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -882,6 +995,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1201,11 +1321,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./data_cleaning.html" class="pagination-link" aria-label="Data Cleaning">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 

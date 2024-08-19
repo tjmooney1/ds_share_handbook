@@ -27,6 +27,10 @@ book:
         - project_management.qmd
         - project_players.qmd
     - text: "---"
+    - part: "Workflows"
+      chapters: 
+        - sentiment_analysis.qmd
+    - text: "---"
     - part: "Development"
       chapters:
         - packages.qmd
